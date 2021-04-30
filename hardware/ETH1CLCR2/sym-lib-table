@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name ETH1CLCR2)(type Legacy)(uri /home/grzegorz/git/ETH1CLCR2/hardware/lib/sch/ETH1CLCR2.lib)(options "")(descr ""))
+)
