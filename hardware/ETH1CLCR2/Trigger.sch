@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 4 7
+Sheet 4 10
 Title "Trigger"
 Date "2020-03-07"
 Rev "1.00"
