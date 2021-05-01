@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 5 10
+Sheet 4 12
 Title "Connector"
 Date "2020-03-07"
 Rev "1.00"
@@ -569,4 +569,23 @@ F 3 "" H 10700 1800 50  0001 C CNN
 	1    10700 1800
 	1    0    0    -1  
 $EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 61964568
+P 2400 1750
+F 0 "#PWR0101" H 2400 1500 50  0001 C CNN
+F 1 "GND" V 2405 1622 50  0000 R CNN
+F 2 "" H 2400 1750 50  0001 C CNN
+F 3 "" H 2400 1750 50  0001 C CNN
+	1    2400 1750
+	0    1    1    0   
+$EndComp
+Text HLabel 2400 1050 0    50   Input ~ 0
+H_CUR
+Text HLabel 2400 1400 0    50   Input ~ 0
+L_CUR
+Text HLabel 2400 2100 0    50   Input ~ 0
+H_POT
+Text HLabel 2400 2450 0    50   Input ~ 0
+L_POT
 $EndSCHEMATC
