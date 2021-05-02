@@ -1,4 +1,4 @@
-19006229116532333
+19007838398562333
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -50694,6 +50694,13 @@ WL-SFCD  SMD Full-color ChipLED Diffused
 4
 4
 ETH1CLCR2
+36107406S
+WE-SHC Shielding Cabinet
+EMC shielding
+0
+32
+1
+ETH1CLCR2
 744031004
 WE-TPC SMD Shielded Tiny Power Inductor
 
@@ -50936,8 +50943,8 @@ NMK_SINGLE
 
 
 0
-5
-5
+4
+4
 ETH1CLCR2
 NX3225GD
  A small surface-mount type crystal unit, ideal for an engine control CPU clock
