@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name ETH1CLCR2)(type Legacy)(uri /home/grzegorz/git/ETH1CLCR2/hardware/lib/sch/ETH1CLCR2.lib)(options "")(descr ""))
+  (lib (name ETH1CLCR2_LINUX)(type Legacy)(uri /home/grzegorz/git/ETH1CLCR2/hardware/lib/sch/ETH1CLCR2.lib)(options "")(descr "")(disabled))
+  (lib (name ETH1CLCR2)(type Legacy)(uri C:/Users/behrensg/git-repos/ETH1CLCR2/hardware/lib/sch/ETH1CLCR2.lib)(options "")(descr ""))
 )
