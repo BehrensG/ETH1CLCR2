@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 12
+Sheet 1 13
 Title ""
 Date ""
 Rev ""
@@ -352,8 +352,8 @@ $EndComp
 $Sheet
 S 5000 2900 1700 1200
 U 610F1C70
-F0 "FGEN" 50
-F1 "FGEN.sch" 50
+F0 "DDS" 50
+F1 "DDS.sch" 50
 F2 "H_CUR" O L 5000 3100 50 
 $EndSheet
 $Sheet
