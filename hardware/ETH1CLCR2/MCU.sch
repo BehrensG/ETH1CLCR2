@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
-Sheet 11 13
+Sheet 11 12
 Title "MCU"
 Date "2020-03-07"
 Rev "1.00"
@@ -1470,18 +1470,6 @@ Wire Wire Line
 	15050 7100 15100 7100
 Wire Wire Line
 	15100 7200 15050 7200
-Text HLabel 15100 7300 2    50   Output ~ 0
-DDS_FGEN_PSEL0
-Text HLabel 15100 7400 2    50   Output ~ 0
-DDS_FGEN_PSEL1
-Text HLabel 15100 6100 2    50   Output ~ 0
-DDS_FGEN_FSELECT
-Wire Wire Line
-	15100 7400 15050 7400
-Wire Wire Line
-	15050 7300 15100 7300
-Wire Wire Line
-	15100 6100 15050 6100
 NoConn ~ 15050 5300
 NoConn ~ 15050 5400
 NoConn ~ 15050 5500
@@ -1503,10 +1491,6 @@ NoConn ~ 15050 1600
 NoConn ~ 15050 1400
 NoConn ~ 15050 1300
 NoConn ~ 15050 1200
-NoConn ~ 3650 3000
-NoConn ~ 3650 2900
-NoConn ~ 3650 2800
-NoConn ~ 3650 2700
 NoConn ~ 3650 2600
 NoConn ~ 3650 2000
 NoConn ~ 3650 1900
@@ -1523,9 +1507,9 @@ NoConn ~ 3650 5500
 NoConn ~ 3650 5600
 NoConn ~ 3650 5700
 Text HLabel 15100 2900 2    50   Input ~ 0
-ADC_RVS1
+ADC1_RVS1
 Text HLabel 15100 3000 2    50   Input ~ 0
-ADC_RVS2
+ADC1_RVS2
 Wire Wire Line
 	15100 3000 15050 3000
 Wire Wire Line
@@ -1538,10 +1522,32 @@ NoConn ~ 15050 5000
 NoConn ~ 15050 4800
 NoConn ~ 15050 5100
 NoConn ~ 15050 5200
-NoConn ~ 3650 3800
 NoConn ~ 15050 7700
 Text HLabel 15100 3700 2    50   Output ~ 0
 FGEN_SEL
 Wire Wire Line
 	15100 3700 15050 3700
+Text HLabel 3600 3800 0    50   Input ~ 0
+SPI1_MISO
+Wire Wire Line
+	3650 3800 3600 3800
+NoConn ~ 15050 7400
+NoConn ~ 15050 7300
+NoConn ~ 15050 6100
+Text HLabel 3600 2700 0    50   Output ~ 0
+DDS_DIV2
+Text HLabel 3600 2800 0    50   Output ~ 0
+DDS_DIV4
+Text HLabel 3600 2900 0    50   Output ~ 0
+DDS_DIV8
+Text HLabel 3600 3000 0    50   Output ~ 0
+~DDS_DIV10
+Wire Wire Line
+	3650 2700 3600 2700
+Wire Wire Line
+	3600 2800 3650 2800
+Wire Wire Line
+	3650 2900 3600 2900
+Wire Wire Line
+	3600 3000 3650 3000
 $EndSCHEMATC

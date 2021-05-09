@@ -5,4 +5,17 @@ D Synchronous Presettable Binary Counter
 K Binary Counter
 $ENDCMP
 #
+$CMP AD8476_MSOP
+D Low Power, Unity Gain,Fully Differential Amplifier and ADC Driver
+$ENDCMP
+#
+$CMP AD8656
+D Low Noise, Precision CMOS Amplifier
+$ENDCMP
+#
+$CMP IQXO-791
+D HCMOS XO / VCXO
+K XO VCXO
+$ENDCMP
+#
 #End Doc Library
