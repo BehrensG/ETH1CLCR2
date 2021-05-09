@@ -1,4 +1,4 @@
-19007838398562333
+19012700144840333
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -50897,6 +50897,13 @@ connector idc locked
 18
 16
 ETH1CLCR2
+IQXO-791
+
+
+0
+4
+4
+ETH1CLCR2
 JZ
 J Series Outperforms All Other Similar Trimmers
 
@@ -50932,6 +50939,13 @@ MSE-16
 22
 13
 ETH1CLCR2
+NCS3
+
+
+0
+6
+6
+ETH1CLCR2
 NMK_DUAL
 
 
@@ -50966,6 +50980,13 @@ Adjustable Output 3-Amp DOSA-SMT DC/DC Converters
 0
 5
 5
+ETH1CLCR2
+PM1608S
+PM1608S Series - Shielded Power Inductor
+
+0
+2
+2
 ETH1CLCR2
 PowerDI-123
 

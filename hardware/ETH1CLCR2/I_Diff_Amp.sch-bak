@@ -255,8 +255,8 @@ P 3500 6600
 AR Path="/621B52CA/61019063" Ref="RV?"  Part="1" 
 AR Path="/60FFA72B/61019063" Ref="RV1001"  Part="1" 
 F 0 "RV1001" V 3385 6600 50  0000 C CNN
-F 1 "TS53YJ203MR10" V 3294 6600 50  0000 C CNN
-F 2 "Potentiometer_SMD:Potentiometer_Vishay_TS53YJ_Vertical" H 3500 6600 50  0001 C CNN
+F 1 "3314J-1-203E" V 3294 6600 50  0000 C CNN
+F 2 "Potentiometer_SMD:Potentiometer_Bourns_3314J_Vertical" H 3500 6600 50  0001 C CNN
 F 3 "~" H 3500 6600 50  0001 C CNN
 	1    3500 6600
 	0    -1   -1   0   
