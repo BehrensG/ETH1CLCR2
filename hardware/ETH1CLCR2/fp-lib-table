@@ -1,4 +1,4 @@
 (fp_lib_table
   (lib (name ETH1CLCR2)(type KiCad)(uri /home/grzegorz/git/ETH1CLCR2/hardware/lib/pcb/ETH1CLCR2.pretty)(options "")(descr ""))
-  (lib (name ETH1CLCR2_WIN)(type KiCad)(uri C:/Users/behrensg/git-repos/ETH1CLCR2/hardware/lib/pcb/ETH1CLCR2.pretty)(options "")(descr "")(disabled))
+  (lib (name ETH1CLCR2_Win)(type KiCad)(uri C:/Users/behrensg/git-repos/ETH1CLCR2/hardware/lib/pcb/ETH1CLCR2.pretty)(options "")(descr "")(disabled))
 )
