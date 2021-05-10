@@ -392,28 +392,6 @@ Wire Wire Line
 Wire Wire Line
 	8000 1700 7900 1700
 $Comp
-L Diode:BAS16W D601
-U 1 1 60B9EFF1
-P 8700 1350
-F 0 "D601" H 8700 1567 50  0000 C CNN
-F 1 "BAS16J" H 8700 1476 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70" H 8700 1175 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf" H 8700 1350 50  0001 C CNN
-	1    8700 1350
-	1    0    0    -1  
-$EndComp
-$Comp
-L Diode:BAS16W D602
-U 1 1 60BA092B
-P 8700 1700
-F 0 "D602" H 8700 1917 50  0000 C CNN
-F 1 "BAS16J" H 8700 1826 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70" H 8700 1525 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf" H 8700 1700 50  0001 C CNN
-	1    8700 1700
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C C603
 U 1 1 60BA6232
 P 8450 1900
@@ -672,28 +650,6 @@ Wire Wire Line
 	8000 3500 8000 3450
 Wire Wire Line
 	8000 3450 7900 3450
-$Comp
-L Diode:BAS16W D603
-U 1 1 60D05AB6
-P 8700 3100
-F 0 "D603" H 8700 3317 50  0000 C CNN
-F 1 "BAS16J" H 8700 3226 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70" H 8700 2925 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf" H 8700 3100 50  0001 C CNN
-	1    8700 3100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Diode:BAS16W D604
-U 1 1 60D05ABC
-P 8700 3450
-F 0 "D604" H 8700 3667 50  0000 C CNN
-F 1 "BAS16J" H 8700 3576 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70" H 8700 3275 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf" H 8700 3450 50  0001 C CNN
-	1    8700 3450
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:C C606
 U 1 1 60D05AC2
@@ -965,28 +921,6 @@ Wire Wire Line
 Wire Wire Line
 	8000 5150 7900 5150
 $Comp
-L Diode:BAS16W D605
-U 1 1 60D16AC3
-P 8700 4800
-F 0 "D605" H 8700 5017 50  0000 C CNN
-F 1 "BAS16J" H 8700 4926 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70" H 8700 4625 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf" H 8700 4800 50  0001 C CNN
-	1    8700 4800
-	1    0    0    -1  
-$EndComp
-$Comp
-L Diode:BAS16W D606
-U 1 1 60D16AC9
-P 8700 5150
-F 0 "D606" H 8700 5367 50  0000 C CNN
-F 1 "BAS16J" H 8700 5276 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70" H 8700 4975 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf" H 8700 5150 50  0001 C CNN
-	1    8700 5150
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C C609
 U 1 1 60D16ACF
 P 8450 5350
@@ -1256,28 +1190,6 @@ Wire Wire Line
 	8000 6950 8000 6900
 Wire Wire Line
 	8000 6900 7900 6900
-$Comp
-L Diode:BAS16W D607
-U 1 1 60D16B6E
-P 8700 6550
-F 0 "D607" H 8700 6767 50  0000 C CNN
-F 1 "BAS16J" H 8700 6676 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70" H 8700 6375 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf" H 8700 6550 50  0001 C CNN
-	1    8700 6550
-	1    0    0    -1  
-$EndComp
-$Comp
-L Diode:BAS16W D608
-U 1 1 60D16B74
-P 8700 6900
-F 0 "D608" H 8700 7117 50  0000 C CNN
-F 1 "BAS16J" H 8700 7026 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70" H 8700 6725 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BAS16_SER.pdf" H 8700 6900 50  0001 C CNN
-	1    8700 6900
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:C C612
 U 1 1 60D16B7A
@@ -2231,4 +2143,92 @@ F 3 "~" H 9800 8650 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Connection ~ 9600 8650
+$Comp
+L Device:D D604
+U 1 1 60B92993
+P 8700 3450
+F 0 "D604" H 8700 3667 50  0000 C CNN
+F 1 "BAS16J" H 8700 3576 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8700 3450 50  0001 C CNN
+F 3 "~" H 8700 3450 50  0001 C CNN
+	1    8700 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D603
+U 1 1 60B94896
+P 8700 3100
+F 0 "D603" H 8700 3317 50  0000 C CNN
+F 1 "BAS16J" H 8700 3226 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8700 3100 50  0001 C CNN
+F 3 "~" H 8700 3100 50  0001 C CNN
+	1    8700 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D601
+U 1 1 60B9A027
+P 8700 1350
+F 0 "D601" H 8700 1567 50  0000 C CNN
+F 1 "BAS16J" H 8700 1476 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8700 1350 50  0001 C CNN
+F 3 "~" H 8700 1350 50  0001 C CNN
+	1    8700 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D602
+U 1 1 60B9AC3C
+P 8700 1700
+F 0 "D602" H 8700 1917 50  0000 C CNN
+F 1 "BAS16J" H 8700 1826 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8700 1700 50  0001 C CNN
+F 3 "~" H 8700 1700 50  0001 C CNN
+	1    8700 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D605
+U 1 1 60B9E5DA
+P 8700 4800
+F 0 "D605" H 8700 5017 50  0000 C CNN
+F 1 "BAS16J" H 8700 4926 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8700 4800 50  0001 C CNN
+F 3 "~" H 8700 4800 50  0001 C CNN
+	1    8700 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D606
+U 1 1 60B9FDCF
+P 8700 5150
+F 0 "D606" H 8700 5367 50  0000 C CNN
+F 1 "BAS16J" H 8700 5276 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8700 5150 50  0001 C CNN
+F 3 "~" H 8700 5150 50  0001 C CNN
+	1    8700 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D607
+U 1 1 60BA073B
+P 8700 6550
+F 0 "D607" H 8700 6767 50  0000 C CNN
+F 1 "BAS16J" H 8700 6676 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8700 6550 50  0001 C CNN
+F 3 "~" H 8700 6550 50  0001 C CNN
+	1    8700 6550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D608
+U 1 1 60BA220E
+P 8700 6900
+F 0 "D608" H 8700 7117 50  0000 C CNN
+F 1 "BAS16J" H 8700 7026 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-323_HandSoldering" H 8700 6900 50  0001 C CNN
+F 3 "~" H 8700 6900 50  0001 C CNN
+	1    8700 6900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
