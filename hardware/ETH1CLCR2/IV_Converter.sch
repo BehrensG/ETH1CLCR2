@@ -2137,7 +2137,7 @@ U 1 1 60FF4CD9
 P 9600 8650
 F 0 "TP601" V 9554 8838 50  0000 L CNN
 F 1 "TestPoint" V 9645 8838 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Plated_Hole_D2.0mm" H 9800 8650 50  0001 C CNN
+F 2 "TestPoint:TestPoint_Pad_1.0x1.0mm" H 9800 8650 50  0001 C CNN
 F 3 "~" H 9800 8650 50  0001 C CNN
 	1    9600 8650
 	0    1    1    0   
