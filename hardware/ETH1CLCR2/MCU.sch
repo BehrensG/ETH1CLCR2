@@ -1399,26 +1399,26 @@ NoConn ~ 3650 2500
 NoConn ~ 3650 3200
 NoConn ~ 3650 5100
 NoConn ~ 3650 5200
-Text HLabel 15100 3100 2    50   Output ~ 0
+Text HLabel 15100 7400 2    50   Output ~ 0
 CXN_REL5
-Text HLabel 15100 3200 2    50   Output ~ 0
+Text HLabel 15100 7300 2    50   Output ~ 0
 CXN_REL4
-Text HLabel 15100 3300 2    50   Output ~ 0
+Text HLabel 15100 6100 2    50   Output ~ 0
 CXN_REL3
-Text HLabel 15100 3400 2    50   Output ~ 0
+Text HLabel 15100 6000 2    50   Output ~ 0
 CXN_REL2
-Text HLabel 15100 3500 2    50   Output ~ 0
+Text HLabel 15100 5900 2    50   Output ~ 0
 CXN_REL1
 Wire Wire Line
-	15100 3100 15050 3100
+	15100 7400 15050 7400
 Wire Wire Line
-	15050 3200 15100 3200
+	15050 7300 15100 7300
 Wire Wire Line
-	15100 3300 15050 3300
+	15100 6100 15050 6100
 Wire Wire Line
-	15050 3400 15100 3400
+	15050 6000 15100 6000
 Wire Wire Line
-	15100 3500 15050 3500
+	15100 5900 15050 5900
 Text HLabel 15100 6700 2    50   Output ~ 0
 IRR1
 Text HLabel 15100 6800 2    50   Output ~ 0
@@ -1476,8 +1476,6 @@ NoConn ~ 15050 5500
 NoConn ~ 15050 5600
 NoConn ~ 15050 5700
 NoConn ~ 15050 5800
-NoConn ~ 15050 5900
-NoConn ~ 15050 6000
 NoConn ~ 15050 4700
 NoConn ~ 15050 4600
 NoConn ~ 15050 4400
@@ -1531,9 +1529,6 @@ Text HLabel 3600 3800 0    50   Input ~ 0
 SPI1_MISO
 Wire Wire Line
 	3650 3800 3600 3800
-NoConn ~ 15050 7400
-NoConn ~ 15050 7300
-NoConn ~ 15050 6100
 Text HLabel 3600 2700 0    50   Output ~ 0
 DDS_DIV2
 Text HLabel 3600 2800 0    50   Output ~ 0
@@ -1550,4 +1545,9 @@ Wire Wire Line
 	3650 2900 3600 2900
 Wire Wire Line
 	3600 3000 3650 3000
+NoConn ~ 15050 3100
+NoConn ~ 15050 3200
+NoConn ~ 15050 3300
+NoConn ~ 15050 3400
+NoConn ~ 15050 3500
 $EndSCHEMATC
