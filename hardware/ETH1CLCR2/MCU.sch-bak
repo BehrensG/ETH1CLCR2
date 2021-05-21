@@ -736,18 +736,18 @@ Wire Wire Line
 	15050 2600 15100 2600
 Text HLabel 15750 8700 2    50   BiDi ~ 0
 NRST
-Text HLabel 15100 1900 2    50   Output ~ 0
+Text HLabel 15100 5600 2    50   Output ~ 0
 TRIG_EN
-Text HLabel 15100 1800 2    50   Output ~ 0
+Text HLabel 15100 5700 2    50   Output ~ 0
 TRIG_OUT
-Text HLabel 15100 1500 2    50   Input ~ 0
+Text HLabel 15100 5800 2    50   Input ~ 0
 TRIG_IN
 Wire Wire Line
-	15100 1500 15050 1500
+	15100 5600 15050 5600
 Wire Wire Line
-	15100 1800 15050 1800
+	15100 5700 15050 5700
 Wire Wire Line
-	15050 1900 15100 1900
+	15050 5800 15100 5800
 NoConn ~ 15050 2400
 $Comp
 L Device:C C1121
@@ -777,8 +777,8 @@ Wire Wire Line
 Wire Wire Line
 	3650 10900 4150 10900
 Wire Wire Line
-	3650 3500 3100 3500
-Text Label 3100 3500 0    50   ~ 0
+	15050 3100 15600 3100
+Text Label 15600 3100 2    50   ~ 0
 MCU_DEFAULT
 Connection ~ 11350 9950
 Wire Wire Line
@@ -1355,10 +1355,8 @@ Wire Wire Line
 Wire Wire Line
 	3600 900  2750 900 
 Connection ~ 2750 900 
-Text HLabel 15100 7800 2    50   Output ~ 0
-SPI2_MOSI
-Wire Wire Line
-	15100 7800 15050 7800
+Text HLabel 15100 7700 2    50   Input ~ 0
+SPI2_MISO
 Text HLabel 15100 7500 2    50   Output ~ 0
 SPI2_NSS
 Wire Wire Line
@@ -1399,69 +1397,50 @@ NoConn ~ 3650 2500
 NoConn ~ 3650 3200
 NoConn ~ 3650 5100
 NoConn ~ 3650 5200
-Text HLabel 15100 3100 2    50   Output ~ 0
+Text HLabel 15100 7400 2    50   Output ~ 0
 CXN_REL5
-Text HLabel 15100 3200 2    50   Output ~ 0
+Text HLabel 15100 7300 2    50   Output ~ 0
 CXN_REL4
-Text HLabel 15100 3300 2    50   Output ~ 0
+Text HLabel 15100 6100 2    50   Output ~ 0
 CXN_REL3
-Text HLabel 15100 3400 2    50   Output ~ 0
+Text HLabel 15100 6000 2    50   Output ~ 0
 CXN_REL2
-Text HLabel 15100 3500 2    50   Output ~ 0
+Text HLabel 15100 5900 2    50   Output ~ 0
 CXN_REL1
 Wire Wire Line
-	15100 3100 15050 3100
+	15100 7400 15050 7400
 Wire Wire Line
-	15050 3200 15100 3200
+	15050 7300 15100 7300
 Wire Wire Line
-	15100 3300 15050 3300
+	15100 6100 15050 6100
 Wire Wire Line
-	15050 3400 15100 3400
+	15050 6000 15100 6000
 Wire Wire Line
-	15100 3500 15050 3500
-Text HLabel 15100 6700 2    50   Output ~ 0
+	15100 5900 15050 5900
+Text HLabel 3600 4300 0    50   Output ~ 0
 IRR1
-Text HLabel 15100 6800 2    50   Output ~ 0
+Text HLabel 3600 4200 0    50   Output ~ 0
 IRR2
-Text HLabel 15100 6900 2    50   Output ~ 0
+Text HLabel 3600 4400 0    50   Output ~ 0
 IRR3
-Text HLabel 15100 7000 2    50   Output ~ 0
+Text HLabel 3600 4100 0    50   Output ~ 0
 IRR4
-Wire Wire Line
-	15100 6900 15050 6900
-Wire Wire Line
-	15100 6800 15050 6800
-Wire Wire Line
-	15050 6700 15100 6700
-Wire Wire Line
-	15100 7000 15050 7000
 Text HLabel 15100 6600 2    50   Output ~ 0
 IRR0
 Wire Wire Line
 	15050 6600 15100 6600
-Text HLabel 15100 6500 2    50   Output ~ 0
+Text HLabel 3600 5600 0    50   Output ~ 0
 VDIFF2
-Text HLabel 15100 6400 2    50   Output ~ 0
+Text HLabel 3600 5700 0    50   Output ~ 0
 VDIFF1
 Wire Wire Line
-	15050 6500 15100 6500
+	3650 5600 3600 5600
 Wire Wire Line
-	15050 6400 15100 6400
-Text HLabel 15100 6300 2    50   Output ~ 0
+	3650 5700 3600 5700
+Text HLabel 3600 5500 0    50   Output ~ 0
 VDIFF0
 Wire Wire Line
-	15050 6300 15100 6300
-$Comp
-L ETH1CLCR2:STM32H743ZI U1101
-U 1 1 60365EFD
-P 9350 4950
-F 0 "U1101" H 14050 8850 50  0000 C CNN
-F 1 "STM32H743ZI" H 14550 8850 50  0000 C CNN
-F 2 "ETH1CLCR2:TQFP-144_20x20mm_P0.5mm" H 25250 6450 50  0001 C CNN
-F 3 "" H 25250 6450 50  0001 C CNN
-	1    9350 4950
-	1    0    0    -1  
-$EndComp
+	3650 5500 3600 5500
 Text HLabel 15100 7200 2    50   Output ~ 0
 IDIFF1
 Text HLabel 15100 7100 2    50   Output ~ 0
@@ -1473,17 +1452,9 @@ Wire Wire Line
 NoConn ~ 15050 5300
 NoConn ~ 15050 5400
 NoConn ~ 15050 5500
-NoConn ~ 15050 5600
-NoConn ~ 15050 5700
-NoConn ~ 15050 5800
-NoConn ~ 15050 5900
-NoConn ~ 15050 6000
 NoConn ~ 15050 4700
 NoConn ~ 15050 4600
 NoConn ~ 15050 4400
-NoConn ~ 15050 4300
-NoConn ~ 15050 3900
-NoConn ~ 15050 3800
 NoConn ~ 15050 2700
 NoConn ~ 15050 2000
 NoConn ~ 15050 1700
@@ -1498,14 +1469,7 @@ NoConn ~ 3650 1700
 NoConn ~ 3650 1800
 NoConn ~ 3650 1600
 NoConn ~ 3650 1500
-NoConn ~ 3650 4100
-NoConn ~ 3650 4200
-NoConn ~ 3650 4300
-NoConn ~ 3650 4400
 NoConn ~ 3650 4900
-NoConn ~ 3650 5500
-NoConn ~ 3650 5600
-NoConn ~ 3650 5700
 Text HLabel 15100 2900 2    50   Input ~ 0
 ADC1_RVS1
 Text HLabel 15100 3000 2    50   Input ~ 0
@@ -1518,22 +1482,10 @@ NoConn ~ 3650 2100
 NoConn ~ 3650 2200
 NoConn ~ 3650 2300
 NoConn ~ 3650 2400
-NoConn ~ 15050 5000
-NoConn ~ 15050 4800
-NoConn ~ 15050 5100
-NoConn ~ 15050 5200
-NoConn ~ 15050 7700
-Text HLabel 15100 3700 2    50   Output ~ 0
-FGEN_SEL
-Wire Wire Line
-	15100 3700 15050 3700
 Text HLabel 3600 3800 0    50   Input ~ 0
 SPI1_MISO
 Wire Wire Line
 	3650 3800 3600 3800
-NoConn ~ 15050 7400
-NoConn ~ 15050 7300
-NoConn ~ 15050 6100
 Text HLabel 3600 2700 0    50   Output ~ 0
 DDS_DIV2
 Text HLabel 3600 2800 0    50   Output ~ 0
@@ -1550,4 +1502,70 @@ Wire Wire Line
 	3650 2900 3600 2900
 Wire Wire Line
 	3600 3000 3650 3000
+NoConn ~ 15050 3200
+NoConn ~ 15050 3300
+NoConn ~ 15050 3400
+NoConn ~ 15050 3500
+Wire Wire Line
+	15050 7700 15100 7700
+Text HLabel 15100 7800 2    50   Output ~ 0
+~ADC2_RST
+Wire Wire Line
+	15100 7800 15050 7800
+Text HLabel 15100 3900 2    50   Output ~ 0
+ADC2_M0
+Wire Wire Line
+	15100 3900 15050 3900
+Text HLabel 15100 4300 2    50   Output ~ 0
+ADC2_M1
+Wire Wire Line
+	15100 4300 15050 4300
+Text HLabel 15100 3700 2    50   Output ~ 0
+ADC2_MDIV
+Wire Wire Line
+	15100 3700 15050 3700
+Text HLabel 15100 3800 2    50   Output ~ 0
+~ADC2_HPF
+Wire Wire Line
+	15100 3800 15050 3800
+Text HLabel 15100 5000 2    50   Output ~ 0
+SPI4_NSS
+Text HLabel 15100 5200 2    50   Output ~ 0
+SPI4_MOSI
+Text HLabel 15100 4800 2    50   Output ~ 0
+SPI4_SCK
+Wire Wire Line
+	15050 4800 15100 4800
+Wire Wire Line
+	15100 5200 15050 5200
+Wire Wire Line
+	15100 5000 15050 5000
+NoConn ~ 15050 5100
+NoConn ~ 3650 3500
+$Comp
+L ETH1CLCR2:STM32H743ZI U1101
+U 1 1 60365EFD
+P 9350 4950
+F 0 "U1101" H 14050 8850 50  0000 C CNN
+F 1 "STM32H743ZI" H 14550 8850 50  0000 C CNN
+F 2 "ETH1CLCR2:TQFP-144_20x20mm_P0.5mm" H 25250 6450 50  0001 C CNN
+F 3 "" H 25250 6450 50  0001 C CNN
+	1    9350 4950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 4400 3600 4400
+Wire Wire Line
+	3650 4300 3600 4300
+Wire Wire Line
+	3600 4200 3650 4200
+Wire Wire Line
+	3650 4100 3600 4100
+NoConn ~ 15050 7000
+NoConn ~ 15050 6900
+NoConn ~ 15050 6800
+NoConn ~ 15050 6700
+NoConn ~ 15050 6400
+NoConn ~ 15050 6500
+NoConn ~ 15050 6300
 $EndSCHEMATC
