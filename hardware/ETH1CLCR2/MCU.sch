@@ -1462,7 +1462,6 @@ Wire Wire Line
 	15050 7100 15100 7100
 Wire Wire Line
 	15100 4700 15050 4700
-NoConn ~ 15050 3200
 NoConn ~ 15050 3300
 NoConn ~ 15050 3400
 NoConn ~ 15050 3500
@@ -1520,9 +1519,6 @@ Wire Wire Line
 	3600 4200 3650 4200
 Wire Wire Line
 	3650 4100 3600 4100
-NoConn ~ 15050 7000
-NoConn ~ 15050 6900
-NoConn ~ 15050 6800
 NoConn ~ 15050 6700
 NoConn ~ 15050 6400
 NoConn ~ 15050 6500
@@ -1576,4 +1572,21 @@ Text Label 3100 6500 2    50   ~ 0
 LED_RED
 Text Label 15550 2200 2    50   ~ 0
 LED_RED
+Text HLabel 15100 3200 2    50   Output ~ 0
+ADC_SEL
+Wire Wire Line
+	15100 3200 15050 3200
+NoConn ~ 15050 1500
+Text HLabel 15100 6900 2    50   Output ~ 0
+MUX_A0
+Text HLabel 15100 7000 2    50   Output ~ 0
+MUX_A1
+Text HLabel 15100 6800 2    50   Output ~ 0
+DDS_LPF
+Wire Wire Line
+	15100 7000 15050 7000
+Wire Wire Line
+	15050 6900 15100 6900
+Wire Wire Line
+	15100 6800 15050 6800
 $EndSCHEMATC

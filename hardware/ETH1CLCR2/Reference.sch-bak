@@ -352,17 +352,6 @@ F 3 "" H 2300 3700 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2300 3700 2300 3750
-$Comp
-L Amplifier_Operational:MCP6L91RT-EMS U703
-U 1 1 610D03DA
-P 5450 5000
-F 0 "U703" H 5700 5250 50  0000 L CNN
-F 1 "MCP6L91RT-EMS" H 5450 5150 50  0000 L CNN
-F 2 "Package_SO:MSOP-8_3x3mm_P0.65mm" H 5350 4800 50  0001 L CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/22141b.pdf" H 5600 5150 50  0001 C CNN
-	1    5450 5000
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5150 4900 4350 4900
 Connection ~ 4350 4900
@@ -493,4 +482,15 @@ $EndComp
 Wire Wire Line
 	3900 3850 3950 3850
 Connection ~ 3950 3850
+$Comp
+L ETH1CLCR2:MCP661 U703
+U 1 1 60E57A4C
+P 5400 5000
+F 0 "U703" H 5550 5250 50  0000 L CNN
+F 1 "MCP661" H 5500 5150 50  0000 L CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5500 5050 50  0001 C CNN
+F 3 "" H 5500 5150 50  0001 C CNN
+	1    5400 5000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
