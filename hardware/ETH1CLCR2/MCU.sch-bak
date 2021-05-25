@@ -1364,7 +1364,6 @@ Text HLabel 3600 4700 0    50   Output ~ 0
 SPI3_NSS
 Wire Wire Line
 	3600 4700 3650 4700
-NoConn ~ 3650 2500
 NoConn ~ 3650 3200
 NoConn ~ 3650 5100
 NoConn ~ 3650 5200
@@ -1589,4 +1588,8 @@ Wire Wire Line
 	15050 6900 15100 6900
 Wire Wire Line
 	15100 6800 15050 6800
+Text HLabel 3600 2500 0    50   Output ~ 0
+~RDC
+Wire Wire Line
+	3650 2500 3600 2500
 $EndSCHEMATC
