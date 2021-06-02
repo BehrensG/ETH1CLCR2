@@ -623,14 +623,14 @@ $EndComp
 $Comp
 L Device:R R?
 U 1 1 610191A3
-P 9600 4900
+P 9550 4900
 AR Path="/621B52CA/610191A3" Ref="R?"  Part="1" 
 AR Path="/60FFA72B/610191A3" Ref="R1010"  Part="1" 
-F 0 "R1010" V 9393 4900 50  0000 C CNN
-F 1 "2k/.1%" V 9484 4900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9530 4900 50  0001 C CNN
-F 3 "~" H 9600 4900 50  0001 C CNN
-	1    9600 4900
+F 0 "R1010" V 9343 4900 50  0000 C CNN
+F 1 "2k/.1%" V 9434 4900 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9480 4900 50  0001 C CNN
+F 3 "~" H 9550 4900 50  0001 C CNN
+	1    9550 4900
 	0    1    1    0   
 $EndComp
 Wire Wire Line
@@ -638,7 +638,7 @@ Wire Wire Line
 Wire Wire Line
 	9800 4250 9800 4900
 Wire Wire Line
-	9800 4900 9750 4900
+	9800 4900 9700 4900
 $Comp
 L Device:R R?
 U 1 1 610191AC
@@ -653,7 +653,7 @@ F 3 "~" H 10300 4900 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	10150 4900 10050 4900
+	10150 4900 9800 4900
 Connection ~ 9800 4900
 $Comp
 L Device:C C?
@@ -669,12 +669,9 @@ F 3 "~" H 10300 5250 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	10150 5250 10050 5250
+	10150 5250 9800 5250
 Wire Wire Line
-	10050 5250 10050 4900
-Connection ~ 10050 4900
-Wire Wire Line
-	10050 4900 9800 4900
+	9800 5250 9800 4900
 Wire Wire Line
 	10450 5250 10550 5250
 Wire Wire Line
@@ -718,7 +715,7 @@ Wire Wire Line
 	9300 4600 9300 4900
 Connection ~ 9300 4900
 Wire Wire Line
-	9300 4900 9450 4900
+	9300 4900 9400 4900
 Wire Wire Line
 	9300 4300 9300 4050
 Wire Wire Line
@@ -895,14 +892,14 @@ $EndComp
 $Comp
 L Device:R R?
 U 1 1 61019227
-P 9600 7300
+P 9550 7300
 AR Path="/621B52CA/61019227" Ref="R?"  Part="1" 
 AR Path="/60FFA72B/61019227" Ref="R1022"  Part="1" 
-F 0 "R1022" V 9393 7300 50  0000 C CNN
-F 1 "2k/.1%" V 9484 7300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9530 7300 50  0001 C CNN
-F 3 "~" H 9600 7300 50  0001 C CNN
-	1    9600 7300
+F 0 "R1022" V 9343 7300 50  0000 C CNN
+F 1 "2k/.1%" V 9434 7300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9480 7300 50  0001 C CNN
+F 3 "~" H 9550 7300 50  0001 C CNN
+	1    9550 7300
 	0    1    1    0   
 $EndComp
 Wire Wire Line
@@ -910,7 +907,7 @@ Wire Wire Line
 Wire Wire Line
 	9800 6650 9800 7300
 Wire Wire Line
-	9800 7300 9750 7300
+	9800 7300 9700 7300
 $Comp
 L Device:R R?
 U 1 1 61019230
@@ -925,7 +922,7 @@ F 3 "~" H 10300 7300 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	10150 7300 10050 7300
+	10150 7300 9800 7300
 Connection ~ 9800 7300
 $Comp
 L Device:C C?
@@ -941,12 +938,9 @@ F 3 "~" H 10300 7650 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	10150 7650 10050 7650
+	10150 7650 9800 7650
 Wire Wire Line
-	10050 7650 10050 7300
-Connection ~ 10050 7300
-Wire Wire Line
-	10050 7300 9800 7300
+	9800 7650 9800 7300
 Wire Wire Line
 	10450 7650 10550 7650
 Wire Wire Line
@@ -990,7 +984,7 @@ Wire Wire Line
 	9300 7000 9300 7300
 Connection ~ 9300 7300
 Wire Wire Line
-	9300 7300 9450 7300
+	9300 7300 9400 7300
 Wire Wire Line
 	9300 6700 9300 6450
 Wire Wire Line

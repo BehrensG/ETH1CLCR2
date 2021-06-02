@@ -792,12 +792,12 @@ $EndComp
 $Comp
 L Device:R R816
 U 1 1 60C97EBC
-P 9950 4600
-F 0 "R816" V 9743 4600 50  0000 C CNN
-F 1 "2k/.1%" V 9834 4600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9880 4600 50  0001 C CNN
-F 3 "~" H 9950 4600 50  0001 C CNN
-	1    9950 4600
+P 9900 4600
+F 0 "R816" V 9693 4600 50  0000 C CNN
+F 1 "2k/.1%" V 9784 4600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9830 4600 50  0001 C CNN
+F 3 "~" H 9900 4600 50  0001 C CNN
+	1    9900 4600
 	0    1    1    0   
 $EndComp
 Wire Wire Line
@@ -805,7 +805,7 @@ Wire Wire Line
 Wire Wire Line
 	10150 3950 10150 4600
 Wire Wire Line
-	10150 4600 10100 4600
+	10150 4600 10050 4600
 $Comp
 L Device:R R817
 U 1 1 60C9C422
@@ -818,7 +818,7 @@ F 3 "~" H 10650 4600 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	10500 4600 10400 4600
+	10500 4600 10150 4600
 Connection ~ 10150 4600
 $Comp
 L Device:C C803
@@ -832,12 +832,9 @@ F 3 "~" H 10650 4950 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	10500 4950 10400 4950
+	10500 4950 10150 4950
 Wire Wire Line
-	10400 4950 10400 4600
-Connection ~ 10400 4600
-Wire Wire Line
-	10400 4600 10150 4600
+	10150 4950 10150 4600
 Wire Wire Line
 	10800 4950 10900 4950
 Wire Wire Line
@@ -877,7 +874,7 @@ Wire Wire Line
 	9650 4300 9650 4600
 Connection ~ 9650 4600
 Wire Wire Line
-	9650 4600 9800 4600
+	9650 4600 9750 4600
 Wire Wire Line
 	9650 4000 9650 3750
 Wire Wire Line
@@ -1034,12 +1031,12 @@ $EndComp
 $Comp
 L Device:R R829
 U 1 1 60D37BF3
-P 9950 7000
-F 0 "R829" V 9743 7000 50  0000 C CNN
-F 1 "2k/.1%" V 9834 7000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9880 7000 50  0001 C CNN
-F 3 "~" H 9950 7000 50  0001 C CNN
-	1    9950 7000
+P 9900 7000
+F 0 "R829" V 9693 7000 50  0000 C CNN
+F 1 "2k/.1%" V 9784 7000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9830 7000 50  0001 C CNN
+F 3 "~" H 9900 7000 50  0001 C CNN
+	1    9900 7000
 	0    1    1    0   
 $EndComp
 Wire Wire Line
@@ -1047,7 +1044,7 @@ Wire Wire Line
 Wire Wire Line
 	10150 6350 10150 7000
 Wire Wire Line
-	10150 7000 10100 7000
+	10150 7000 10050 7000
 $Comp
 L Device:R R830
 U 1 1 60D37BFC
@@ -1060,7 +1057,7 @@ F 3 "~" H 10650 7000 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	10500 7000 10400 7000
+	10500 7000 10150 7000
 Connection ~ 10150 7000
 $Comp
 L Device:C C806
@@ -1074,12 +1071,9 @@ F 3 "~" H 10650 7350 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	10500 7350 10400 7350
+	10500 7350 10150 7350
 Wire Wire Line
-	10400 7350 10400 7000
-Connection ~ 10400 7000
-Wire Wire Line
-	10400 7000 10150 7000
+	10150 7350 10150 7000
 Wire Wire Line
 	10800 7350 10900 7350
 Wire Wire Line
@@ -1119,7 +1113,7 @@ Wire Wire Line
 	9650 6700 9650 7000
 Connection ~ 9650 7000
 Wire Wire Line
-	9650 7000 9800 7000
+	9650 7000 9750 7000
 Wire Wire Line
 	9650 6400 9650 6150
 Wire Wire Line
