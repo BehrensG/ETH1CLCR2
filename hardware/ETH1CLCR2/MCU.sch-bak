@@ -1367,15 +1367,15 @@ Wire Wire Line
 NoConn ~ 3650 3200
 NoConn ~ 3650 5100
 NoConn ~ 3650 5200
-Text HLabel 15100 7300 2    50   Output ~ 0
-CXN_REL5
-Text HLabel 15100 6100 2    50   Output ~ 0
-CXN_REL4
-Text HLabel 15100 6000 2    50   Output ~ 0
-CXN_REL3
 Text HLabel 15100 5900 2    50   Output ~ 0
+CXN_REL5
+Text HLabel 15100 6000 2    50   Output ~ 0
+CXN_REL4
+Text HLabel 15100 6100 2    50   Output ~ 0
+CXN_REL3
+Text HLabel 15100 7300 2    50   Output ~ 0
 CXN_REL2
-Text HLabel 15100 5800 2    50   Output ~ 0
+Text HLabel 15100 7400 2    50   Output ~ 0
 CXN_REL1
 Wire Wire Line
 	15100 7300 15050 7300
@@ -1591,7 +1591,7 @@ Text HLabel 3600 2500 0    50   Output ~ 0
 ~RDC
 Wire Wire Line
 	3650 2500 3600 2500
-Text HLabel 15100 7400 2    50   Output ~ 0
+Text HLabel 15100 5800 2    50   Output ~ 0
 CXN_REL6
 Wire Wire Line
 	15100 7400 15050 7400
