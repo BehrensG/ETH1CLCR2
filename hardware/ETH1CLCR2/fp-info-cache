@@ -1,4 +1,4 @@
-19012700144840333
+19003789399352352
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -50644,469 +50644,427 @@ One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
 0
 10
 10
-ETH1CLCR2
+ETH1CSMU1
 7448013501
 WE-CMBNC Common Mode PowerLine Choke Nanocrystalline
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 7448014501
 WE-CMBNC Common Mode PowerLine Choke Nanocrystalline
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 1-103673-5
 
 
 0
 18
 16
-ETH1CLCR2
+ETH1CSMU1
 0470
 Thin Film® Fuse, 470 Series, 1206 Fast Acting
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 551-xx07
 LED CBI Circuit Board Indicator .200” High LED Centerline
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 60817-096
 
 
 0
 1
 1
-ETH1CLCR2
+ETH1CSMU1
 150121M153000
 WL-SFCD  SMD Full-color ChipLED Diffused
 
 0
 4
 4
-ETH1CLCR2
-36107406S
-WE-SHC Shielding Cabinet
-EMC shielding
-0
-32
-1
-ETH1CLCR2
+ETH1CSMU1
 744031004
 WE-TPC SMD Shielded Tiny Power Inductor
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 744053220
 WE-TPC SMD Shielded Tiny Power Inductor
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 744066101
 WE-TPC SMD Shielded Tiny Power Inductor
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 744233121
  Filter, Line, Common Mode, WE-CNSW Series, 120 ohm, 280 mA, 2mm x 1.2mm x 1.2mm 
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 744273222
 WE-SL5 HC SMD Common Mode Line Filter
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 749010012A
 Transformer, LAN, 1 Port, 10/100 Base-T, 1500VAC, 350µH, 1:1 Turn Ratio
 
 0
 16
 16
-ETH1CLCR2
+ETH1CSMU1
 615008145221
 WR-MJ Modular Jack 45° Entry Shielded 8P8C Standard & Reverse Metal Post Trail
 
 0
 12
 9
-ETH1CLCR2
+ETH1CSMU1
 74437324068
 WE-LHMI SMT Power Inductor
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 74438335068
 WE-MAPI SMT Power Inductor
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 74489440068
 COUPLED INDUCTOR  WE-TDC 8038
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 AQY212GS
 Load current greatly increased using next-generation MOSFET High Capacity 4-pin Type
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 BFC2
 Film Dielectric Trimmers
 
 0
 4
 2
-ETH1CLCR2
+ETH1CSMU1
 CP_EIA-7360-38_Kemet-E
 Tantalum Capacitor SMD Kemet-E (7360-38 Metric), IPC_7351 nominal, (Body size from: http://www.kemet.com/Lists/ProductCatalog/Attachments/253/KEM_TC101_STD.pdf), generated with kicad-footprint-generator
 capacitor tantalum
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 CP_EIA-7360-38_Kemet-E_Pad2.25x4.25mm_HandSolder
 Tantalum Capacitor SMD Kemet-E (7360-38 Metric), IPC_7351 nominal, (Body size from: http://www.kemet.com/Lists/ProductCatalog/Attachments/253/KEM_TC101_STD.pdf), generated with kicad-footprint-generator
 capacitor tantalum
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 CW252016
 CW252016 Series - High Q Chip Inductors
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 DO-219AC
 
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 DO_214AA_REV
 
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 DRQ127
 Dual winding, high power density, shielded drum core power inductors
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 D_SOD-128
 D_SOD-128 (CFP5 SlimSMAW), https://assets.nexperia.com/documents/outline-drawing/SOD128.pdf
 D_SOD-128
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 D_SOD-323HE
 SOD-323HE
 SOD-323HE
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 ECS
 
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 Fuse_SMD2920
 MF-LSMFSeries-PTCResettableFuses
 Fuse SMD2920
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 GDT
 
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 GU-SOP8
 
 
 0
 8
 8
-ETH1CLCR2
+ETH1CSMU1
 HE360_x-5050462-8
 HE3600 Miniature Single In-line Reed Relay
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 HSE-B20350-NP
 Heat sink
 
 0
+3
 1
-1
-ETH1CLCR2
+ETH1CSMU1
 HSOP-32-1EP_7.5x11.0mm_P0.65mm_ThermalVias
 HSOP32, plastic, thermal enhanced small outline package; 32 terminals; 0.65 mm pitch; 7.5 mm x 11 mmx 2.22 mm body
 HSOP 7.5 x 11.0mm Pitch 0.65mm
 0
 33
 33
-ETH1CLCR2
+ETH1CSMU1
 IDC-Header_2x08_P2.54mm_Horizontal_Lock
 Connector IDC Locked, 10 contacts, compatible header: PANCON HE10 (Series 50, (https://www.reboul.fr/storage/00003af6.pdf)
 connector idc locked
 0
 18
 16
-ETH1CLCR2
-IQXO-791
-
-
-0
-4
-4
-ETH1CLCR2
+ETH1CSMU1
 JZ
 J Series Outperforms All Other Similar Trimmers
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 LMx99
 
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 MEE1_DIP
 Isolated 1W Single Output DC-DC Converters
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 MSD7342
 Shielded Coupled Inductors
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 MSE-16
 16-Lead Plastic MSOP with 4 Pins Removed
 
 0
 22
 13
-ETH1CLCR2
-NCS3
-
-
-0
-6
-6
-ETH1CLCR2
-NMK_DUAL
-
-
-0
-5
-5
-ETH1CLCR2
-NMK_SINGLE
-
-
-0
-4
-4
-ETH1CLCR2
+ETH1CSMU1
 NX3225GD
  A small surface-mount type crystal unit, ideal for an engine control CPU clock
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 NX5032GA
 Crystal
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 OKI-T3-W40
 Adjustable Output 3-Amp DOSA-SMT DC/DC Converters
 
 0
 5
 5
-ETH1CLCR2
-PM1608S
-PM1608S Series - Shielded Power Inductor
-
-0
-2
-2
-ETH1CLCR2
+ETH1CSMU1
 PowerDI-123
 
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 PowerPAD
 
 
 0
 49
 21
-ETH1CLCR2
+ETH1CSMU1
 SA
 LOW-PROFILE SURFACE-MOUNT RELAY
 
 0
 10
 10
-ETH1CLCR2
+ETH1CSMU1
 SO8E
 module CMS SOJ 8 pins etroit
 CMS SOJ
 0
 8
 8
-ETH1CLCR2
+ETH1CSMU1
 SO8N
 Module CMS SOJ 8 pins large
 CMS SOJ
 0
 8
 8
-ETH1CLCR2
+ETH1CSMU1
 SRF0905
 
 
 0
 4
 4
-ETH1CLCR2
+ETH1CSMU1
 Socket_DIN41612-CaseC1-AC-Male-64Pin-2rows
 
 
 0
 66
 65
-ETH1CLCR2
+ETH1CSMU1
 TCK-141
 Inductor
 
 0
 2
 2
-ETH1CLCR2
+ETH1CSMU1
 TEL10
 Traco Power TEL10 Series, 10 Watt
 
 0
 6
 6
-ETH1CLCR2
+ETH1CSMU1
 THL15
 THL 15WI Series, 15 Watt
 
 0
 6
 6
-ETH1CLCR2
+ETH1CSMU1
 TO-71
 
 
 0
 6
 6
-ETH1CLCR2
+ETH1CSMU1
 TO-252-2_Rectifier
 TO-252-2
 TO-252-2 Rectifier
 0
 3
 3
-ETH1CLCR2
+ETH1CSMU1
 TQFP-144_20x20mm_P0.5mm
 TQFP, 144 Pin (http://www.microsemi.com/index.php?option=com_docman&task=doc_download&gid=131095), generated with kicad-footprint-generator ipc_qfp_generator.py
 TQFP QFP
 0
 144
 144
-ETH1CLCR2
+ETH1CSMU1
 TRN3SM
 
 
 0
 6
 6
-ETH1CLCR2
+ETH1CSMU1
 TSR1
 DC/DC Converter TSR 1 Series, 1 A
 
 0
 3
 3
-ETH1CLCR2
+ETH1CSMU1
 TSR2
 DC/DC Converter TSR 2 Series, 2 A
 
 0
 3
 3
-ETH1CLCR2
+ETH1CSMU1
 TSSOP-54
 
 SSOP 0.8
 0
 54
 54
-ETH1CLCR2
+ETH1CSMU1
 WSR5
 
 

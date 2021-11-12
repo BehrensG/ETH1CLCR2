@@ -1411,14 +1411,14 @@ Text HLabel 3600 5500 0    50   Output ~ 0
 VDIFF0
 Wire Wire Line
 	3650 5500 3600 5500
-Text HLabel 15100 5100 2    50   Output ~ 0
+Text HLabel 3600 6200 0    50   Output ~ 0
 IDIFF1
 Text HLabel 15100 4900 2    50   Output ~ 0
 IDIFF0
 Wire Wire Line
 	15050 4900 15100 4900
 Wire Wire Line
-	15100 5100 15050 5100
+	3600 6200 3650 6200
 NoConn ~ 15050 5300
 NoConn ~ 15050 5400
 NoConn ~ 15050 4400
@@ -1543,7 +1543,6 @@ NoConn ~ 3650 3800
 NoConn ~ 3650 2900
 NoConn ~ 3650 2800
 NoConn ~ 3650 2700
-NoConn ~ 3650 6200
 NoConn ~ 3650 6300
 NoConn ~ 3650 6400
 Wire Wire Line
@@ -1595,4 +1594,5 @@ Text HLabel 15100 5800 2    50   Output ~ 0
 CXN_REL6
 Wire Wire Line
 	15100 7400 15050 7400
+NoConn ~ 15050 5100
 $EndSCHEMATC
