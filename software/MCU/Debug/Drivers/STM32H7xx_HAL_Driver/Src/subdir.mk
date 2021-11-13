@@ -23,10 +23,14 @@ C_SRCS += \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c \
-../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c \
-../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c \
-../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c 
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c \
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_dma.c \
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_exti.c \
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_gpio.c \
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_rcc.c \
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_spi.c \
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_utils.c 
 
 OBJS += \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.o \
@@ -47,10 +51,14 @@ OBJS += \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.o \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.o \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.o \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.o 
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.o \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_dma.o \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_exti.o \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_gpio.o \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_rcc.o \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_spi.o \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_utils.o 
 
 C_DEPS += \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.d \
@@ -71,13 +79,17 @@ C_DEPS += \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.d \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.d \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.d \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.d 
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.d \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_dma.d \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_exti.d \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_gpio.d \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_rcc.d \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_spi.d \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_utils.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 Drivers/STM32H7xx_HAL_Driver/Src/%.o: ../Drivers/STM32H7xx_HAL_Driver/Src/%.c Drivers/STM32H7xx_HAL_Driver/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DDATA_IN_D2_SRAM -DUSE_HAL_DRIVER -DSTM32H743xx -c -I../Core/Inc -I"/home/grzegorz/git/ETH1CLCR2/software/MCU/Middlewares/Third_Party/scpi-2.1/libscpi/inc/scpi" -I"/home/grzegorz/git/ETH1CLCR2/software/MCU/Middlewares/Third_Party/scpi-2.1/libscpi/inc" -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DDATA_IN_D2_SRAM -DUSE_HAL_DRIVER -DSTM32H743xx -DUSE_FULL_LL_DRIVER -c -I../Core/Inc -I../Middlewares/Third_Party/BSP/Inc -I../Middlewares/Third_Party/BSP/Src -I"/home/grzegorz/git/ETH1CLCR2/software/MCU/Middlewares/Third_Party/scpi-2.1/libscpi/inc/scpi" -I"/home/grzegorz/git/ETH1CLCR2/software/MCU/Middlewares/Third_Party/scpi-2.1/libscpi/inc" -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
 

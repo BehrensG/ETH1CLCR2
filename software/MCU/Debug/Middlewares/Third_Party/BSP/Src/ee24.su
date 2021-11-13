@@ -1,0 +1,4 @@
+ee24.c:22:6:ee24_isConnected	16	static
+ee24.c:33:6:ee24_write	48	static
+ee24.c:89:6:ee24_read	40	static
+ee24.c:119:6:ee24_eraseChip	64	static

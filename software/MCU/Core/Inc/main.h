@@ -30,6 +30,18 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
 
+#include "stm32h7xx_ll_rcc.h"
+#include "stm32h7xx_ll_spi.h"
+#include "stm32h7xx_ll_bus.h"
+#include "stm32h7xx_ll_cortex.h"
+#include "stm32h7xx_ll_system.h"
+#include "stm32h7xx_ll_utils.h"
+#include "stm32h7xx_ll_pwr.h"
+#include "stm32h7xx_ll_gpio.h"
+#include "stm32h7xx_ll_dma.h"
+
+#include "stm32h7xx_ll_exti.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -110,10 +122,14 @@ void Error_Handler(void);
 #define IRR1_GPIO_Port GPIOA
 #define IRR3_Pin GPIO_PIN_12
 #define IRR3_GPIO_Port GPIOA
+#define SPI3_NSS_Pin GPIO_PIN_15
+#define SPI3_NSS_GPIO_Port GPIOA
 #define ADC1_RVS1_Pin GPIO_PIN_0
 #define ADC1_RVS1_GPIO_Port GPIOD
 #define ADC1_RVS2_Pin GPIO_PIN_1
 #define ADC1_RVS2_GPIO_Port GPIOD
+#define MCU_DEFAULT_Pin GPIO_PIN_2
+#define MCU_DEFAULT_GPIO_Port GPIOD
 #define ADC_SEL_Pin GPIO_PIN_3
 #define ADC_SEL_GPIO_Port GPIOD
 #define LED_BLUE_Pin GPIO_PIN_7
