@@ -5,7 +5,6 @@
  *      Author: grzegorz
  */
 
-#include "main.h"
 #include "bsp.h"
 #include "eeprom.h"
 #include "ADS8681.h"
@@ -55,12 +54,12 @@ static void BSP_Init_DefualtEEPROM()
 	bsp.eeprom.structure.ip4.netmask[3] = NETMASK_ADDRESS_3;
 
 
-	bsp.eeprom.structure.calib_adc[0].gain = (float)1.0;
-	bsp.eeprom.structure.calib_adc[0].offset = (float)0.0;
-	bsp.eeprom.structure.calib_adc[0].valid = 1;
-	bsp.eeprom.structure.calib_adc[1].gain = (float)1.0;
-	bsp.eeprom.structure.calib_adc[1].offset = (float)0.0;
-	bsp.eeprom.structure.calib_adc[1].valid = 1;
+	bsp.eeprom.structure.adc_calib_ads8681[0].gain = (float)1.0;
+	bsp.eeprom.structure.adc_calib_ads8681[0].offset = (float)0.0;
+	bsp.eeprom.structure.adc_calib_ads8681[0].valid = 1;
+	bsp.eeprom.structure.adc_calib_ads8681[1].gain = (float)1.0;
+	bsp.eeprom.structure.adc_calib_ads8681[1].offset = (float)0.0;
+	bsp.eeprom.structure.adc_calib_ads8681[1].valid = 1;
 
 
 	strncpy(bsp.eeprom.structure.service_password, PASSWORD, PASSWORD_LENGTH);

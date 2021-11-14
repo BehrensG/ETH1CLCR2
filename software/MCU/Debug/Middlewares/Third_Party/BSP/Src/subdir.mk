@@ -6,26 +6,41 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Middlewares/Third_Party/BSP/Src/ADS8681.c \
+../Middlewares/Third_Party/BSP/Src/HDC1080.c \
 ../Middlewares/Third_Party/BSP/Src/bsp.c \
 ../Middlewares/Third_Party/BSP/Src/dwt_delay.c \
 ../Middlewares/Third_Party/BSP/Src/ee24.c \
 ../Middlewares/Third_Party/BSP/Src/eeprom.c \
+../Middlewares/Third_Party/BSP/Src/heap_useNewlib.c \
+../Middlewares/Third_Party/BSP/Src/relays.c \
+../Middlewares/Third_Party/BSP/Src/scpi_def.c \
+../Middlewares/Third_Party/BSP/Src/scpi_server.c \
 ../Middlewares/Third_Party/BSP/Src/scpi_system.c 
 
 OBJS += \
 ./Middlewares/Third_Party/BSP/Src/ADS8681.o \
+./Middlewares/Third_Party/BSP/Src/HDC1080.o \
 ./Middlewares/Third_Party/BSP/Src/bsp.o \
 ./Middlewares/Third_Party/BSP/Src/dwt_delay.o \
 ./Middlewares/Third_Party/BSP/Src/ee24.o \
 ./Middlewares/Third_Party/BSP/Src/eeprom.o \
+./Middlewares/Third_Party/BSP/Src/heap_useNewlib.o \
+./Middlewares/Third_Party/BSP/Src/relays.o \
+./Middlewares/Third_Party/BSP/Src/scpi_def.o \
+./Middlewares/Third_Party/BSP/Src/scpi_server.o \
 ./Middlewares/Third_Party/BSP/Src/scpi_system.o 
 
 C_DEPS += \
 ./Middlewares/Third_Party/BSP/Src/ADS8681.d \
+./Middlewares/Third_Party/BSP/Src/HDC1080.d \
 ./Middlewares/Third_Party/BSP/Src/bsp.d \
 ./Middlewares/Third_Party/BSP/Src/dwt_delay.d \
 ./Middlewares/Third_Party/BSP/Src/ee24.d \
 ./Middlewares/Third_Party/BSP/Src/eeprom.d \
+./Middlewares/Third_Party/BSP/Src/heap_useNewlib.d \
+./Middlewares/Third_Party/BSP/Src/relays.d \
+./Middlewares/Third_Party/BSP/Src/scpi_def.d \
+./Middlewares/Third_Party/BSP/Src/scpi_server.d \
 ./Middlewares/Third_Party/BSP/Src/scpi_system.d 
 
 

@@ -8,6 +8,14 @@
 #ifndef THIRD_PARTY_BSP_BSP_H_
 #define THIRD_PARTY_BSP_BSP_H_
 
+#include "main.h"
+
+/*************************************** COMMON ***************************************/
+
+#define ON 1
+#define OFF 0
+
+
 /*************************************** SCPI ***************************************/
 
 #define SCPI_MANUFACTURER_STRING_LENGTH 16
@@ -136,7 +144,7 @@ typedef union bsp_eeprom_union
 		// Size 64
 		bsp_scpi_info_t info;
 		// Size 16
-		bsp_adc_calib_ads8681_t bsp_adc_calib_ads8681_t[2];
+		bsp_adc_calib_ads8681_t adc_calib_ads8681[2];
 		// Size 19
 		int8_t service_password[PASSWORD_LENGTH];
 		// Size 19
@@ -152,6 +160,34 @@ typedef union bsp_eeprom_union
 }bsp_eeprom_union_t;
 
 #pragma pack(pop)
+
+typedef struct bsp_results
+{
+    int32_t new_data;
+    int32_t wave[WAV_LEN_MAX];
+    double voltage_saved[WAV_LEN_MAX];
+    double current_saved[WAV_LEN_MAX];
+    double volt_real_raw;
+    double volt_imag_raw;
+    double curr_real_raw;
+    double curr_imag_raw;
+    double volt_real;
+    double volt_imag;
+    double curr_real;
+    double curr_imag;
+    double z_raw_real;
+    double z_raw_imag;
+    double y_raw_real;
+    double y_raw_imag;
+    double z_real;
+    double z_imag;
+    double y_real;
+    double y_imag;
+    double z_mod;
+    double z_arg;
+    double y_mod;
+    double y_arg;
+}bsp_results_t;
 
 // size 17
 typedef struct bsp_security

@@ -72,8 +72,12 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define IDIFF0_Pin GPIO_PIN_3
 #define IDIFF0_GPIO_Port GPIOE
+#define SPI4_NSS_Pin GPIO_PIN_4
+#define SPI4_NSS_GPIO_Port GPIOE
 #define IDIFF1_Pin GPIO_PIN_13
 #define IDIFF1_GPIO_Port GPIOC
+#define SPI5_NSS_Pin GPIO_PIN_6
+#define SPI5_NSS_GPIO_Port GPIOF
 #define nRDC_Pin GPIO_PIN_10
 #define nRDC_GPIO_Port GPIOF
 #define TRIG_EN_Pin GPIO_PIN_9
@@ -94,6 +98,8 @@ void Error_Handler(void);
 #define CXN_REL2_GPIO_Port GPIOB
 #define CXN_REL1_Pin GPIO_PIN_11
 #define CXN_REL1_GPIO_Port GPIOB
+#define SPI2_NSS_Pin GPIO_PIN_12
+#define SPI2_NSS_GPIO_Port GPIOB
 #define nADC2_RST_Pin GPIO_PIN_15
 #define nADC2_RST_GPIO_Port GPIOB
 #define ADC2_MDIV_Pin GPIO_PIN_8

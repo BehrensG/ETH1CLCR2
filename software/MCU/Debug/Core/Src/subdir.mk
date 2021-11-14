@@ -6,10 +6,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/freertos.c \
-../Core/Src/heap_useNewlib.c \
 ../Core/Src/main.c \
-../Core/Src/scpi_def.c \
-../Core/Src/scpi_server.c \
 ../Core/Src/stm32h7xx_hal_msp.c \
 ../Core/Src/stm32h7xx_hal_timebase_tim.c \
 ../Core/Src/stm32h7xx_it.c \
@@ -19,10 +16,7 @@ C_SRCS += \
 
 OBJS += \
 ./Core/Src/freertos.o \
-./Core/Src/heap_useNewlib.o \
 ./Core/Src/main.o \
-./Core/Src/scpi_def.o \
-./Core/Src/scpi_server.o \
 ./Core/Src/stm32h7xx_hal_msp.o \
 ./Core/Src/stm32h7xx_hal_timebase_tim.o \
 ./Core/Src/stm32h7xx_it.o \
@@ -32,10 +26,7 @@ OBJS += \
 
 C_DEPS += \
 ./Core/Src/freertos.d \
-./Core/Src/heap_useNewlib.d \
 ./Core/Src/main.d \
-./Core/Src/scpi_def.d \
-./Core/Src/scpi_server.d \
 ./Core/Src/stm32h7xx_hal_msp.d \
 ./Core/Src/stm32h7xx_hal_timebase_tim.d \
 ./Core/Src/stm32h7xx_it.d \
