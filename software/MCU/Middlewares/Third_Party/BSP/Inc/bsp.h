@@ -161,6 +161,8 @@ typedef union bsp_eeprom_union
 
 #pragma pack(pop)
 
+#define WAV_LEN_MAX 256
+
 typedef struct bsp_results
 {
     int32_t new_data;

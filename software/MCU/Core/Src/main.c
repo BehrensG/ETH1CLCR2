@@ -142,7 +142,7 @@ int main(void)
   MX_LWIP_Init();
   DWT_Init();
   BSP_Init();
- // ADS8681_Init();
+  ADS8681_Init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -166,7 +166,7 @@ int main(void)
 
   /* Create the thread(s) */
   /* creation of defaultTask */
-  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  //defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* creation of LEDTask */
   LEDTaskHandle = osThreadNew(StartLEDTask, NULL, &LEDTask_attributes);
@@ -476,7 +476,7 @@ static void MX_SPI3_Init(void)
   */
   GPIO_InitStruct.Pin = LL_GPIO_PIN_10|LL_GPIO_PIN_11|LL_GPIO_PIN_12;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   GPIO_InitStruct.Alternate = LL_GPIO_AF_6;
@@ -657,7 +657,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, ADC2_MDIV_Pin|nADC2_HPF_Pin|ADC2_M0_Pin|EEPROM_WP_Pin
-                          |ADC2_M1_Pin, GPIO_PIN_RESET);
+                          |ADC2_M1_Pin|ADC_SEL_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(IRR0_GPIO_Port, IRR0_Pin, GPIO_PIN_RESET);
@@ -669,7 +669,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, ADC_SEL_Pin|LED_BLUE_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOG, LED_RED_Pin|LED_GREEN_Pin, GPIO_PIN_SET);

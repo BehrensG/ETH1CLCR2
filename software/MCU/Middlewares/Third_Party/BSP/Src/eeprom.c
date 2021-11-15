@@ -45,7 +45,7 @@ void EEPROM_WriteProtect(GPIO_PinState state)
 {
 	if(GPIO_PIN_SET == state)
 	{
-		LL_GPIO_WriteOutputPort(EEPROM_WP_GPIO_Port, EEPROM_WP_Pin);
+		LL_GPIO_SetOutputPin(EEPROM_WP_GPIO_Port, EEPROM_WP_Pin);
 	} else if (GPIO_PIN_RESET == state)
 	{
 		LL_GPIO_ResetOutputPin(EEPROM_WP_GPIO_Port, EEPROM_WP_Pin);

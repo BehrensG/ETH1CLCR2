@@ -81,11 +81,11 @@ void ADS8681_Raw_Data(uint16_t* raw_data)
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 	ADS8681_Convertion_Time();
-	LL_GPIO_WriteOutputPort(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
+	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 	BSP_SPI_Receive(rx_data, 2);
-	LL_GPIO_WriteOutputPort(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
+	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	raw_data[0] = (uint16_t)(rx_data[2] >> 16);
 	raw_data[1] = (uint16_t)(rx_data[1] >> 16);
@@ -198,7 +198,7 @@ static void ADS8681_Read_LSB(uint8_t* data)
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 	BSP_SPI_Receive(rx_data, 2);
-	LL_GPIO_WriteOutputPort(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
+	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 
 	data[0] = rx_data[0] >> 24;
@@ -217,7 +217,7 @@ static void ADS8681_Write_HWORD(uint8_t* cmd, uint8_t* reg, uint16_t* data)
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 	//status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 3, 1000);
 	BSP_SPI_Transmit(tx_data, 2);
-	LL_GPIO_WriteOutputPort(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
+	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 
 }
@@ -234,7 +234,7 @@ static void ADS8681_Write_MSB(uint8_t* cmd, uint8_t* reg, uint8_t* data)
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 	//status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 3, 1000);
 	BSP_SPI_Transmit(tx_data, 2);
-	LL_GPIO_WriteOutputPort(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
+	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 }
 
@@ -249,7 +249,7 @@ static void ADS8681_Write_LSB(uint8_t* cmd, uint8_t* reg, uint8_t* data)
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 	//status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 3, 1000);
 	BSP_SPI_Transmit(tx_data, 2);
-	LL_GPIO_WriteOutputPort(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
+	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 }
 
