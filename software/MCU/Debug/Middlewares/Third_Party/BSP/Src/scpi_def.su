@@ -1,4 +1,7 @@
 core_cm7.h:2156:34:__NVIC_SystemReset	4	static,ignoring_inline_asm
+stm32h7xx_ll_gpio.h:885:22:LL_GPIO_SetOutputPin	16	static
+stm32h7xx_ll_gpio.h:914:22:LL_GPIO_ResetOutputPin	16	static
 scpi_def.c:51:22:TEST_TSQ	16	static
 scpi_def.c:58:22:SCPI_Rst	16	static
 scpi_def.c:65:22:SCPI_IdnQ	24	static
+scpi_def.c:83:15:SCPI_TS	24	static

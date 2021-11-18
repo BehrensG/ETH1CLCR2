@@ -1,0 +1,3 @@
+stm32h7xx_ll_gpio.h:885:22:LL_GPIO_SetOutputPin	16	static
+stm32h7xx_ll_gpio.h:914:22:LL_GPIO_ResetOutputPin	16	static
+DDS.c:11:6:DDS_ClockDivider	16	static

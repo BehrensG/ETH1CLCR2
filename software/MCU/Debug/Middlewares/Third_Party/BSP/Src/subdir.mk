@@ -5,7 +5,9 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Middlewares/Third_Party/BSP/Src/AD9834.c \
 ../Middlewares/Third_Party/BSP/Src/ADS8681.c \
+../Middlewares/Third_Party/BSP/Src/DDS.c \
 ../Middlewares/Third_Party/BSP/Src/HDC1080.c \
 ../Middlewares/Third_Party/BSP/Src/bsp.c \
 ../Middlewares/Third_Party/BSP/Src/dwt_delay.c \
@@ -18,7 +20,9 @@ C_SRCS += \
 ../Middlewares/Third_Party/BSP/Src/scpi_system.c 
 
 OBJS += \
+./Middlewares/Third_Party/BSP/Src/AD9834.o \
 ./Middlewares/Third_Party/BSP/Src/ADS8681.o \
+./Middlewares/Third_Party/BSP/Src/DDS.o \
 ./Middlewares/Third_Party/BSP/Src/HDC1080.o \
 ./Middlewares/Third_Party/BSP/Src/bsp.o \
 ./Middlewares/Third_Party/BSP/Src/dwt_delay.o \
@@ -31,7 +35,9 @@ OBJS += \
 ./Middlewares/Third_Party/BSP/Src/scpi_system.o 
 
 C_DEPS += \
+./Middlewares/Third_Party/BSP/Src/AD9834.d \
 ./Middlewares/Third_Party/BSP/Src/ADS8681.d \
+./Middlewares/Third_Party/BSP/Src/DDS.d \
 ./Middlewares/Third_Party/BSP/Src/HDC1080.d \
 ./Middlewares/Third_Party/BSP/Src/bsp.d \
 ./Middlewares/Third_Party/BSP/Src/dwt_delay.d \

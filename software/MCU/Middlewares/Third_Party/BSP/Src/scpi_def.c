@@ -80,6 +80,36 @@ static scpi_result_t SCPI_IdnQ(scpi_t * context)
     return SCPI_RES_OK;
 }
 
+scpi_result_t SCPI_TS(scpi_t * context)
+{
+	uint32_t div = 0;
+
+    if(!SCPI_ParamUInt32(context, &div, TRUE))
+    {
+        return SCPI_RES_ERR;
+    }
+
+    LL_GPIO_SetOutputPin(DDS_DIV2_GPIO_Port, DDS_DIV2_Pin);
+    LL_GPIO_SetOutputPin(DDS_DIV4_GPIO_Port, DDS_DIV4_Pin);
+    LL_GPIO_SetOutputPin(DDS_DIV8_GPIO_Port, DDS_DIV8_Pin);
+
+    switch(div)
+    {
+    case 0: {
+        LL_GPIO_SetOutputPin(DDS_DIV2_GPIO_Port, DDS_DIV2_Pin);
+        LL_GPIO_SetOutputPin(DDS_DIV4_GPIO_Port, DDS_DIV4_Pin);
+        LL_GPIO_SetOutputPin(DDS_DIV8_GPIO_Port, DDS_DIV8_Pin);
+        LL_GPIO_SetOutputPin(nDDS_DIV10_GPIO_Port, nDDS_DIV10_Pin);
+    }break;
+    case 2: LL_GPIO_ResetOutputPin(DDS_DIV2_GPIO_Port, DDS_DIV2_Pin);break;
+    case 4: LL_GPIO_ResetOutputPin(DDS_DIV4_GPIO_Port, DDS_DIV4_Pin);break;
+    case 8: LL_GPIO_ResetOutputPin(DDS_DIV8_GPIO_Port, DDS_DIV8_Pin);break;
+    case 10: LL_GPIO_ResetOutputPin(nDDS_DIV10_GPIO_Port, nDDS_DIV10_Pin);break;
+    }
+
+    return SCPI_RES_OK;
+}
+
 const scpi_command_t scpi_commands[] = {
     /* IEEE Mandated Commands (SCPI std V1999.0 4.1.1) */
     { .pattern = "*CLS", .callback = SCPI_CoreCls,},
@@ -128,6 +158,7 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "SYSTem:TEMPerature:UNIT?", .callback = SCPI_SystemTemperatureUnitQ,},
 	{.pattern = "SYSTem:HUMIdity?", .callback = SCPI_SystemHumidityQ,},
 
+	{.pattern = "TS", .callback = SCPI_TS,},
 		SCPI_CMD_LIST_END
 };
 

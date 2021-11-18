@@ -23,13 +23,13 @@ C_SRCS += \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c \
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c \
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c \
-../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_dma.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_exti.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_gpio.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_rcc.c \
-../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_spi.c \
 ../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_utils.c 
 
 OBJS += \
@@ -51,13 +51,13 @@ OBJS += \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.o \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.o \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.o \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_dma.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_exti.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_gpio.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_rcc.o \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_spi.o \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_utils.o 
 
 C_DEPS += \
@@ -79,13 +79,13 @@ C_DEPS += \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.d \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.d \
+./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.d \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_dma.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_exti.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_gpio.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_rcc.d \
-./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_spi.d \
 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_utils.d 
 
 

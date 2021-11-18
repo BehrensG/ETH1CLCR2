@@ -9,6 +9,7 @@
 #define INC_ADS8681_H_
 
 #include "main.h"
+#include "bsp.h"
 
 #define DEVICE_ID_REG 		0x00
 #define RST_PWRCTL_REG		0x04
@@ -40,8 +41,8 @@
 #define ADS8681_RANGE_0_625VREF	0x04
 
 
-void ADS8681_Init(void);
-void ADS8681_Raw_Data(uint16_t* raw_data);
-void ADS8681_Set_Range(uint8_t* range);
+BSP_StatusTypeDef ADS8681_Init(void);
+BSP_StatusTypeDef ADS8681_Raw_Data(uint16_t* raw_data);
+BSP_StatusTypeDef ADS8681_Set_Range(uint8_t* range);
 
 #endif /* INC_ADS8681_H_ */

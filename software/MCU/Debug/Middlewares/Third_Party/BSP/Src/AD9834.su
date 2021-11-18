@@ -1,0 +1,9 @@
+stm32h7xx_ll_gpio.h:885:22:LL_GPIO_SetOutputPin	16	static
+stm32h7xx_ll_gpio.h:914:22:LL_GPIO_ResetOutputPin	16	static
+AD9834.c:14:20:SelectChip	8	static
+AD9834.c:19:20:ReleaseChip	8	static
+AD9834.c:24:20:SetBit	16	static
+AD9834.c:28:20:ClrBit	16	static
+AD9834.c:32:19:AD9834_Init	16	static
+AD9834.c:53:19:AD9834_SetPhase	24	static
+AD9834.c:72:19:AD9834_SetFrequency	24	static
