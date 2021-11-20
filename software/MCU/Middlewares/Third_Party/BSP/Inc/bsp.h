@@ -9,6 +9,7 @@
 #define THIRD_PARTY_BSP_BSP_H_
 
 #include "main.h"
+#include "DDS.h"
 
 /*************************************** COMMON ***************************************/
 
@@ -165,7 +166,7 @@ typedef union bsp_eeprom_union
 
 #define WAV_LEN_MAX 256
 
-typedef struct bsp_results
+typedef struct bsp_result
 {
     int32_t new_data;
     int32_t wave[WAV_LEN_MAX];
@@ -191,7 +192,7 @@ typedef struct bsp_results
     double z_arg;
     double y_mod;
     double y_arg;
-}bsp_results_t;
+}bsp_result_t;
 
 // size 17
 typedef struct bsp_security
@@ -230,7 +231,20 @@ typedef struct bsp_adc_ads8681
 	uint8_t range;
 }bsp_adc_ads8681_t;
 
+typedef struct bsp_measure
+{
+	float frequency;
+	float level;
+	uint32_t speed;
+	float nominal;
+	bsp_result_t result;
 
+}bsp_measure_t;
+
+typedef struct bsp_dds
+{
+	dds_clk_div_e divider;
+}bsp_dds_t;
 
 struct _bsp
 {
@@ -243,6 +257,8 @@ struct _bsp
 	bsp_adc_ads8681_t adc_ads8681[2];
 	uint8_t default_cfg;
 	uint8_t data_format;
+	bsp_measure_t measure;
+	bsp_dds_t dds;
 
 }bsp;
 

@@ -12,7 +12,6 @@
 
 static void BSP_Init_Common()
 {
-
 	bsp.adc_ads8681[0].zero_offset = 0.0;
 	bsp.adc_ads8681[0].range = ADS8681_RANGE_3VREF;
 	bsp.adc_ads8681[1].zero_offset = 0.0;
@@ -26,6 +25,8 @@ static void BSP_Init_Common()
 	bsp.data_format = DATA_FORMAT_ASCII;
 	bsp.security.status = 0;
 
+	bsp.dds.divider = DDS_DIV0;
+	bsp.measure.frequency = 100;
 }
 
 

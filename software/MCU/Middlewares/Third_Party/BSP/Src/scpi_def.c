@@ -46,7 +46,8 @@
 
 #include "scpi_server.h"
 #include "scpi_system.h"
-
+#include "scpi_measure.h"
+#include "scpi_trigger.h"
 
 static scpi_result_t TEST_TSQ(scpi_t * context)
 {
@@ -157,6 +158,44 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "SYSTem:TEMPerature:UNIT", .callback = SCPI_SystemTemperatureUnit,},
 	{.pattern = "SYSTem:TEMPerature:UNIT?", .callback = SCPI_SystemTemperatureUnitQ,},
 	{.pattern = "SYSTem:HUMIdity?", .callback = SCPI_SystemHumidityQ,},
+
+	{.pattern = "TRIGger:DELay", .callback = SCPI_TriggerDelay,},
+	{.pattern = "TRIGger:DELay?", .callback = SCPI_TriggerDelayQ,},
+	{.pattern = "TRIGger[:IMMediate]", .callback = SCPI_TriggerImmediate,},
+	{.pattern = "TRIGger:SOURce", .callback = SCPI_TriggerSource,},
+	{.pattern = "TRIGger:SOURce?", .callback = SCPI_TriggerSourceQ,},
+	{.pattern = "TRIGger:SLOPe", .callback = SCPI_TriggerSlope,},
+	{.pattern = "TRIGger:SLOPe?", .callback = SCPI_TriggerSlopeQ,},
+	{.pattern = "OUTput:TRIGger", .callback = SCPI_TriggerOutput,},
+	{.pattern = "OUTput:TRIGger:SLOPe", .callback = SCPI_TriggerOutputSlope,},
+	{.pattern = "OUTput:TRIGger:SLOPe?", .callback = SCPI_TriggerOutputSlopeQ,},
+	{.pattern = "*TRG", .callback = SCPI_TRG,},
+
+	{.pattern = "FORMat[:DATA]", .callback = SCPI_FormatData,},
+	{.pattern = "FORMat[:DATA]?", .callback = SCPI_FormatDataQ,},
+
+	{.pattern = "CALibration:ADC?", .callback = SCPI_CalibrationADCQ,},
+	{.pattern = "CALibration[:ALL]?", .callback = SCPI_CalibrationALLQ,},
+	{.pattern = "CALibration:COUNt?", .callback = SCPI_CalibrationCountQ,},
+	{.pattern = "CALibration:DATE?", .callback = SCPI_CalibrationDateQ,},
+	{.pattern = "CALibration:SECure:CODE", .callback = SCPI_CalibrationSecureCode,},
+	{.pattern = "CALibration:SECure:STATe", .callback = SCPI_CalibrationSecureState,},
+	{.pattern = "CALibration:STORe", .callback = SCPI_CalibrationStore,},
+	{.pattern = "CALibration:VALue", .callback = SCPI_CalibrationValue,},
+
+	{.pattern = "MEASure:RESult?", .callback = SCPI_MeasureResultQ,},
+	{.pattern = "MEASure:FREQuency", .callback = SCPI_MeasureFrequency,},
+	{.pattern = "MEASure:FREQuency?", .callback = SCPI_MeasureFrequencyQ,},
+	{.pattern = "MEASure:LEVel", .callback = SCPI_MeasureLevel,},
+	{.pattern = "MEASure:LEVel?", .callback = SCPI_MeasureLevelQ,},
+	{.pattern = "MEASure:SPEED", .callback = SCPI_MeasureSpeed,},
+	{.pattern = "MEASure:SPEED?", .callback = SCPI_MeasureSpeedQ,},
+	{.pattern = "MEASure:FUNCtion", .callback = SCPI_MeasureFunction,},
+	{.pattern = "MEASure:FUNCtion?", .callback = SCPI_MeasureFunctionQ,},
+	{.pattern = "MEASure:NOMinal", .callback = SCPI_MeasureNominal,},
+	{.pattern = "MEASure:NOMinal?", .callback = SCPI_MeasureNominalQ,},
+	{.pattern = "MEASure:OUTput", .callback = SCPI_MeasureOutput,},
+	{.pattern = "MEASure:OUTput?", .callback = SCPI_MeasureOutputQ,},
 
 	{.pattern = "TS", .callback = SCPI_TS,},
 		SCPI_CMD_LIST_END

@@ -33,6 +33,7 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
+typedef StaticQueue_t osStaticMessageQDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -70,6 +71,24 @@ const osThreadAttr_t LEDTask_attributes = {
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
+/* Definitions for TriggerTask */
+osThreadId_t TriggerTaskHandle;
+const osThreadAttr_t TriggerTask_attributes = {
+  .name = "TriggerTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityHigh,
+};
+/* Definitions for QueueTrigger */
+osMessageQueueId_t QueueTriggerHandle;
+uint8_t QueueTriggerBuffer[ 1 * sizeof( uint8_t ) ];
+osStaticMessageQDef_t QueueTriggerControlBlock;
+const osMessageQueueAttr_t QueueTrigger_attributes = {
+  .name = "QueueTrigger",
+  .cb_mem = &QueueTriggerControlBlock,
+  .cb_size = sizeof(QueueTriggerControlBlock),
+  .mq_mem = &QueueTriggerBuffer,
+  .mq_size = sizeof(QueueTriggerBuffer)
+};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -87,6 +106,7 @@ static void MX_SPI4_Init(void);
 static void MX_SPI5_Init(void);
 void StartDefaultTask(void *argument);
 void StartLEDTask(void *argument);
+void StartTriggerTask(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -167,6 +187,10 @@ int main(void)
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of QueueTrigger */
+  QueueTriggerHandle = osMessageQueueNew (1, sizeof(uint8_t), &QueueTrigger_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -178,9 +202,13 @@ int main(void)
   /* creation of LEDTask */
   LEDTaskHandle = osThreadNew(StartLEDTask, NULL, &LEDTask_attributes);
 
+  /* creation of TriggerTask */
+  TriggerTaskHandle = osThreadNew(StartTriggerTask, NULL, &TriggerTask_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   scpi_server_init();
+  osThreadSuspend(TriggerTaskHandle);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -590,6 +618,7 @@ static void MX_SPI5_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  LL_EXTI_InitTypeDef EXTI_InitStruct = {0};
   LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
@@ -611,8 +640,7 @@ static void MX_GPIO_Init(void)
 
   /**/
   LL_GPIO_ResetOutputPin(GPIOB, CXN_REL2_Pin|CXN_REL1_Pin|SPI2_NSS_Pin|nADC2_RST_Pin
-                          |DDS_LPF_Pin|MUX_A0_Pin|MUX_A1_Pin|DDS_DIV8_Pin
-                          |DDS_DIV4_Pin);
+                          |DDS_LPF_Pin|MUX_A0_Pin|MUX_A1_Pin);
 
   /**/
   LL_GPIO_ResetOutputPin(GPIOD, ADC2_MDIV_Pin|nADC2_HPF_Pin|ADC2_M0_Pin|EEPROM_WP_Pin
@@ -638,6 +666,9 @@ static void MX_GPIO_Init(void)
 
   /**/
   LL_GPIO_SetOutputPin(GPIOG, LED_RED_Pin|LED_GREEN_Pin);
+
+  /**/
+  LL_GPIO_SetOutputPin(GPIOB, DDS_DIV8_Pin|DDS_DIV4_Pin);
 
   /**/
   GPIO_InitStruct.Pin = IDIFF0_Pin|TRIG_EN_Pin|TRIG_OUT_Pin|CXN_REL6_Pin
@@ -678,12 +709,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   LL_GPIO_Init(nRDC_GPIO_Port, &GPIO_InitStruct);
-
-  /**/
-  GPIO_InitStruct.Pin = TRIG_IN_Pin;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  LL_GPIO_Init(TRIG_IN_GPIO_Port, &GPIO_InitStruct);
 
   /**/
   GPIO_InitStruct.Pin = CXN_REL2_Pin|CXN_REL1_Pin|nADC2_RST_Pin|DDS_LPF_Pin
@@ -741,6 +766,28 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   LL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
+  /**/
+  LL_SYSCFG_SetEXTISource(LL_SYSCFG_EXTI_PORTE, LL_SYSCFG_EXTI_LINE11);
+
+  /**/
+  EXTI_InitStruct.Line_0_31 = LL_EXTI_LINE_11;
+  EXTI_InitStruct.Line_32_63 = LL_EXTI_LINE_NONE;
+  EXTI_InitStruct.Line_64_95 = LL_EXTI_LINE_NONE;
+  EXTI_InitStruct.LineCommand = ENABLE;
+  EXTI_InitStruct.Mode = LL_EXTI_MODE_IT;
+  EXTI_InitStruct.Trigger = LL_EXTI_TRIGGER_RISING;
+  LL_EXTI_Init(&EXTI_InitStruct);
+
+  /**/
+  LL_GPIO_SetPinPull(TRIG_IN_GPIO_Port, TRIG_IN_Pin, LL_GPIO_PULL_NO);
+
+  /**/
+  LL_GPIO_SetPinMode(TRIG_IN_GPIO_Port, TRIG_IN_Pin, LL_GPIO_MODE_INPUT);
+
+  /* EXTI interrupt init*/
+  NVIC_SetPriority(EXTI15_10_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),5, 0));
+  NVIC_EnableIRQ(EXTI15_10_IRQn);
+
 }
 
 /* USER CODE BEGIN 4 */
@@ -784,6 +831,29 @@ void StartLEDTask(void *argument)
 	osDelay(pdMS_TO_TICKS(500));
   }
   /* USER CODE END StartLEDTask */
+}
+
+/* USER CODE BEGIN Header_StartTriggerTask */
+/**
+* @brief Function implementing the TriggerTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTriggerTask */
+void StartTriggerTask(void *argument)
+{
+  /* USER CODE BEGIN StartTriggerTask */
+  /* Infinite loop */
+  for(;;)
+  {
+	  if(osOK == osMessageQueueGet(QueueTriggerHandle, &trigger_status, NULL, 10U))
+	  {
+			LL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+
+	  }
+	  osDelay(pdMS_TO_TICKS(2));
+  }
+  /* USER CODE END StartTriggerTask */
 }
 
 /* MPU Configuration */
