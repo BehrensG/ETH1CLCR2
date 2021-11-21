@@ -34,5 +34,7 @@
 BSP_StatusTypeDef AD9834_Init(void);
 BSP_StatusTypeDef AD9834_SetFrequency(uint32_t freq28);
 BSP_StatusTypeDef AD9834_SetPhase(uint16_t word12);
+BSP_StatusTypeDef AD9834_Stop(void);
+BSP_StatusTypeDef AD9834_Start(void);
 
 #endif /* THIRD_PARTY_BSP_INC_AD9834_H_ */

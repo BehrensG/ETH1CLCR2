@@ -243,9 +243,9 @@ scpi_result_t SCPI_TriggerSlope(scpi_t* context)
 	}
 
 
-
-	//HAL_GPIO_DeInit(TRIG_IN_GPIO_Port, TRIG_IN_Pin);
-	//GPIO_InitStruct.Pin = TRIG_IN_Pin;
+/*
+	HAL_GPIO_DeInit(TRIG_IN_GPIO_Port, TRIG_IN_Pin);
+	GPIO_InitStruct.Pin = TRIG_IN_Pin;
 
 	switch(paramSLOPE)
 	{
@@ -253,9 +253,9 @@ scpi_result_t SCPI_TriggerSlope(scpi_t* context)
 		case SLOPE_NEG: GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING; break;
 	}
 
-	//GPIO_InitStruct.Pull = GPIO_NOPULL;
-	//LL_GPIO_Init(TRIG_IN_GPIO_Port, &GPIO_InitStruct);
-
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	LL_GPIO_Init(TRIG_IN_GPIO_Port, &GPIO_InitStruct);
+*/
 	bsp.trigger.in_slope = paramSLOPE;
 
 	return SCPI_RES_OK;

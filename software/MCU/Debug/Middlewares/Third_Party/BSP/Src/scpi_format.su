@@ -1,0 +1,2 @@
+scpi_format.c:10:15:SCPI_FormatData	16	static
+scpi_format.c:15:15:SCPI_FormatDataQ	16	static

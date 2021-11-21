@@ -17,11 +17,11 @@ typedef enum
 	DDS_DIV10		= 10U
 } dds_clk_div_e;
 
-#define DDS_DIV0_RES	0.0610351f
-#define DDS_DIV2_RES	0.0305176f
-#define DDS_DIV4_RES	0.0203438f
-#define DDS_DIV8_RES	0.0122070f
-#define DDS_DIV10_RES	0.0012207f
+#define DDS_DIV0_RES	0.0610351
+#define DDS_DIV2_RES	0.0305176
+#define DDS_DIV4_RES	0.0203438
+#define DDS_DIV8_RES	0.0122070
+#define DDS_DIV10_RES	0.0012207
 
 void DDS_SetFrequency(float freq);
 

@@ -15,9 +15,13 @@ C_SRCS += \
 ../Middlewares/Third_Party/BSP/Src/eeprom.c \
 ../Middlewares/Third_Party/BSP/Src/heap_useNewlib.c \
 ../Middlewares/Third_Party/BSP/Src/relays.c \
+../Middlewares/Third_Party/BSP/Src/scpi_calibration.c \
 ../Middlewares/Third_Party/BSP/Src/scpi_def.c \
+../Middlewares/Third_Party/BSP/Src/scpi_format.c \
+../Middlewares/Third_Party/BSP/Src/scpi_measure.c \
 ../Middlewares/Third_Party/BSP/Src/scpi_server.c \
-../Middlewares/Third_Party/BSP/Src/scpi_system.c 
+../Middlewares/Third_Party/BSP/Src/scpi_system.c \
+../Middlewares/Third_Party/BSP/Src/scpi_trigger.c 
 
 OBJS += \
 ./Middlewares/Third_Party/BSP/Src/AD9834.o \
@@ -30,9 +34,13 @@ OBJS += \
 ./Middlewares/Third_Party/BSP/Src/eeprom.o \
 ./Middlewares/Third_Party/BSP/Src/heap_useNewlib.o \
 ./Middlewares/Third_Party/BSP/Src/relays.o \
+./Middlewares/Third_Party/BSP/Src/scpi_calibration.o \
 ./Middlewares/Third_Party/BSP/Src/scpi_def.o \
+./Middlewares/Third_Party/BSP/Src/scpi_format.o \
+./Middlewares/Third_Party/BSP/Src/scpi_measure.o \
 ./Middlewares/Third_Party/BSP/Src/scpi_server.o \
-./Middlewares/Third_Party/BSP/Src/scpi_system.o 
+./Middlewares/Third_Party/BSP/Src/scpi_system.o \
+./Middlewares/Third_Party/BSP/Src/scpi_trigger.o 
 
 C_DEPS += \
 ./Middlewares/Third_Party/BSP/Src/AD9834.d \
@@ -45,9 +53,13 @@ C_DEPS += \
 ./Middlewares/Third_Party/BSP/Src/eeprom.d \
 ./Middlewares/Third_Party/BSP/Src/heap_useNewlib.d \
 ./Middlewares/Third_Party/BSP/Src/relays.d \
+./Middlewares/Third_Party/BSP/Src/scpi_calibration.d \
 ./Middlewares/Third_Party/BSP/Src/scpi_def.d \
+./Middlewares/Third_Party/BSP/Src/scpi_format.d \
+./Middlewares/Third_Party/BSP/Src/scpi_measure.d \
 ./Middlewares/Third_Party/BSP/Src/scpi_server.d \
-./Middlewares/Third_Party/BSP/Src/scpi_system.d 
+./Middlewares/Third_Party/BSP/Src/scpi_system.d \
+./Middlewares/Third_Party/BSP/Src/scpi_trigger.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

@@ -1,0 +1,13 @@
+scpi_measure.c:12:15:SCPI_MeasureResultQ	16	static
+scpi_measure.c:17:15:SCPI_MeasureFrequency	40	static
+scpi_measure.c:62:15:SCPI_MeasureFrequencyQ	16	static
+scpi_measure.c:68:15:SCPI_MeasureLevel	16	static
+scpi_measure.c:73:15:SCPI_MeasureLevelQ	16	static
+scpi_measure.c:78:15:SCPI_MeasureSpeed	16	static
+scpi_measure.c:83:15:SCPI_MeasureSpeedQ	16	static
+scpi_measure.c:88:15:SCPI_MeasureFunction	16	static
+scpi_measure.c:93:15:SCPI_MeasureFunctionQ	16	static
+scpi_measure.c:98:15:SCPI_MeasureNominal	16	static
+scpi_measure.c:103:15:SCPI_MeasureNominalQ	16	static
+scpi_measure.c:108:15:SCPI_MeasureOutput	16	static
+scpi_measure.c:113:15:SCPI_MeasureOutputQ	16	static

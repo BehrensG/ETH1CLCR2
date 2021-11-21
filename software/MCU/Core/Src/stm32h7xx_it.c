@@ -23,6 +23,8 @@
 #include "stm32h7xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "cmsis_os.h"
+#include "bsp.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

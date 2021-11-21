@@ -9,6 +9,11 @@
 #define THIRD_PARTY_BSP_INC_SCPI_MEASURE_H_
 
 #include "scpi/scpi.h"
+#include "bsp.h"
+
+#define MIN_FREQ	20
+#define DEF_FREQ	1000
+#define MAX_FREQ	36000000
 
 scpi_result_t SCPI_MeasureResultQ(scpi_t * context);
 scpi_result_t SCPI_MeasureFrequency(scpi_t * context);

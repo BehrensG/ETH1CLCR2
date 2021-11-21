@@ -32,20 +32,24 @@ inline static void ClrBit(uint16_t mask) {
 BSP_StatusTypeDef AD9834_Init()
 {
 	BSP_StatusTypeDef status = BSP_OK;
-	SelectChip();
+	//SelectChip();
+	uint16_t tx_data[7];
 
 	SetBit(B28);
-//	SetBit(RESET);
+	SetBit(RESET);
 
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)reg_config, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)FREQ0_ADDR, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)FREQ0_ADDR, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)FREQ1_ADDR, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)FREQ1_ADDR, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)PHASE0_ADDR, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)PHASE1_ADDR, 1, SPI4_TIMEOUT);
+	tx_data[0] = reg_config;
+	tx_data[1] = FREQ0_ADDR;
+	tx_data[2] = FREQ0_ADDR;
+	tx_data[3] = FREQ1_ADDR;
+	tx_data[4] = FREQ1_ADDR;
+	tx_data[5] = PHASE0_ADDR;
+	tx_data[6] = PHASE1_ADDR;
 
+	SelectChip();
+	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tx_data, 7, SPI4_TIMEOUT);
 	ReleaseChip();
+	HAL_Delay(20);
 
 	return status;
 }
@@ -69,26 +73,63 @@ BSP_StatusTypeDef AD9834_SetPhase(uint16_t word12)
 	return status;
 }
 
+BSP_StatusTypeDef AD9834_Stop()
+{
+	BSP_StatusTypeDef status = BSP_OK;
+
+	uint16_t tx_data[1];
+	ClrBit(B28);
+	SetBit(RESET);
+	tx_data[0] = reg_config;
+	SelectChip();
+	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tx_data, 1, SPI4_TIMEOUT);
+	ReleaseChip();
+	HAL_Delay(20);
+
+	return status;
+}
+
+BSP_StatusTypeDef AD9834_Start()
+{
+	BSP_StatusTypeDef status = BSP_OK;
+	uint16_t tx_data[1];
+	SetBit(B28);
+	ClrBit(RESET);
+	tx_data[0] = reg_config;
+
+	SelectChip();
+	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tx_data, 1, SPI4_TIMEOUT);
+	ReleaseChip();
+	HAL_Delay(20);
+	return status;
+}
+
 BSP_StatusTypeDef AD9834_SetFrequency(uint32_t freq28)
 {
 	BSP_StatusTypeDef status = BSP_OK;
 	uint16_t msb14 = 0;
 	uint16_t lsb14 = 0;
+	uint16_t tx_data[3] = {0};
 
     lsb14 = (uint16_t) (freq28 & 0x3FFF);
-    msb14 = (uint16_t) (freq28 >> 14) & 0x3FFF;
+    msb14 = (uint16_t) ((freq28 & 0xFFFC000) >> 14);
 
     lsb14 |= FREQ0_ADDR;
     msb14 |= FREQ0_ADDR;
+
     ClrBit(FSEL);
+    SetBit(B28);
+    SetBit(RESET);
 
-	SelectChip();
+    tx_data[0] = reg_config;
+    tx_data[1] = lsb14;
+    tx_data[2] = msb14;
 
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)lsb14, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)msb14, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)reg_config, 1, SPI4_TIMEOUT);
-
+    SelectChip();
+	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tx_data, 3, SPI4_TIMEOUT);
 	ReleaseChip();
+	HAL_Delay(20);
+
 
 	return status;
 }

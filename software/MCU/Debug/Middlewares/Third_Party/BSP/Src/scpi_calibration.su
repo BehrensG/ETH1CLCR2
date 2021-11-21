@@ -1,0 +1,8 @@
+scpi_calibration.c:10:15:SCPI_CalibrationADCQ	16	static
+scpi_calibration.c:15:15:SCPI_CalibrationALLQ	16	static
+scpi_calibration.c:20:15:SCPI_CalibrationCountQ	16	static
+scpi_calibration.c:25:15:SCPI_CalibrationDateQ	16	static
+scpi_calibration.c:30:15:SCPI_CalibrationSecureCode	16	static
+scpi_calibration.c:35:15:SCPI_CalibrationSecureState	16	static
+scpi_calibration.c:40:15:SCPI_CalibrationStore	16	static
+scpi_calibration.c:45:15:SCPI_CalibrationValue	16	static

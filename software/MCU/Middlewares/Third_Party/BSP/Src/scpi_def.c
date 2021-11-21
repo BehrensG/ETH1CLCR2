@@ -48,6 +48,8 @@
 #include "scpi_system.h"
 #include "scpi_measure.h"
 #include "scpi_trigger.h"
+#include "scpi_format.h"
+#include "scpi_calibration.h"
 
 static scpi_result_t TEST_TSQ(scpi_t * context)
 {

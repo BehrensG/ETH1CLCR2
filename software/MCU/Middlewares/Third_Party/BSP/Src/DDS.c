@@ -55,11 +55,11 @@ static uint32_t DDS_ConvertFrequency(float freq)
 
 	switch(bsp.dds.divider)
 	{
-		case DDS_DIV0: freq28 = (uint32_t)((float)freq / DDS_DIV0_RES);break;
-		case DDS_DIV2: freq28 = (uint32_t)((float)freq / DDS_DIV2_RES);break;
-		case DDS_DIV4: freq28 = (uint32_t)((float)freq / DDS_DIV4_RES);break;
-		case DDS_DIV8: freq28 = (uint32_t)((float)freq / DDS_DIV8_RES);break;
-		case DDS_DIV10: freq28 = (uint32_t)((float)freq / DDS_DIV10_RES);break;
+		case DDS_DIV0: freq28 = (uint32_t)(freq / DDS_DIV0_RES);break;
+		case DDS_DIV2: freq28 = (uint32_t)(freq / DDS_DIV2_RES);break;
+		case DDS_DIV4: freq28 = (uint32_t)(freq / DDS_DIV4_RES);break;
+		case DDS_DIV8: freq28 = (uint32_t)(freq / DDS_DIV8_RES);break;
+		case DDS_DIV10: freq28 = (uint32_t)(freq / DDS_DIV10_RES);break;
 	}
 
 	return freq28;
@@ -69,4 +69,5 @@ void DDS_SetFrequency(float freq)
 {
 	uint32_t freq28 = DDS_ConvertFrequency(freq);
 	AD9834_SetFrequency(freq28);
+	AD9834_Start();
 }

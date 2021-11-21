@@ -197,7 +197,7 @@ int main(void)
 
   /* Create the thread(s) */
   /* creation of defaultTask */
-  //defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+ // defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* creation of LEDTask */
   LEDTaskHandle = osThreadNew(StartLEDTask, NULL, &LEDTask_attributes);
@@ -535,10 +535,10 @@ static void MX_SPI4_Init(void)
   hspi4.Init.Mode = SPI_MODE_MASTER;
   hspi4.Init.Direction = SPI_DIRECTION_2LINES;
   hspi4.Init.DataSize = SPI_DATASIZE_16BIT;
-  hspi4.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi4.Init.CLKPolarity = SPI_POLARITY_HIGH;
   hspi4.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi4.Init.NSS = SPI_NSS_SOFT;
-  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
   hspi4.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi4.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi4.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -683,7 +683,7 @@ static void MX_GPIO_Init(void)
   /**/
   GPIO_InitStruct.Pin = SPI4_NSS_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
   LL_GPIO_Init(SPI4_NSS_GPIO_Port, &GPIO_InitStruct);
@@ -843,6 +843,7 @@ void StartLEDTask(void *argument)
 void StartTriggerTask(void *argument)
 {
   /* USER CODE BEGIN StartTriggerTask */
+	uint8_t trigger_status = 0;
   /* Infinite loop */
   for(;;)
   {
