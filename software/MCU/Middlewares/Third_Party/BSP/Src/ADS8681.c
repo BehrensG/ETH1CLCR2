@@ -7,10 +7,10 @@
 
 #include "ADS8681.h"
 #include "dwt_delay.h"
+#include "stm32h7xx_ll_spi.h"
 
 double ADS8681_LSB[5] = {0.000375000, 0.000312500, 0.000187500, 0.000156250, 0.000078125};
 
-extern SPI_HandleTypeDef hspi3;
 
 static BSP_StatusTypeDef ADS8681_Set_ID(void);
 static BSP_StatusTypeDef ADS8681_Set_Data_Output(void);
@@ -71,7 +71,7 @@ static BSP_StatusTypeDef BSP_SPI3_Transmit(uint32_t* buffer, uint32_t size, uint
 	uint32_t rx_buffer[2];
 	uint32_t tickstart = 0;
 
-    LL_SPI_SetTransferSize(SPI3, size);
+	LL_SPI_SetTransferSize(SPI3, size);
     LL_SPI_Enable(SPI3);
     LL_SPI_StartMasterTransfer(SPI3);
 
@@ -123,8 +123,8 @@ BSP_StatusTypeDef ADS8681_Raw_Data(uint16_t* raw_data)
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
-	status = HAL_SPI_Receive(&hspi3, (uint8_t*)rx_data, 2, 1000);
-	//status = BSP_SPI3_Receive(rx_data, 2,10000);
+	//status = HAL_SPI_Receive(&hspi3, (uint8_t*)rx_data, 2, 1000);
+	status = BSP_SPI3_Receive(rx_data, 2,10000);
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	raw_data[0] = (uint16_t)(rx_data[2] >> 16);
@@ -251,8 +251,8 @@ static BSP_StatusTypeDef ADS8681_Read_LSB(uint8_t* data)
 	uint32_t rx_data[2] = {0x00000000,0x00000000};
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
-	status = HAL_SPI_Receive(&hspi3, (uint8_t*)rx_data, 2, 1000);
-	//status = BSP_SPI3_Receive(rx_data, 2,10000);
+	//status = HAL_SPI_Receive(&hspi3, (uint8_t*)rx_data, 2, 1000);
+	status = BSP_SPI3_Receive(rx_data, 2,10000);
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 
@@ -273,8 +273,8 @@ static BSP_StatusTypeDef ADS8681_Write_HWORD(uint8_t* cmd, uint8_t* reg, uint16_
 	tx_data[1] = cmd[1] << 24 | reg[1] << 16 | (data[1] & 0x0000FFFF);
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
-	status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 2, 1000);
-	//status = BSP_SPI3_Transmit(tx_data, 2, 10000);
+	//status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 2, 1000);
+	status = BSP_SPI3_Transmit(tx_data, 2, 10000);
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	return status;
@@ -291,8 +291,8 @@ static BSP_StatusTypeDef ADS8681_Write_MSB(uint8_t* cmd, uint8_t* reg, uint8_t* 
 
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
-	status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 2, 1000);
-	//status = BSP_SPI3_Transmit(tx_data, 2,10000);
+	//status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 2, 1000);
+	status = BSP_SPI3_Transmit(tx_data, 2,10000);
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	return status;
@@ -308,8 +308,8 @@ static BSP_StatusTypeDef ADS8681_Write_LSB(uint8_t* cmd, uint8_t* reg, uint8_t* 
 	tx_data[1] = cmd[1] << 24 | reg[1] << 16 | (data[1] & 0x000000FF);
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
-	status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 2, 1000);
-	//status = BSP_SPI3_Transmit(tx_data, 2, 10000);
+	//status = HAL_SPI_Transmit(&hspi3, (uint8_t*)tx_data, 2, 1000);
+	status = BSP_SPI3_Transmit(tx_data, 2, 10000);
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	return status;

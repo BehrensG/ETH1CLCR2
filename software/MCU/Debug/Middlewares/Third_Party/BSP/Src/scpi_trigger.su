@@ -1,6 +1,6 @@
-stm32h7xx_ll_gpio.h:885:22:LL_GPIO_SetOutputPin	16	static
-stm32h7xx_ll_gpio.h:914:22:LL_GPIO_ResetOutputPin	16	static
-stm32h7xx_ll_gpio.h:943:22:LL_GPIO_TogglePin	24	static
+stm32h7xx_ll_gpio.h:884:22:LL_GPIO_SetOutputPin	16	static
+stm32h7xx_ll_gpio.h:913:22:LL_GPIO_ResetOutputPin	16	static
+stm32h7xx_ll_gpio.h:942:22:LL_GPIO_TogglePin	24	static
 scpi_trigger.c:52:15:SCPI_TriggerDelay	40	static
 scpi_trigger.c:104:15:SCPI_TriggerDelayQ	16	static
 scpi_trigger.c:118:15:SCPI_TriggerImmediate	16	static

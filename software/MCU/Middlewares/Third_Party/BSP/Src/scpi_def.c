@@ -51,6 +51,9 @@
 #include "scpi_format.h"
 #include "scpi_calibration.h"
 
+#include "DAC7811.h"
+#include "DG409.h"
+
 static scpi_result_t TEST_TSQ(scpi_t * context)
 {
 
@@ -86,30 +89,10 @@ static scpi_result_t SCPI_IdnQ(scpi_t * context)
 scpi_result_t SCPI_TS(scpi_t * context)
 {
 	uint32_t div = 0;
-
-    if(!SCPI_ParamUInt32(context, &div, TRUE))
-    {
-        return SCPI_RES_ERR;
-    }
-
-    LL_GPIO_SetOutputPin(DDS_DIV2_GPIO_Port, DDS_DIV2_Pin);
-    LL_GPIO_SetOutputPin(DDS_DIV4_GPIO_Port, DDS_DIV4_Pin);
-    LL_GPIO_SetOutputPin(DDS_DIV8_GPIO_Port, DDS_DIV8_Pin);
-
-    switch(div)
-    {
-    case 0: {
-        LL_GPIO_SetOutputPin(DDS_DIV2_GPIO_Port, DDS_DIV2_Pin);
-        LL_GPIO_SetOutputPin(DDS_DIV4_GPIO_Port, DDS_DIV4_Pin);
-        LL_GPIO_SetOutputPin(DDS_DIV8_GPIO_Port, DDS_DIV8_Pin);
-        LL_GPIO_SetOutputPin(nDDS_DIV10_GPIO_Port, nDDS_DIV10_Pin);
-    }break;
-    case 2: LL_GPIO_ResetOutputPin(DDS_DIV2_GPIO_Port, DDS_DIV2_Pin);break;
-    case 4: LL_GPIO_ResetOutputPin(DDS_DIV4_GPIO_Port, DDS_DIV4_Pin);break;
-    case 8: LL_GPIO_ResetOutputPin(DDS_DIV8_GPIO_Port, DDS_DIV8_Pin);break;
-    case 10: LL_GPIO_ResetOutputPin(nDDS_DIV10_GPIO_Port, nDDS_DIV10_Pin);break;
-    }
-
+	DDS_ClockDivider(DDS_DIV0);
+	DDS_SetFrequency(1000);
+	DAC7811_SetVoltage(2);
+//	DG409_MUX(DG409_SA1);
     return SCPI_RES_OK;
 }
 

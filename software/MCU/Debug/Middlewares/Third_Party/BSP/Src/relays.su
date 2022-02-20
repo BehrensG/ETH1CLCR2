@@ -1,5 +1,5 @@
-stm32h7xx_ll_gpio.h:885:22:LL_GPIO_SetOutputPin	16	static
-stm32h7xx_ll_gpio.h:914:22:LL_GPIO_ResetOutputPin	16	static
+stm32h7xx_ll_gpio.h:884:22:LL_GPIO_SetOutputPin	16	static
+stm32h7xx_ll_gpio.h:913:22:LL_GPIO_ResetOutputPin	16	static
 relays.c:11:6:CXN_Relays_AllOn	8	static
 relays.c:23:6:CXN_Relays_AllOff	8	static
 relays.c:35:6:TQ2SA_Relays	16	static

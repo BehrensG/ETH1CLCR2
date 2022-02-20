@@ -1,5 +1,5 @@
-stm32h7xx_ll_gpio.h:885:22:LL_GPIO_SetOutputPin	16	static
-stm32h7xx_ll_gpio.h:914:22:LL_GPIO_ResetOutputPin	16	static
+stm32h7xx_ll_gpio.h:884:22:LL_GPIO_SetOutputPin	16	static
+stm32h7xx_ll_gpio.h:913:22:LL_GPIO_ResetOutputPin	16	static
 AD9834.c:14:20:SelectChip	8	static
 AD9834.c:19:20:ReleaseChip	8	static
 AD9834.c:24:20:SetBit	16	static

@@ -8,7 +8,6 @@
 #ifndef INC_ADS8681_H_
 #define INC_ADS8681_H_
 
-#include "main.h"
 #include "bsp.h"
 
 #define DEVICE_ID_REG 		0x00
