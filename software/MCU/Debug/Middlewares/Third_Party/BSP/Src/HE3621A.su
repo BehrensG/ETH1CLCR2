@@ -1,0 +1,5 @@
+stm32h7xx_ll_gpio.h:884:22:LL_GPIO_SetOutputPin	16	static
+stm32h7xx_ll_gpio.h:913:22:LL_GPIO_ResetOutputPin	16	static
+HE3621A.c:11:6:HE3621A_Mux	24	static
+HE3621A.c:34:6:HE3621A_Mux_AllOn	8	static
+HE3621A.c:44:6:HE3621A_Mux_AllOff	8	static

@@ -12,13 +12,13 @@
 double ADS8681_LSB[5] = {0.000375000, 0.000312500, 0.000187500, 0.000156250, 0.000078125};
 
 
-static BSP_StatusTypeDef ADS8681_Set_ID(void);
-static BSP_StatusTypeDef ADS8681_Set_Data_Output(void);
-static BSP_StatusTypeDef ADS8681_Write_MSB(uint8_t* cmd, uint8_t* reg, uint8_t* data);
-static BSP_StatusTypeDef ADS8681_Write_LSB(uint8_t* cmd, uint8_t* reg, uint8_t* data);
-static BSP_StatusTypeDef ADS8681_Write_HWORD(uint8_t* cmd, uint8_t* reg, uint16_t* data);
-static BSP_StatusTypeDef ADS8681_Read_LSB(uint8_t* data);
-static void ADS8681_Convertion_Time(void);
+static BSP_StatusTypeDef ADS8681_SetID(void);
+static BSP_StatusTypeDef ADS8681_SetDataOutput(void);
+static BSP_StatusTypeDef ADS8681_WriteMSB(uint8_t* cmd, uint8_t* reg, uint8_t* data);
+static BSP_StatusTypeDef ADS8681_WriteLSB(uint8_t* cmd, uint8_t* reg, uint8_t* data);
+static BSP_StatusTypeDef ADS8681_WriteHWORD(uint8_t* cmd, uint8_t* reg, uint16_t* data);
+static BSP_StatusTypeDef ADS8681_ReadLSB(uint8_t* data);
+static void ADS8681_ConvertionTime(void);
 
 
 
@@ -112,7 +112,7 @@ static BSP_StatusTypeDef BSP_SPI3_Transmit(uint32_t* buffer, uint32_t size, uint
     return BSP_OK;
 }
 
-BSP_StatusTypeDef ADS8681_Raw_Data(uint16_t* raw_data)
+BSP_StatusTypeDef ADS8681_RawData(uint16_t* raw_data)
 {
 
 	uint32_t status = BSP_OK;
@@ -137,18 +137,23 @@ BSP_StatusTypeDef ADS8681_Raw_Data(uint16_t* raw_data)
 BSP_StatusTypeDef ADS8681_Init(void)
 {
 	BSP_StatusTypeDef status = BSP_OK;
+	uint8_t range[2] = {0,0};
 
-	status = ADS8681_Set_ID();
+	status = ADS8681_SetID();
+	if(BSP_OK != status) return status;
 
-	//bsp.adc[0].range = ADS8681_RANGE_3VREF;
-	//bsp.adc[1].range = ADS8681_RANGE_3VREF;
+	range[0] = bsp.adc_ads8681[0].range;
+	range[1] = bsp.adc_ads8681[1].range;
 
-	status = ADS8681_Set_Data_Output();
+	status = ADS8681_SetDataOutput();
+	if(BSP_OK != status) return status;
+
+	status = ADS8681_SetRange(range);
 
 	return status;
 }
 
-static BSP_StatusTypeDef ADS8681_Set_Data_Output(void)
+static BSP_StatusTypeDef ADS8681_SetDataOutput(void)
 {
 
 	uint8_t cmd[2];
@@ -164,12 +169,12 @@ static BSP_StatusTypeDef ADS8681_Set_Data_Output(void)
 	tx_hword[0] = 0x7D08;
 	tx_hword[1] = 0x7D08;
 
-	return ADS8681_Write_HWORD(cmd, reg, tx_hword);
+	return ADS8681_WriteHWORD(cmd, reg, tx_hword);
 
 }
 
 
-BSP_StatusTypeDef ADS8681_Set_Range(uint8_t range[])
+BSP_StatusTypeDef ADS8681_SetRange(uint8_t range[])
 {
 	BSP_StatusTypeDef status = BSP_OK;
 	uint8_t cmd[2]={0,0};
@@ -187,7 +192,7 @@ BSP_StatusTypeDef ADS8681_Set_Range(uint8_t range[])
 	tx_data[1] = range[1];
 	tx_data[0] = range[0];
 
-	status = ADS8681_Write_LSB(cmd, reg, tx_data);
+	status = ADS8681_WriteLSB(cmd, reg, tx_data);
 	if(BSP_OK != status){return status;}
 
 	DWT_Delay_us(10);
@@ -195,7 +200,7 @@ BSP_StatusTypeDef ADS8681_Set_Range(uint8_t range[])
 	return status;
 }
 
-static BSP_StatusTypeDef ADS8681_Set_ID(void)
+static BSP_StatusTypeDef ADS8681_SetID(void)
 {
 	uint32_t status = BSP_OK;
 	uint8_t cmd[2]={0,0};
@@ -212,7 +217,7 @@ static BSP_StatusTypeDef ADS8681_Set_ID(void)
 	tx_data[1] = ADS8681_ID1;
 	tx_data[0] = ADS8681_ID2;
 
-	status = ADS8681_Write_LSB(cmd, reg, tx_data);
+	status = ADS8681_WriteLSB(cmd, reg, tx_data);
 	if(BSP_OK != status){return status;}
 
 	DWT_Delay_us(1);
@@ -227,13 +232,13 @@ static BSP_StatusTypeDef ADS8681_Set_ID(void)
 	tx_data[0] = 0x00;
 	tx_data[1] = 0x00;
 
-	status = ADS8681_Write_LSB(cmd, reg, tx_data);
+	status = ADS8681_WriteLSB(cmd, reg, tx_data);
 
 	if(BSP_OK != status){return status;}
 
 	DWT_Delay_us(1);
 
-	status = ADS8681_Read_LSB(rx_data);
+	status = ADS8681_ReadLSB(rx_data);
 
 	if(BSP_OK != status){return status;}
 
@@ -244,7 +249,7 @@ static BSP_StatusTypeDef ADS8681_Set_ID(void)
 }
 
 
-static BSP_StatusTypeDef ADS8681_Read_LSB(uint8_t* data)
+static BSP_StatusTypeDef ADS8681_ReadLSB(uint8_t* data)
 {
 
 	BSP_StatusTypeDef status = BSP_OK;
@@ -263,7 +268,7 @@ static BSP_StatusTypeDef ADS8681_Read_LSB(uint8_t* data)
 
 }
 
-static BSP_StatusTypeDef ADS8681_Write_HWORD(uint8_t* cmd, uint8_t* reg, uint16_t* data)
+static BSP_StatusTypeDef ADS8681_WriteHWORD(uint8_t* cmd, uint8_t* reg, uint16_t* data)
 {
 
 	BSP_StatusTypeDef status = BSP_OK;
@@ -280,7 +285,7 @@ static BSP_StatusTypeDef ADS8681_Write_HWORD(uint8_t* cmd, uint8_t* reg, uint16_
 	return status;
 }
 
-static BSP_StatusTypeDef ADS8681_Write_MSB(uint8_t* cmd, uint8_t* reg, uint8_t* data)
+static BSP_StatusTypeDef ADS8681_WriteMSB(uint8_t* cmd, uint8_t* reg, uint8_t* data)
 {
 	BSP_StatusTypeDef status = BSP_OK;
 	uint32_t tx_data[2] = {0x00000000,0x00000000};
@@ -298,7 +303,7 @@ static BSP_StatusTypeDef ADS8681_Write_MSB(uint8_t* cmd, uint8_t* reg, uint8_t* 
 	return status;
 }
 
-static BSP_StatusTypeDef ADS8681_Write_LSB(uint8_t* cmd, uint8_t* reg, uint8_t* data)
+static BSP_StatusTypeDef ADS8681_WriteLSB(uint8_t* cmd, uint8_t* reg, uint8_t* data)
 {
 
 	BSP_StatusTypeDef status = BSP_OK;
@@ -315,7 +320,7 @@ static BSP_StatusTypeDef ADS8681_Write_LSB(uint8_t* cmd, uint8_t* reg, uint8_t* 
 	return status;
 }
 
-static void ADS8681_Convertion_Time(void)
+static void ADS8681_ConvertionTime(void)
 {
     uint32_t startTick = DWT->CYCCNT,
              delayTicks = 1 * (SystemCoreClock/15000000);

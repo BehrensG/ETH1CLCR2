@@ -98,8 +98,6 @@ void Error_Handler(void);
 #define CXN_REL2_GPIO_Port GPIOB
 #define CXN_REL1_Pin LL_GPIO_PIN_11
 #define CXN_REL1_GPIO_Port GPIOB
-#define SPI2_NSS_Pin LL_GPIO_PIN_12
-#define SPI2_NSS_GPIO_Port GPIOB
 #define nADC2_RST_Pin LL_GPIO_PIN_15
 #define nADC2_RST_GPIO_Port GPIOB
 #define ADC2_MDIV_Pin LL_GPIO_PIN_8

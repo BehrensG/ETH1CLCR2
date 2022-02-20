@@ -4115,6 +4115,21 @@
     (uuid ffa3077b-4b8f-4457-b85f-2611ac6fe647)
   )
 
+  (text "Output range 1mV to 1V (peak-peak)\nOutput freq 10 Hz - 1 MHz sine"
+    (at 365.76 76.2 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 29fb7c18-35df-4128-a710-41e21bd3fdb5)
+  )
+  (text "S2A : 3.116 divider (10 dBV)\nS3A : 9.901 divider (20 dBV)\nS4A : 30.303 divider (30 dBV)"
+    (at 261.62 115.57 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 5f5e88ff-fbfc-4c71-9878-55db986597c5)
+  )
+  (text "DIV0 - 16.384 MHz\nDIV1 - 8.192 MHz" (at 173.99 218.44 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid ef1b2195-c4fb-4691-95a4-7fbbcc2b36b2)
+  )
+
   (label "A0" (at 259.08 62.23 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 0787ede9-95c1-4b0a-9bc2-b45cb9e49f9b)

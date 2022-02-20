@@ -41,7 +41,7 @@
 
 
 BSP_StatusTypeDef ADS8681_Init(void);
-BSP_StatusTypeDef ADS8681_Raw_Data(uint16_t* raw_data);
-BSP_StatusTypeDef ADS8681_Set_Range(uint8_t* range);
+BSP_StatusTypeDef ADS8681_RawData(uint16_t* raw_data);
+BSP_StatusTypeDef ADS8681_SetRange(uint8_t* range);
 
 #endif /* INC_ADS8681_H_ */

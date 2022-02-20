@@ -91,7 +91,8 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	uint32_t div = 0;
 	DDS_ClockDivider(DDS_DIV0);
 	DDS_SetFrequency(1000);
-	DAC7811_SetVoltage(2);
+	DAC7811_SetVoltage(0.5);
+	HE3621A_Mux_AllOn();
 //	DG409_MUX(DG409_SA1);
     return SCPI_RES_OK;
 }

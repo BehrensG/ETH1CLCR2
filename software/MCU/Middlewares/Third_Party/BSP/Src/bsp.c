@@ -13,9 +13,9 @@
 static void BSP_Init_Common()
 {
 	bsp.adc_ads8681[0].zero_offset = 0.0;
-	bsp.adc_ads8681[0].range = ADS8681_RANGE_3VREF;
+	bsp.adc_ads8681[0].range = ADS8681_RANGE_1_25VREF;
 	bsp.adc_ads8681[1].zero_offset = 0.0;
-	bsp.adc_ads8681[1].range = ADS8681_RANGE_3VREF;
+	bsp.adc_ads8681[1].range = ADS8681_RANGE_1_25VREF;
 
 	bsp.trigger.delay = 0;
 	bsp.trigger.in_slope = POS;
