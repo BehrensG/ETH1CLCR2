@@ -12,10 +12,10 @@
 
 typedef enum
 {
-	DG409_SA1		= 1U,
-	DG409_SA2		= 2U,
-	DG409_SA3		= 3U,
-	DG409_SA4		= 4U
+	DG409_S1A		= 1U,
+	DG409_S2A		= 2U,
+	DG409_S3A		= 3U,
+	DG409_S4A		= 4U
 } dg409_channel_e;
 
 

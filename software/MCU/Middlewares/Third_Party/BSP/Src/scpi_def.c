@@ -53,6 +53,7 @@
 
 #include "DAC7811.h"
 #include "DG409.h"
+#include "DDS.h"
 
 static scpi_result_t TEST_TSQ(scpi_t * context)
 {
@@ -88,11 +89,30 @@ static scpi_result_t SCPI_IdnQ(scpi_t * context)
 
 scpi_result_t SCPI_TS(scpi_t * context)
 {
-	uint32_t div = 0;
+	float freq = 100;
+	float ampl = 1.28;
+	uint32_t atten = 0;
+
+	if(!SCPI_ParamFloat(context, &freq, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	if(!SCPI_ParamFloat(context, &ampl, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	if(!SCPI_ParamUInt32(context, &atten, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
 	DDS_ClockDivider(DDS_DIV0);
-	DDS_SetFrequency(1000);
-	DAC7811_SetVoltage(0.5);
-	HE3621A_Mux_AllOn();
+	DDS_SetFrequency(freq);
+	DAC7811_SetVoltage(ampl);
+	DDS_Attenuation(atten);
+	//HE3621A_Mux_AllOn();
 //	DG409_MUX(DG409_SA1);
     return SCPI_RES_OK;
 }

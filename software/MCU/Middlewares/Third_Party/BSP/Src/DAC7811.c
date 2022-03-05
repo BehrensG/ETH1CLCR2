@@ -27,7 +27,7 @@ BSP_StatusTypeDef DAC7811_SetVoltage(float voltage)
 	uint16_t code[1] = {0};
 
 	BSP_StatusTypeDef status = BSP_OK;
-	code[0] = (uint16_t)((voltage/DDS_VPP)*4095);
+	code[0] = (uint16_t)((voltage/DDS_AMP)*4095);
 	code[0] = (code[0] & 0x8FFF) | DAC7811_UPDATE;
 
 	SelectChip();

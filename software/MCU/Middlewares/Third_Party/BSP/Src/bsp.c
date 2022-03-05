@@ -25,8 +25,10 @@ static void BSP_Init_Common()
 	bsp.data_format = DATA_FORMAT_ASCII;
 	bsp.security.status = 0;
 
-	bsp.dds.divider = DDS_DIV0;
+	bsp.dds.divider = 0;
 	bsp.measure.frequency = 100;
+	bsp.vdiff.gain = 2;
+	bsp.idiff.gain = 2;
 }
 
 

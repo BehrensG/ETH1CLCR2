@@ -11,7 +11,7 @@
 #include "bsp.h"
 
 #define DAC7811_UPDATE		(0x1 << 12)
-#define DDS_VPP				2.48
+#define DDS_AMP				3.46
 
 
 BSP_StatusTypeDef DAC7811_SetVoltage(float voltage);

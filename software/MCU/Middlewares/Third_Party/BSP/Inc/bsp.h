@@ -9,7 +9,6 @@
 #define THIRD_PARTY_BSP_BSP_H_
 
 #include "main.h"
-#include "DDS.h"
 
 /*************************************** COMMON ***************************************/
 
@@ -245,8 +244,19 @@ typedef struct bsp_measure
 
 typedef struct bsp_dds
 {
-	dds_clk_div_e divider;
+	uint8_t divider;
 }bsp_dds_t;
+
+typedef struct bsp_vdiff
+{
+	uint16_t gain;
+}bsp_vdiff_t;
+
+typedef struct bsp_idiff
+{
+	uint16_t gain;
+}bsp_idiff_t;
+
 
 struct _bsp
 {
@@ -261,6 +271,8 @@ struct _bsp
 	uint8_t data_format;
 	bsp_measure_t measure;
 	bsp_dds_t dds;
+	bsp_idiff_t idiff;
+	bsp_vdiff_t vdiff;
 
 }bsp;
 

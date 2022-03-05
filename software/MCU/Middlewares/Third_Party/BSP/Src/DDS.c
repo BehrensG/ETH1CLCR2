@@ -6,8 +6,10 @@
  */
 
 #include "DDS.h"
-#include "main.h"
 #include "AD9834.h"
+#include "DG409.h"
+#include "DAC7811.h"
+
 
 void DDS_ClockDivider(dds_clk_div_e clk_div)
 {
@@ -65,9 +67,28 @@ static uint32_t DDS_ConvertFrequency(float freq)
 	return freq28;
 }
 
-void DDS_SetFrequency(float freq)
+BSP_StatusTypeDef DDS_SetFrequency(float freq)
 {
+	BSP_StatusTypeDef status = BSP_OK;
+
 	uint32_t freq28 = DDS_ConvertFrequency(freq);
-	AD9834_SetFrequency(freq28);
-	AD9834_Start();
+
+	status = AD9834_SetFrequency(freq28);
+	if(BSP_OK != status){return status;}
+
+	status = AD9834_Start();
+
+	return status;
+}
+
+void DDS_Attenuation(uint8_t attenuation)
+{
+	switch(attenuation)
+	{
+		case AT_0dBV:DG409_MUX(DG409_S1A);break;
+		case AT_10dBV:DG409_MUX(DG409_S2A);break;
+		case AT_20dBV:DG409_MUX(DG409_S3A);break;
+		case AT_30dBV:DG409_MUX(DG409_S4A);break;
+	}
+
 }
