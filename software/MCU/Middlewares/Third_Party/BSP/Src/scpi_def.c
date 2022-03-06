@@ -54,6 +54,9 @@
 #include "DAC7811.h"
 #include "DG409.h"
 #include "DDS.h"
+#include "CS5361.h"
+
+extern I2S_HandleTypeDef hi2s2;
 
 static scpi_result_t TEST_TSQ(scpi_t * context)
 {
@@ -89,7 +92,8 @@ static scpi_result_t SCPI_IdnQ(scpi_t * context)
 
 scpi_result_t SCPI_TS(scpi_t * context)
 {
-	float freq = 100;
+/*
+ 	float freq = 100;
 	float ampl = 1.28;
 	uint32_t atten = 0;
 
@@ -112,8 +116,16 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	DDS_SetFrequency(freq);
 	DAC7811_SetVoltage(ampl);
 	DDS_Attenuation(atten);
-	//HE3621A_Mux_AllOn();
-//	DG409_MUX(DG409_SA1);
+*/
+	uint16_t rx_data[2];
+	HAL_StatusTypeDef status = BSP_OK;
+
+	CS5361_nReset(OFF);
+	HAL_Delay(20);
+	CS5361_MCLKDivider(ON);
+	CS5361_SampleRate(CS5361_SIGNLE_SPEED);
+	status = HAL_I2S_Receive(&hi2s2, rx_data, 2, 1000);
+
     return SCPI_RES_OK;
 }
 

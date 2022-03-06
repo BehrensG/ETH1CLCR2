@@ -42,6 +42,7 @@
 "./LWIP/Target/ethernetif_fix.o"
 "./Middlewares/Third_Party/BSP/Src/AD9834.o"
 "./Middlewares/Third_Party/BSP/Src/ADS8681.o"
+"./Middlewares/Third_Party/BSP/Src/CS5361.o"
 "./Middlewares/Third_Party/BSP/Src/DAC7811.o"
 "./Middlewares/Third_Party/BSP/Src/DDS.o"
 "./Middlewares/Third_Party/BSP/Src/DG409.o"
