@@ -1,0 +1,3 @@
+stm32h7xx_ll_gpio.h:884:22:LL_GPIO_SetOutputPin	16	static
+stm32h7xx_ll_gpio.h:913:22:LL_GPIO_ResetOutputPin	16	static
+IV_Converter.c:10:6:IV_Converter	16	static
