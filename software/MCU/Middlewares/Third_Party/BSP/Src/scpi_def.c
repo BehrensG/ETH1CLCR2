@@ -119,7 +119,7 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	DDS_SetFrequency(freq);
 	DAC7811_SetVoltage(ampl);
 	DDS_Attenuation(atten);
-	TQ2SA_Relays(ADC_SEL, OFF);
+	TQ2SA_Relays(ADC_SEL, ON);
 	IV_Converter(R10k);
 	VDiff_Amplifier(VDIFF_GAIN2);
 	IDiff_Amplifier(IDIFF_GAIN2);

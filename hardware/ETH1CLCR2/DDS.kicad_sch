@@ -4115,7 +4115,7 @@
     (uuid ffa3077b-4b8f-4457-b85f-2611ac6fe647)
   )
 
-  (text "Output range 1mV to 1V (peak-peak)\nOutput freq 10 Hz - 1 MHz sine"
+  (text "Output range 1mV to 1.5V amplitude\nOutput freq 10 Hz - 1 MHz sine"
     (at 365.76 76.2 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 29fb7c18-35df-4128-a710-41e21bd3fdb5)

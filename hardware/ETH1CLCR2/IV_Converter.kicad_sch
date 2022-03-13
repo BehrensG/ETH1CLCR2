@@ -2757,6 +2757,12 @@
     (uuid fe98897e-19da-4293-b75e-59fc03fd1c77)
   )
 
+  (text "BC847 contol doesn't work. The resistors are being enabled with 0V."
+    (at 31.75 50.8 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 2bab2655-029d-4134-91a9-be61b7939663)
+  )
+
   (hierarchical_label "L_CUR" (shape input) (at 114.3 217.17 180)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 30b67311-4a25-4ff6-b039-8b63a8d8435a)
