@@ -12,17 +12,17 @@
 
 typedef enum
 {
-	VDIFF_GAIN2 = 		0,
-	VDIFF_GAIN20 = 		1,
-	VDIFF_GAIN200 = 	2,
-	VDIFF_GAIN2000 = 	3
+	VDIFF_GAIN1 = 		1,
+	VDIFF_GAIN10 = 		10,
+	VDIFF_GAIN100 = 	100,
+	VDIFF_GAIN1000 = 	1000
 }e_vdiff;
 
 typedef enum
 {
-	IDIFF_GAIN2 = 		0,
-	IDIFF_GAIN20 = 		1,
-	IDIFF_GAIN200 = 	2
+	IDIFF_GAIN1 = 		1,
+	IDIFF_GAIN10 = 		10,
+	IDIFF_GAIN100 = 	100
 }e_idiff;
 
 void VDiff_Amplifier(e_vdiff gain);

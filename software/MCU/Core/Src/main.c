@@ -29,7 +29,7 @@
 #include "ADS8681.h"
 #include "AD9834.h"
 #include "dwt_delay.h"
-
+#include "CS5361.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -170,6 +170,9 @@ int main(void)
   BSP_Init();
   ADS8681_Init();
   AD9834_Init();
+  ADS8681_ZeroOffset();
+  CS5361_SampleRate(CS5361_QUAD_SPEED);
+  CS5361_nReset(OFF);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -435,14 +438,14 @@ static void MX_I2S2_Init(void)
 
   /* USER CODE END I2S2_Init 1 */
   hi2s2.Instance = SPI2;
-  hi2s2.Init.Mode = I2S_MODE_SLAVE_FULLDUPLEX;
+  hi2s2.Init.Mode = I2S_MODE_MASTER_RX;
   hi2s2.Init.Standard = I2S_STANDARD_PHILIPS;
   hi2s2.Init.DataFormat = I2S_DATAFORMAT_24B;
   hi2s2.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
-  hi2s2.Init.AudioFreq = I2S_AUDIOFREQ_32K;
+  hi2s2.Init.AudioFreq = 128000;
   hi2s2.Init.CPOL = I2S_CPOL_LOW;
   hi2s2.Init.FirstBit = I2S_FIRSTBIT_MSB;
-  hi2s2.Init.WSInversion = I2S_WS_INVERSION_DISABLE;
+  hi2s2.Init.WSInversion = I2S_WS_INVERSION_ENABLE;
   hi2s2.Init.Data24BitAlignment = I2S_DATA_24BIT_ALIGNMENT_RIGHT;
   hi2s2.Init.MasterKeepIOState = I2S_MASTER_KEEP_IO_STATE_DISABLE;
   if (HAL_I2S_Init(&hi2s2) != HAL_OK)
@@ -646,7 +649,7 @@ static void MX_GPIO_Init(void)
   LL_GPIO_ResetOutputPin(IRR0_GPIO_Port, IRR0_Pin);
 
   /**/
-  LL_GPIO_ResetOutputPin(GPIOA, IRR4_Pin|IRR2_Pin|IRR1_Pin|IRR3_Pin);
+  LL_GPIO_ResetOutputPin(IRR4_GPIO_Port, IRR4_Pin);
 
   /**/
   LL_GPIO_SetOutputPin(GPIOE, SPI4_NSS_Pin|TRIG_EN_Pin|DDS_DIV2_Pin|nDDS_DIV10_Pin);
@@ -655,7 +658,7 @@ static void MX_GPIO_Init(void)
   LL_GPIO_SetOutputPin(SPI5_NSS_GPIO_Port, SPI5_NSS_Pin);
 
   /**/
-  LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
+  LL_GPIO_SetOutputPin(GPIOA, IRR2_Pin|IRR1_Pin|IRR3_Pin|SPI3_NSS_Pin);
 
   /**/
   LL_GPIO_SetOutputPin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);

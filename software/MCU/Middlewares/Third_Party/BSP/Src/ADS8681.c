@@ -22,6 +22,67 @@ static void ADS8681_ConvertionTime(void);
 
 
 
+BSP_StatusTypeDef ADS8681_GetValues(float values[])
+{
+	BSP_StatusTypeDef status = 0;
+	uint16_t raw_data[2] = {0, 0};
+	double tmp[2] = {0, 0};
+	uint8_t gain_index = 0;
+
+	status = ADS8681_RawData(raw_data);
+	if(BSP_OK != status) return status;
+
+	tmp[0] = raw_data[0] - ADS8681_FSR_CENTER;
+	tmp[1] = raw_data[1] - ADS8681_FSR_CENTER;
+
+	values[0] = (float)(tmp[0]*ADS8681_LSB[bsp.adc_ads8681[0].range] + bsp.adc_ads8681[0].zero_offset);
+	values[1] = (float)(tmp[1]*ADS8681_LSB[bsp.adc_ads8681[1].range] + bsp.adc_ads8681[1].zero_offset);
+
+	return BSP_OK;
+}
+
+BSP_StatusTypeDef ADS8681_ZeroOffset()
+{
+	BSP_StatusTypeDef status = BSP_OK;
+	uint16_t loop_size = 200;
+	float values[2] = {0.0,0.0};
+	float tmp[2] = {0.0,0.0};
+
+	HAL_Delay(100);
+
+	status = ADS8681_GetValues(tmp);
+	if(BSP_OK != status) return status;
+
+	for (uint16_t x = 0; x < loop_size; x++)
+	{
+		status = ADS8681_GetValues(tmp);
+		if(BSP_OK == status)
+		{
+			values[0] += tmp[0];
+			values[1] += tmp[1];
+		}
+		else
+		{
+			break;
+		}
+
+	}
+
+	if(BSP_OK == status)
+	{
+		bsp.adc_ads8681[0].zero_offset = (float)(values[0]/loop_size);
+		bsp.adc_ads8681[1].zero_offset = (float)(values[1]/loop_size);
+
+		bsp.adc_ads8681[0].zero_offset *= (float)(-1);
+		bsp.adc_ads8681[1].zero_offset *= (float)(-1);
+	}
+
+	HAL_Delay(10);
+
+	return status;
+}
+
+
 static BSP_StatusTypeDef BSP_SPI3_Receive(uint32_t* buffer, uint32_t size, uint32_t timeout)
 {
 	uint32_t tickstart = 0;
@@ -114,23 +175,31 @@ static BSP_StatusTypeDef BSP_SPI3_Transmit(uint32_t* buffer, uint32_t size, uint
 
 BSP_StatusTypeDef ADS8681_RawData(uint16_t* raw_data)
 {
+	BSP_StatusTypeDef status = BSP_OK;
 
-	uint32_t status = BSP_OK;
 	uint32_t rx_data[2];
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
-	ADS8681_Convertion_Time();
+	//ADS8681_ConvertionTime();
+	delay100NS_ASM(5);
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
-	//status = HAL_SPI_Receive(&hspi3, (uint8_t*)rx_data, 2, 1000);
-	status = BSP_SPI3_Receive(rx_data, 2,10000);
+	status = BSP_SPI3_Receive(rx_data, 2, 10000);
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
-	raw_data[0] = (uint16_t)(rx_data[2] >> 16);
-	raw_data[1] = (uint16_t)(rx_data[1] >> 16);
+	if(BSP_OK != status)
+	{
+		return status;
+	}
+	else
+	{
+		raw_data[0] = (uint16_t)(rx_data[1] >> 16);
+		raw_data[1] = (uint16_t)(rx_data[0] >> 16);
 
-	return status;
+		return BSP_OK;
+	}
+
 }
 
 
@@ -202,11 +271,12 @@ BSP_StatusTypeDef ADS8681_SetRange(uint8_t range[])
 
 static BSP_StatusTypeDef ADS8681_SetID(void)
 {
-	uint32_t status = BSP_OK;
 	uint8_t cmd[2]={0,0};
 	uint8_t reg[2]={0,0};
 	uint8_t tx_data[2]={0,0};
 	uint8_t rx_data[2]={0,0};
+
+	BSP_StatusTypeDef status = BSP_OK;
 
 	cmd[0] = WRITE_LSB;
 	cmd[1] = WRITE_LSB;
@@ -218,13 +288,12 @@ static BSP_StatusTypeDef ADS8681_SetID(void)
 	tx_data[0] = ADS8681_ID2;
 
 	status = ADS8681_WriteLSB(cmd, reg, tx_data);
-	if(BSP_OK != status){return status;}
+	if(BSP_OK != status) return status;
 
-	DWT_Delay_us(1);
+	HAL_Delay(1);
 
 	cmd[0] = READ_BYTE;
 	cmd[1] = READ_BYTE;
-	cmd[2] = READ_BYTE;
 
 	reg[0] = DEVICE_ID_REG + 0x02;
 	reg[1] = DEVICE_ID_REG + 0x02;
@@ -233,19 +302,25 @@ static BSP_StatusTypeDef ADS8681_SetID(void)
 	tx_data[1] = 0x00;
 
 	status = ADS8681_WriteLSB(cmd, reg, tx_data);
+	if(BSP_OK != status) return status;
 
-	if(BSP_OK != status){return status;}
-
-	DWT_Delay_us(1);
+	HAL_Delay(1);
 
 	status = ADS8681_ReadLSB(rx_data);
-
-	if(BSP_OK != status){return status;}
+	if(BSP_OK != status) return status;
 
 	tx_data[1] = ADS8681_ID1;
 	tx_data[0] = ADS8681_ID2;
 
-	return status;
+	for (uint8_t x = 0; x < 2; x++)
+	{
+		if(rx_data[x] != tx_data[x])
+		{
+			return BSP_ADC_CONFIG_ERROR;
+		}
+	}
+
+	return BSP_OK;
 }
 
 
@@ -319,6 +394,7 @@ static BSP_StatusTypeDef ADS8681_WriteLSB(uint8_t* cmd, uint8_t* reg, uint8_t* d
 
 	return status;
 }
+
 
 static void ADS8681_ConvertionTime(void)
 {

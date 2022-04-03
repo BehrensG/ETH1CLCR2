@@ -7,7 +7,7 @@
 
 #include "CS5361.h"
 
-extern I2S_HandleTypeDef hi2s2;
+
 
 void CS5361_nReset(uint8_t state)
 {

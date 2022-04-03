@@ -68,6 +68,24 @@
 /*************************************** MCU ***************************************/
 
 
+#define delayUS_ASM(us) do {\
+	asm volatile (	"MOV R0,%[loops]\n\t"\
+			"1: \n\t"\
+			"SUB R0, #1\n\t"\
+			"CMP R0, #0\n\t"\
+			"BNE 1b \n\t" : : [loops] "r" (320*us) : "memory"\
+		      );\
+} while(0)
+
+#define delay100NS_ASM(ns) do {\
+	asm volatile (	"MOV R0,%[loops]\n\t"\
+			"1: \n\t"\
+			"SUB R0, #1\n\t"\
+			"CMP R0, #0\n\t"\
+			"BNE 1b \n\t" : : [loops] "r" (24*ns) : "memory"\
+		      );\
+} while(0)
+
 typedef enum
 {
   BSP_OK       				= 0x00U,

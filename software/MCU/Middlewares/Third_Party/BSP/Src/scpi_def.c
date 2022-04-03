@@ -58,8 +58,14 @@
 #include "IV_Converter.h"
 #include "Diff_Ampl.h"
 #include "relays.h"
+#include "ADS8681.h"
 
 extern I2S_HandleTypeDef hi2s2;
+
+__attribute__((section(".RAM_D1"))) float meas[2][2000];
+
+
+extern double ADS8681_LSB[];
 
 static scpi_result_t TEST_TSQ(scpi_t * context)
 {
@@ -97,8 +103,13 @@ scpi_result_t SCPI_TS(scpi_t * context)
 {
 
  	float freq = 100;
-	float ampl = 1.28;
-	uint32_t atten = 0;
+	float ampl = 1.28, tmp[2];
+	uint32_t atten = 0, vgain = 1, igain = 1, relay = 0;
+	uint16_t tx_data[2];
+	HAL_StatusTypeDef status;
+	__IO int32_t tx_meas[250];
+	double volts[250];
+	int test[10];
 
 	if(!SCPI_ParamFloat(context, &freq, TRUE))
 	{
@@ -109,8 +120,23 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	{
 		return SCPI_RES_ERR;
 	}
-
+/*
 	if(!SCPI_ParamUInt32(context, &atten, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	if(!SCPI_ParamUInt32(context, &vgain, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	if(!SCPI_ParamUInt32(context, &igain, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+*/
+	if(!SCPI_ParamUInt32(context, &relay, TRUE))
 	{
 		return SCPI_RES_ERR;
 	}
@@ -119,12 +145,37 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	DDS_SetFrequency(freq);
 	DAC7811_SetVoltage(ampl);
 	DDS_Attenuation(atten);
-	TQ2SA_Relays(ADC_SEL, ON);
+	TQ2SA_Relays(ADC_SEL, (uint8_t)relay);
 	IV_Converter(R10k);
-	VDiff_Amplifier(VDIFF_GAIN2);
-	IDiff_Amplifier(IDIFF_GAIN2);
+	VDiff_Amplifier(vgain);
+	IDiff_Amplifier(igain);
 	HAL_Delay(10);
 	CXN_Relays_AllOn();
+
+	HAL_Delay(10);
+
+	status = HAL_I2S_Receive(&hi2s2, tx_meas, 250, 10000);
+
+	for(uint16_t x=0; x < 250; x++)
+	{
+		if(tx_meas[x] & 0x800000)
+		{
+			tx_meas[x] |= 0xFF000000;
+		}
+		volts[x] = (double)(tx_meas[x]*0.000000149011611);
+	}
+
+
+ 	for (uint16_t x=0; x < 2000;x++)
+	{
+		ADS8681_RawData(tx_data);
+
+		tmp[0] = tx_data[0] - ADS8681_FSR_CENTER;
+		tmp[1] = tx_data[1] - ADS8681_FSR_CENTER;
+		meas[0][x] = (float)(tmp[0]*ADS8681_LSB[bsp.adc_ads8681[0].range]) - 0.023;
+		meas[1][x] = (float)(tmp[1]*ADS8681_LSB[bsp.adc_ads8681[1].range]) - 0.023;
+	}
+
 
     return SCPI_RES_OK;
 }
