@@ -185,6 +185,21 @@ typedef union bsp_eeprom_union
 
 #define WAV_LEN_MAX 256
 
+
+typedef struct bsp_result_voltage
+{
+	uint8_t gain;
+
+}bsp_result_voltage_t;
+
+typedef struct bsp_result_current
+{
+	uint8_t gain;
+	uint16_t resistor_value;
+	uint8_t resistor_index;
+
+}bsp_result_current_t;
+
 typedef struct bsp_result
 {
     int32_t new_data;
@@ -257,6 +272,8 @@ typedef struct bsp_measure
 	uint32_t speed;
 	float nominal;
 	bsp_result_t result;
+    bsp_result_current_t current;
+    bsp_result_voltage_t voltage;
 
 }bsp_measure_t;
 

@@ -22,7 +22,7 @@ static void ADS8681_ConvertionTime(void);
 
 
 
-BSP_StatusTypeDef ADS8681_GetValues(float values[])
+BSP_StatusTypeDef ADS8681_Measurement(float voltage, float current)
 {
 	BSP_StatusTypeDef status = 0;
 	uint16_t raw_data[2] = {0, 0};
@@ -35,8 +35,8 @@ BSP_StatusTypeDef ADS8681_GetValues(float values[])
 	tmp[0] = raw_data[0] - ADS8681_FSR_CENTER;
 	tmp[1] = raw_data[1] - ADS8681_FSR_CENTER;
 
-	values[0] = (float)(tmp[0]*ADS8681_LSB[bsp.adc_ads8681[0].range] + bsp.adc_ads8681[0].zero_offset);
-	values[1] = (float)(tmp[1]*ADS8681_LSB[bsp.adc_ads8681[1].range] + bsp.adc_ads8681[1].zero_offset);
+	voltage = (float)(tmp[0]*ADS8681_LSB[bsp.adc_ads8681[0].range] + bsp.adc_ads8681[0].zero_offset);
+	current = (float)(tmp[1]*ADS8681_LSB[bsp.adc_ads8681[1].range] + bsp.adc_ads8681[1].zero_offset);
 
 	return BSP_OK;
 }
@@ -50,12 +50,12 @@ BSP_StatusTypeDef ADS8681_ZeroOffset()
 
 	HAL_Delay(100);
 
-	status = ADS8681_GetValues(tmp);
+	status = ADS8681_Measurement(tmp[0],tmp[1]);
 	if(BSP_OK != status) return status;
 
 	for (uint16_t x = 0; x < loop_size; x++)
 	{
-		status = ADS8681_GetValues(tmp);
+		status = ADS8681_Measurement(tmp[0],tmp[1]);
 		if(BSP_OK == status)
 		{
 			values[0] += tmp[0];

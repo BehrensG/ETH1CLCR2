@@ -162,7 +162,7 @@ scpi_result_t SCPI_TS(scpi_t * context)
 		{
 			tx_meas[x] |= 0xFF000000;
 		}
-		volts[x] = (double)(tx_meas[x]*0.000000149011611);
+		volts[x] = (double)(tx_meas[x]*CS5361_VOLT_RES);
 	}
 
 

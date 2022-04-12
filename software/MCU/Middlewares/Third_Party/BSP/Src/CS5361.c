@@ -68,3 +68,10 @@ void CS5361_SampleRate(e_sample_rate_t rate)
 							};break;
 	}
 }
+
+void CS5361_Init()
+{
+	CS5361_nReset(ON);
+	CS5361_SampleRate(CS5361_QUAD_SPEED);
+	CS5361_nReset(OFF);
+}

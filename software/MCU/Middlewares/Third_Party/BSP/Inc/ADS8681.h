@@ -44,5 +44,6 @@ BSP_StatusTypeDef ADS8681_Init(void);
 BSP_StatusTypeDef ADS8681_RawData(uint16_t* raw_data);
 BSP_StatusTypeDef ADS8681_SetRange(uint8_t* range);
 BSP_StatusTypeDef ADS8681_ZeroOffset();
+BSP_StatusTypeDef ADS8681_Measurement(float voltage, float current);
 
 #endif /* INC_ADS8681_H_ */
