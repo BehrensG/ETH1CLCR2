@@ -1,0 +1,4 @@
+calculate.c:26:6:Calculate	32	static
+calculate.c:56:13:reset_results	4	static
+calculate.c:79:8:sin_l	32	static
+calculate.c:143:8:cos_l	16	static

@@ -34,5 +34,7 @@ BSP_StatusTypeDef DAC7811_SetVoltage(float voltage)
 	status = HAL_SPI_Transmit(&hspi5, (uint8_t*)code, 1, SPI_DELAY);
 	ReleaseChip();
 
+	bsp.config.voltage = voltage;
+
 	return status;
 }

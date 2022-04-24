@@ -59,6 +59,7 @@
 #include "Diff_Ampl.h"
 #include "relays.h"
 #include "ADS8681.h"
+#include "calculate.h"
 
 extern I2S_HandleTypeDef hi2s2;
 
@@ -107,9 +108,6 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	uint32_t atten = 0, vgain = 1, igain = 1, relay = 0;
 	uint16_t tx_data[2];
 	HAL_StatusTypeDef status;
-	__IO int32_t tx_meas[250];
-	double volts[250];
-	int test[10];
 
 	if(!SCPI_ParamFloat(context, &freq, TRUE))
 	{
@@ -154,27 +152,11 @@ scpi_result_t SCPI_TS(scpi_t * context)
 
 	HAL_Delay(10);
 
-	status = HAL_I2S_Receive(&hi2s2, tx_meas, 250, 10000);
+	CS5361_Measure();
+	Calculate();
+// Meas[0] current
+// Meas[1] voltage
 
-	for(uint16_t x=0; x < 250; x++)
-	{
-		if(tx_meas[x] & 0x800000)
-		{
-			tx_meas[x] |= 0xFF000000;
-		}
-		volts[x] = (double)(tx_meas[x]*CS5361_VOLT_RES);
-	}
-
-
- 	for (uint16_t x=0; x < 2000;x++)
-	{
-		ADS8681_RawData(tx_data);
-
-		tmp[0] = tx_data[0] - ADS8681_FSR_CENTER;
-		tmp[1] = tx_data[1] - ADS8681_FSR_CENTER;
-		meas[0][x] = (float)(tmp[0]*ADS8681_LSB[bsp.adc_ads8681[0].range]) - 0.023;
-		meas[1][x] = (float)(tmp[1]*ADS8681_LSB[bsp.adc_ads8681[1].range]) - 0.023;
-	}
 
 
     return SCPI_RES_OK;

@@ -7,6 +7,7 @@
 
 #include "CS5361.h"
 
+extern I2S_HandleTypeDef hi2s2;
 
 
 void CS5361_nReset(uint8_t state)
@@ -71,7 +72,59 @@ void CS5361_SampleRate(e_sample_rate_t rate)
 
 void CS5361_Init()
 {
+	__IO int32_t tmp_meas[512];
 	CS5361_nReset(ON);
 	CS5361_SampleRate(CS5361_QUAD_SPEED);
 	CS5361_nReset(OFF);
+	HAL_Delay(10);
+	HAL_I2S_Receive(&hi2s2, tmp_meas, 512, 10000);
 }
+
+BSP_StatusTypeDef CS5361_Measure()
+{
+	uint16_t adc_readout = 2*WAV_LEN_MAX;
+	int32_t adc_values[adc_readout];
+	uint16_t k1 = 0, k2 = 0;
+	int32_t volt_values[WAV_LEN_MAX];
+	int32_t curr_values[WAV_LEN_MAX];
+	BSP_StatusTypeDef status;
+
+	status = HAL_I2S_Receive(&hi2s2, adc_values, 5, 20000);
+	if(BSP_OK != status){return status;}
+
+	status = HAL_I2S_Receive(&hi2s2, adc_values, adc_readout, 20000);
+	if(BSP_OK != status){return status;}
+
+	for(uint16_t x=0; x < (adc_readout - 1); x++)
+	{
+		if(0 == (x % 2))
+		{
+			volt_values[k1++] = adc_values[x];
+		}
+		else
+		{
+			curr_values[k2++] = adc_values[x];
+		}
+	}
+
+	for(uint16_t x=0; x < (WAV_LEN_MAX - 1); x++)
+	{
+		if(volt_values[x] & 0x800000)
+		{
+			volt_values[x] |= 0xFF000000;
+		}
+
+		bsp.measure.voltage.wave[x] = (double)(-1*volt_values[x]*CS5361_RES*bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[bsp.config.volt_gain_index]);
+
+		if(curr_values[x] & 0x800000)
+		{
+			curr_values[x] |= 0xFF000000;
+		}
+
+		bsp.measure.current.wave[x] = (double)(curr_values[x]*CS5361_RES*bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[bsp.config.curr_gain_index]);
+		bsp.measure.current.wave[x] = (double)(-1*bsp.measure.current.wave[x]/bsp.config.resistor_value);
+	}
+
+	return status;
+}
+

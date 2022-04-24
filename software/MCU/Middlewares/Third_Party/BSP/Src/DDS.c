@@ -78,6 +78,7 @@ BSP_StatusTypeDef DDS_SetFrequency(float freq)
 
 	status = AD9834_Start();
 
+
 	return status;
 }
 

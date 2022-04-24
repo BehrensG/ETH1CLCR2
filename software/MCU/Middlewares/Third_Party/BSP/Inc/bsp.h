@@ -52,6 +52,9 @@
 
 #define TCPIP_DEFAULT_PORT 2000
 
+#define VOLTAGE_INDEX 0
+#define CURRENT_INDEX 1
+
 /*************************************** MCU ***************************************/
 
 #define MCU_SERVICE_SECURITY_OFF 0
@@ -105,7 +108,7 @@ typedef enum
 #define MCU_SERVICE_SECURITY_OFF 0
 #define MCU_SERVICE_SECURITY_ON 1
 
-#define EEPROM_CFG_SIZE 149
+#define EEPROM_CFG_SIZE 229
 
 
 #define SAMPLE_TIMER_MAX 1000000
@@ -139,12 +142,17 @@ typedef struct bsp_ip4_lan
 
 typedef struct bsp_adc_calib_ads8681
 {
-	float gain;
-	float offset;
-	uint8_t valid;
+	double gain_1;
+	double gain_10;
+	double gain_100;
 
 }bsp_adc_calib_ads8681_t;
 
+typedef struct bsp_adc_calib_cs5361
+{
+	double gain[3];
+
+}bsp_adc_calib_cs5361_t;
 
 typedef struct bsp_calibration_date
 {
@@ -165,8 +173,10 @@ typedef union bsp_eeprom_union
 		bsp_ip4_lan_t ip4;
 		// Size 64
 		bsp_scpi_info_t info;
-		// Size 16
+		// Size 48
 		bsp_adc_calib_ads8681_t adc_calib_ads8681[2];
+		// Size 48
+		bsp_adc_calib_cs5361_t adc_calib_cs5361[2];
 		// Size 19
 		int8_t service_password[PASSWORD_LENGTH];
 		// Size 19
@@ -188,24 +198,19 @@ typedef union bsp_eeprom_union
 
 typedef struct bsp_result_voltage
 {
-	uint8_t gain;
+	double wave[WAV_LEN_MAX];
 
 }bsp_result_voltage_t;
 
 typedef struct bsp_result_current
 {
-	uint8_t gain;
-	uint16_t resistor_value;
-	uint8_t resistor_index;
+    double wave[WAV_LEN_MAX];
 
 }bsp_result_current_t;
 
 typedef struct bsp_result
 {
     int32_t new_data;
-    int32_t wave[WAV_LEN_MAX];
-    double voltage_saved[WAV_LEN_MAX];
-    double current_saved[WAV_LEN_MAX];
     double volt_real_raw;
     double volt_imag_raw;
     double curr_real_raw;
@@ -267,30 +272,28 @@ typedef struct bsp_adc_ads8681
 
 typedef struct bsp_measure
 {
-	float frequency;
-	float level;
-	uint32_t speed;
-	float nominal;
 	bsp_result_t result;
     bsp_result_current_t current;
     bsp_result_voltage_t voltage;
 
 }bsp_measure_t;
 
+typedef struct bsp_config
+{
+	float frequency;
+	float voltage;
+	uint16_t volt_gain;
+	uint8_t volt_gain_index;
+	uint16_t curr_gain;
+	uint8_t curr_gain_index;
+	uint16_t resistor_value;
+	uint8_t resistor_index;
+}bsp_config_t;
+
 typedef struct bsp_dds
 {
 	uint8_t divider;
 }bsp_dds_t;
-
-typedef struct bsp_vdiff
-{
-	uint16_t gain;
-}bsp_vdiff_t;
-
-typedef struct bsp_idiff
-{
-	uint16_t gain;
-}bsp_idiff_t;
 
 
 struct _bsp
@@ -305,10 +308,9 @@ struct _bsp
 	uint8_t default_cfg;
 	uint8_t data_format;
 	bsp_measure_t measure;
+	bsp_config_t config;
+	bsp_result_t result;
 	bsp_dds_t dds;
-	bsp_idiff_t idiff;
-	bsp_vdiff_t vdiff;
-
 }bsp;
 
 enum trigger_enum

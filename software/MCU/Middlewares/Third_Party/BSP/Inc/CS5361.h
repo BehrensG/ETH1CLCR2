@@ -10,7 +10,7 @@
 
 #include "bsp.h"
 
-#define CS5361_VOLT_RES (double)(2.5/16777216)
+#define CS5361_RES (double)(2.5/16777216)
 
 typedef enum
 {
@@ -25,5 +25,6 @@ void CS5361_nHighPassFilter(uint8_t state);
 void CS5361_MCLKDivider(uint8_t state);
 void CS5361_SampleRate(e_sample_rate_t rate);
 void CS5361_Init();
+BSP_StatusTypeDef CS5361_Measure();
 
 #endif /* THIRD_PARTY_BSP_INC_CS5361_H_ */

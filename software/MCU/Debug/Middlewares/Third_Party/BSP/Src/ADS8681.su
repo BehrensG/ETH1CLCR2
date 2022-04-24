@@ -12,7 +12,7 @@ stm32h7xx_ll_spi.h:1878:22:LL_SPI_ClearFlag_EOT	16	static
 stm32h7xx_ll_spi.h:1889:22:LL_SPI_ClearFlag_TXTF	16	static
 stm32h7xx_ll_spi.h:2452:26:LL_SPI_ReceiveData32	16	static
 stm32h7xx_ll_spi.h:2493:22:LL_SPI_TransmitData32	16	static
-ADS8681.c:25:19:ADS8681_GetValues	40	static
+ADS8681.c:25:19:ADS8681_Measurement	40	static
 ADS8681.c:44:19:ADS8681_ZeroOffset	32	static
 ADS8681.c:86:26:BSP_SPI3_Receive	48	static
 ADS8681.c:130:26:BSP_SPI3_Transmit	48	static

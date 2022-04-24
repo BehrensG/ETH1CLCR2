@@ -26,9 +26,13 @@ static void BSP_Init_Common()
 	bsp.security.status = 0;
 
 	bsp.dds.divider = 0;
-	bsp.measure.frequency = 100;
-	bsp.vdiff.gain = 2;
-	bsp.idiff.gain = 2;
+
+	bsp.config.frequency = 0.0;
+	bsp.config.voltage = 0.0;
+	bsp.config.volt_gain = 1;
+	bsp.config.volt_gain_index = 0;
+	bsp.config.curr_gain = 1;
+	bsp.config.curr_gain_index = 0;
 }
 
 
@@ -56,14 +60,13 @@ static void BSP_Init_DefualtEEPROM()
 	bsp.eeprom.structure.ip4.netmask[2] = NETMASK_ADDRESS_2;
 	bsp.eeprom.structure.ip4.netmask[3] = NETMASK_ADDRESS_3;
 
+	bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[0] = 1.163;
+	bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[1] = 1.163;
+	bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[2] = 1.163;
 
-	bsp.eeprom.structure.adc_calib_ads8681[0].gain = (float)1.0;
-	bsp.eeprom.structure.adc_calib_ads8681[0].offset = (float)0.0;
-	bsp.eeprom.structure.adc_calib_ads8681[0].valid = 1;
-	bsp.eeprom.structure.adc_calib_ads8681[1].gain = (float)1.0;
-	bsp.eeprom.structure.adc_calib_ads8681[1].offset = (float)0.0;
-	bsp.eeprom.structure.adc_calib_ads8681[1].valid = 1;
-
+	bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[0] = 1.163;
+	bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[1] = 1.163;
+	bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[2] = 1.163;
 
 	strncpy(bsp.eeprom.structure.service_password, PASSWORD, PASSWORD_LENGTH);
 	strncpy(bsp.eeprom.structure.calib_password, PASSWORD, PASSWORD_LENGTH);
@@ -131,7 +134,8 @@ BSP_StatusTypeDef BSP_Init()
 			}
 			case BSP_OK:
 			{
-				status = EEPROM_Read(&bsp.eeprom, EEPROM_CFG_SIZE);
+				//status = EEPROM_Read(&bsp.eeprom, EEPROM_CFG_SIZE);
+				BSP_Init_DefualtEEPROM();
 				if(BSP_OK == status)
 				{
 					BSP_Init_IP4Current();

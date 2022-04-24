@@ -27,9 +27,9 @@ scpi_result_t SCPI_MeasureFrequency(scpi_t * context)
 	{
 		switch(freq.content.tag)
 		{
-		case SCPI_NUM_MIN: bsp.measure.frequency = MIN_FREQ; break;
-		case SCPI_NUM_MAX: bsp.measure.frequency = MAX_FREQ; break;
-		case SCPI_NUM_DEF: bsp.measure.frequency = DEF_FREQ; break;
+		case SCPI_NUM_MIN: bsp.config.frequency = MIN_FREQ; break;
+		case SCPI_NUM_MAX: bsp.config.frequency = MAX_FREQ; break;
+		case SCPI_NUM_DEF: bsp.config.frequency = DEF_FREQ; break;
 		default: SCPI_ErrorPush(context, SCPI_ERROR_ILLEGAL_PARAMETER_VALUE); return SCPI_RES_ERR;
 		}
 	}
@@ -44,7 +44,7 @@ scpi_result_t SCPI_MeasureFrequency(scpi_t * context)
 			}
 			else
 			{
-				bsp.measure.frequency = freq.content.value;
+				bsp.config.frequency = freq.content.value;
 				DDS_SetFrequency(freq.content.value);
 				return SCPI_RES_OK;
 			}
@@ -61,7 +61,7 @@ scpi_result_t SCPI_MeasureFrequency(scpi_t * context)
 
 scpi_result_t SCPI_MeasureFrequencyQ(scpi_t * context)
 {
-	SCPI_ResultFloat(context, bsp.measure.frequency);
+	SCPI_ResultFloat(context, bsp.config.frequency);
 	return SCPI_RES_OK;
 }
 
