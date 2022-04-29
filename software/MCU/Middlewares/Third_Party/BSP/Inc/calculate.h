@@ -16,6 +16,8 @@
 #define SIN_LUT_LEN 4000    //it's only from 0 to pi/4
 #define SIN_LUT_PARTS 8     //LUT divided to few to be able to push into uC memory
 
+
+
 void Calculate();
 
 #endif /* THIRD_PARTY_BSP_INC_CALCULATE_H_ */

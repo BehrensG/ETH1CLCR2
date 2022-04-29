@@ -27,12 +27,14 @@ static void BSP_Init_Common()
 
 	bsp.dds.divider = 0;
 
-	bsp.config.frequency = 0.0;
+	bsp.config.frequency = 1000;
 	bsp.config.voltage = 0.0;
 	bsp.config.volt_gain = 1;
 	bsp.config.volt_gain_index = 0;
 	bsp.config.curr_gain = 1;
 	bsp.config.curr_gain_index = 0;
+	bsp.config.ads8681.delay = 0;
+	bsp.config.ads8681.sample_size = WAV_LEN_MAX;
 }
 
 

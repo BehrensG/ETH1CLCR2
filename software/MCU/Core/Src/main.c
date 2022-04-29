@@ -171,7 +171,6 @@ int main(void)
   BSP_Init();
   ADS8681_Init();
   AD9834_Init();
-  ADS8681_ZeroOffset();
   CS5361_Init();
   IV_Converter(R10k);
   /* USER CODE END 2 */

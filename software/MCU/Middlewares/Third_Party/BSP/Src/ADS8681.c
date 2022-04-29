@@ -8,6 +8,7 @@
 #include "ADS8681.h"
 #include "dwt_delay.h"
 #include "stm32h7xx_ll_spi.h"
+#include <math.h>
 
 double ADS8681_LSB[5] = {0.000375000, 0.000312500, 0.000187500, 0.000156250, 0.000078125};
 
@@ -20,23 +21,54 @@ static BSP_StatusTypeDef ADS8681_WriteHWORD(uint8_t* cmd, uint8_t* reg, uint16_t
 static BSP_StatusTypeDef ADS8681_ReadLSB(uint8_t* data);
 static void ADS8681_ConvertionTime(void);
 
+void ADS8681_CalculateSamplingSetup()
+{
 
+	uint32_t samples = 0;
+	float delay_tmp = 0;
+	int32_t delay = 0;
 
-BSP_StatusTypeDef ADS8681_Measurement(float voltage, float current)
+	samples = (uint32_t)(ADS8681_MAX_SAMPLE_RATE/bsp.config.frequency);
+
+	if(samples > WAV_LEN_MAX)
+	{
+		samples = WAV_LEN_MAX;
+		delay_tmp = ((1/bsp.config.frequency)/samples)*10000000 - ADS8681_MIN_DELAY_x100NS;
+		delay = delay_tmp;
+		delay = abs(delay);
+	}
+	else
+	{
+		delay = 0;
+
+	}
+
+	bsp.config.ads8681.sample_size = samples;
+	bsp.config.ads8681.delay = delay;
+
+}
+
+BSP_StatusTypeDef ADS8681_Measurement()
 {
 	BSP_StatusTypeDef status = 0;
 	uint16_t raw_data[2] = {0, 0};
-	double tmp[2] = {0, 0};
+	static double tmp[2][WAV_LEN_MAX];
 	uint8_t gain_index = 0;
 
-	status = ADS8681_RawData(raw_data);
-	if(BSP_OK != status) return status;
+	ADS8681_CalculateSamplingSetup();
 
-	tmp[0] = raw_data[0] - ADS8681_FSR_CENTER;
-	tmp[1] = raw_data[1] - ADS8681_FSR_CENTER;
+	for(uint16_t x=0; x < bsp.config.ads8681.sample_size; x++)
+	{
+		ADS8681_RawData(raw_data);
+		tmp[0][x] = raw_data[0] - ADS8681_FSR_CENTER;
+		tmp[1][x] = raw_data[1] - ADS8681_FSR_CENTER;
+	}
 
-	voltage = (float)(tmp[0]*ADS8681_LSB[bsp.adc_ads8681[0].range] + bsp.adc_ads8681[0].zero_offset);
-	current = (float)(tmp[1]*ADS8681_LSB[bsp.adc_ads8681[1].range] + bsp.adc_ads8681[1].zero_offset);
+	for(uint16_t x=0; x < bsp.config.ads8681.sample_size; x++)
+	{
+		bsp.measure.current.wave[x] = (float)(tmp[0][x]*ADS8681_LSB[bsp.adc_ads8681[0].range]*1.03275776568193267614 + bsp.adc_ads8681[0].zero_offset);
+		bsp.measure.voltage.wave[x] = (float)(tmp[1][x]*ADS8681_LSB[bsp.adc_ads8681[1].range]*1.03275776568193267614 + bsp.adc_ads8681[1].zero_offset);
+	}
 
 	return BSP_OK;
 }
@@ -181,7 +213,10 @@ BSP_StatusTypeDef ADS8681_RawData(uint16_t* raw_data)
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 	//ADS8681_ConvertionTime();
-	delay100NS_ASM(5);
+	if(bsp.config.ads8681.delay)
+	{
+		delay100NS_ASM(bsp.config.ads8681.delay);
+	}
 	LL_GPIO_SetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);
 
 	LL_GPIO_ResetOutputPin(SPI3_NSS_GPIO_Port, SPI3_NSS_Pin);

@@ -55,6 +55,8 @@
 #define VOLTAGE_INDEX 0
 #define CURRENT_INDEX 1
 
+#define WAV_LEN_MAX 512
+
 /*************************************** MCU ***************************************/
 
 #define MCU_SERVICE_SECURITY_OFF 0
@@ -193,7 +195,6 @@ typedef union bsp_eeprom_union
 
 #pragma pack(pop)
 
-#define WAV_LEN_MAX 256
 
 
 typedef struct bsp_result_voltage
@@ -210,27 +211,14 @@ typedef struct bsp_result_current
 
 typedef struct bsp_result
 {
-    int32_t new_data;
-    double volt_real_raw;
-    double volt_imag_raw;
-    double curr_real_raw;
-    double curr_imag_raw;
     double volt_real;
     double volt_imag;
     double curr_real;
     double curr_imag;
-    double z_raw_real;
-    double z_raw_imag;
-    double y_raw_real;
-    double y_raw_imag;
     double z_real;
     double z_imag;
     double y_real;
     double y_imag;
-    double z_mod;
-    double z_arg;
-    double y_mod;
-    double y_arg;
 }bsp_result_t;
 
 // size 17
@@ -278,6 +266,12 @@ typedef struct bsp_measure
 
 }bsp_measure_t;
 
+typedef struct ads8681_cfg
+{
+	int32_t delay;
+	uint32_t sample_size;
+}ads8681_cfg_t;
+
 typedef struct bsp_config
 {
 	float frequency;
@@ -288,6 +282,8 @@ typedef struct bsp_config
 	uint8_t curr_gain_index;
 	uint16_t resistor_value;
 	uint8_t resistor_index;
+	ads8681_cfg_t ads8681;
+
 }bsp_config_t;
 
 typedef struct bsp_dds

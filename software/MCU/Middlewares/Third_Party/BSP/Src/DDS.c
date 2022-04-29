@@ -73,6 +73,8 @@ BSP_StatusTypeDef DDS_SetFrequency(float freq)
 
 	uint32_t freq28 = DDS_ConvertFrequency(freq);
 
+	bsp.config.frequency = freq;
+
 	status = AD9834_SetFrequency(freq28);
 	if(BSP_OK != status){return status;}
 

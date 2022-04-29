@@ -99,11 +99,11 @@ BSP_StatusTypeDef CS5361_Measure()
 	{
 		if(0 == (x % 2))
 		{
-			volt_values[k1++] = adc_values[x];
+			curr_values[k1++] = adc_values[x];
 		}
 		else
 		{
-			curr_values[k2++] = adc_values[x];
+			volt_values[k2++] = adc_values[x];
 		}
 	}
 
@@ -114,7 +114,7 @@ BSP_StatusTypeDef CS5361_Measure()
 			volt_values[x] |= 0xFF000000;
 		}
 
-		bsp.measure.voltage.wave[x] = (double)(-1*volt_values[x]*CS5361_RES*bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[bsp.config.volt_gain_index]);
+		bsp.measure.voltage.wave[x] = (double)(volt_values[x]*CS5361_RES*bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[bsp.config.volt_gain_index]);
 
 		if(curr_values[x] & 0x800000)
 		{
@@ -122,7 +122,7 @@ BSP_StatusTypeDef CS5361_Measure()
 		}
 
 		bsp.measure.current.wave[x] = (double)(curr_values[x]*CS5361_RES*bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[bsp.config.curr_gain_index]);
-		bsp.measure.current.wave[x] = (double)(-1*bsp.measure.current.wave[x]/bsp.config.resistor_value);
+		bsp.measure.current.wave[x] = (double)(-1*bsp.measure.current.wave[x]);
 	}
 
 	return status;

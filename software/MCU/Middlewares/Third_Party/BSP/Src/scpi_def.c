@@ -123,12 +123,12 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	{
 		return SCPI_RES_ERR;
 	}
-
+*/
 	if(!SCPI_ParamUInt32(context, &vgain, TRUE))
 	{
 		return SCPI_RES_ERR;
 	}
-
+	/*
 	if(!SCPI_ParamUInt32(context, &igain, TRUE))
 	{
 		return SCPI_RES_ERR;
@@ -144,15 +144,24 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	DAC7811_SetVoltage(ampl);
 	DDS_Attenuation(atten);
 	TQ2SA_Relays(ADC_SEL, (uint8_t)relay);
-	IV_Converter(R10k);
+	IV_Converter(R100);
 	VDiff_Amplifier(vgain);
-	IDiff_Amplifier(igain);
+	IDiff_Amplifier(vgain);
 	HAL_Delay(10);
 	CXN_Relays_AllOn();
 
 	HAL_Delay(10);
 
-	CS5361_Measure();
+	if(relay)
+	{
+		CS5361_Measure();
+	}
+	else
+	{
+		ADS8681_Measurement();
+	}
+
+
 	Calculate();
 // Meas[0] current
 // Meas[1] voltage

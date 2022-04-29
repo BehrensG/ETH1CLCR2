@@ -25,55 +25,48 @@ static void reset_results();
 
 void Calculate()
 {
+	double C = 0;
+	double R = 0;
 	reset_results();
 
-	for(uint16_t x=0; x < (WAV_LEN_MAX-1);x++)
+	for(uint16_t x=0; x < bsp.config.ads8681.sample_size;x++)
 	{
-		bsp.result.volt_real_raw += bsp.measure.voltage.wave[x]*cos(-2*PI*x/WAV_LEN_MAX);
-		bsp.result.volt_imag_raw += bsp.measure.voltage.wave[x]*sin(-2*PI*x/WAV_LEN_MAX);
-		bsp.result.curr_real_raw += bsp.measure.current.wave[x]*cos(-2*PI*x/WAV_LEN_MAX);
-		bsp.result.curr_imag_raw += bsp.measure.current.wave[x]*sin(-2*PI*x/WAV_LEN_MAX);
+		bsp.result.volt_real += bsp.measure.voltage.wave[x]*cos(2*PI*x/bsp.config.ads8681.sample_size);
+		bsp.result.volt_imag += bsp.measure.voltage.wave[x]*sin(2*PI*x/bsp.config.ads8681.sample_size);
+		bsp.result.curr_real += bsp.measure.current.wave[x]*cos(2*PI*x/bsp.config.ads8681.sample_size);
+		bsp.result.curr_imag += bsp.measure.current.wave[x]*sin(2*PI*x/bsp.config.ads8681.sample_size);
 	}
 
-	bsp.result.volt_real = cos(0* 0.1) * bsp.result.volt_real_raw  - sin(0 * 0.1) * bsp.result.volt_imag_raw;
-	bsp.result.volt_imag = sin(0* 0.1) * bsp.result.volt_real_raw  + cos(0 * 0.1) * bsp.result.volt_imag_raw;
-	bsp.result.curr_real = cos((0 + 0) * 0.1) * bsp.result.curr_real_raw - sin((0 + 0) * 0.1) * bsp.result.curr_imag_raw;
-	bsp.result.curr_imag = sin((0 + 0) * 0.1) * bsp.result.curr_real_raw + cos((0 + 0) * 0.1) * bsp.result.curr_imag_raw;
+	bsp.result.curr_real /= bsp.config.resistor_value;
+	bsp.result.curr_imag /= bsp.config.resistor_value;
 
-	bsp.result.z_real = bsp.result.z_raw_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.curr_real * bsp.result.curr_real + bsp.result.curr_imag * bsp.result.curr_imag);
-	bsp.result.z_imag = bsp.result.z_raw_imag = (bsp.result.volt_imag * bsp.result.curr_real - bsp.result.volt_real * bsp.result.curr_imag) / (bsp.result.curr_real * bsp.result.curr_real + bsp.result.curr_imag * bsp.result.curr_imag);
-	bsp.result.y_real = bsp.result.y_raw_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
-	bsp.result.y_imag = bsp.result.y_raw_imag = (bsp.result.volt_real * bsp.result.curr_imag - bsp.result.volt_imag * bsp.result.curr_real) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
+	bsp.result.z_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.curr_real * bsp.result.curr_real + bsp.result.curr_imag * bsp.result.curr_imag);
+	bsp.result.z_imag = (bsp.result.volt_imag * bsp.result.curr_real - bsp.result.volt_real * bsp.result.curr_imag) / (bsp.result.curr_real * bsp.result.curr_real + bsp.result.curr_imag * bsp.result.curr_imag);
+	bsp.result.y_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
+	bsp.result.y_imag = (bsp.result.volt_real * bsp.result.curr_imag - bsp.result.volt_imag * bsp.result.curr_real) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
 
-    bsp.result.z_mod = sqrt(bsp.result.z_real * bsp.result.z_real + bsp.result.z_imag * bsp.result.z_imag);
-    bsp.result.z_arg = atan2(bsp.result.z_imag, bsp.result.z_real);
-    bsp.result.y_mod = 1 / bsp.result.z_mod;
-    bsp.result.y_arg = -bsp.result.z_arg;
+	C = 1/(2*PI*bsp.config.frequency*fabs(bsp.result.z_imag));
+	R = bsp.result.z_real;
+
+
 	// Test
 }
 
 
 static void reset_results()
 {
-	bsp.result.volt_real_raw = 0;
-	bsp.result.volt_imag_raw = 0;
-	bsp.result.curr_real_raw = 0;
-	bsp.result.curr_imag_raw = 0;
+
 
 	bsp.result.volt_real = 0;
 	bsp.result.volt_imag = 0;
 	bsp.result.curr_real = 0;
 	bsp.result.curr_imag = 0;
 
-	bsp.result.z_real = bsp.result.z_raw_real = 0;
-	bsp.result.z_imag = bsp.result.z_raw_imag = 0;
-	bsp.result.y_real = bsp.result.y_raw_real = 0;
-	bsp.result.y_imag = bsp.result.y_raw_imag = 0;
+	bsp.result.z_real = 0;
+	bsp.result.z_imag = 0;
+	bsp.result.y_real = 0;
+	bsp.result.y_imag = 0;
 
-    bsp.result.z_mod = 0;
-    bsp.result.z_arg = 0;
-    bsp.result.y_mod = 0;
-    bsp.result.y_arg = 0;
 }
 
 double sin_l(double sin_arg)

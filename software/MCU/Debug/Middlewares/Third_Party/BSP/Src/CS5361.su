@@ -6,4 +6,4 @@ CS5361.c:30:6:CS5361_nHighPassFilter	16	static
 CS5361.c:42:6:CS5361_MCLKDivider	16	static
 CS5361.c:54:6:CS5361_SampleRate	16	static
 CS5361.c:73:6:CS5361_Init	2056	static
-CS5361.c:83:19:CS5361_Measure	2088	dynamic
+CS5361.c:83:19:CS5361_Measure	4136	dynamic
