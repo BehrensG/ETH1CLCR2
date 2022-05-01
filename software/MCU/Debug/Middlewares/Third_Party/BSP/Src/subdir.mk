@@ -26,6 +26,7 @@ C_SRCS += \
 ../Middlewares/Third_Party/BSP/Src/scpi_calculate.c \
 ../Middlewares/Third_Party/BSP/Src/scpi_calibration.c \
 ../Middlewares/Third_Party/BSP/Src/scpi_def.c \
+../Middlewares/Third_Party/BSP/Src/scpi_fetch.c \
 ../Middlewares/Third_Party/BSP/Src/scpi_format.c \
 ../Middlewares/Third_Party/BSP/Src/scpi_sense.c \
 ../Middlewares/Third_Party/BSP/Src/scpi_server.c \
@@ -55,6 +56,7 @@ OBJS += \
 ./Middlewares/Third_Party/BSP/Src/scpi_calculate.o \
 ./Middlewares/Third_Party/BSP/Src/scpi_calibration.o \
 ./Middlewares/Third_Party/BSP/Src/scpi_def.o \
+./Middlewares/Third_Party/BSP/Src/scpi_fetch.o \
 ./Middlewares/Third_Party/BSP/Src/scpi_format.o \
 ./Middlewares/Third_Party/BSP/Src/scpi_sense.o \
 ./Middlewares/Third_Party/BSP/Src/scpi_server.o \
@@ -84,6 +86,7 @@ C_DEPS += \
 ./Middlewares/Third_Party/BSP/Src/scpi_calculate.d \
 ./Middlewares/Third_Party/BSP/Src/scpi_calibration.d \
 ./Middlewares/Third_Party/BSP/Src/scpi_def.d \
+./Middlewares/Third_Party/BSP/Src/scpi_fetch.d \
 ./Middlewares/Third_Party/BSP/Src/scpi_format.d \
 ./Middlewares/Third_Party/BSP/Src/scpi_sense.d \
 ./Middlewares/Third_Party/BSP/Src/scpi_server.d \
@@ -99,7 +102,7 @@ Middlewares/Third_Party/BSP/Src/%.o: ../Middlewares/Third_Party/BSP/Src/%.c Midd
 clean: clean-Middlewares-2f-Third_Party-2f-BSP-2f-Src
 
 clean-Middlewares-2f-Third_Party-2f-BSP-2f-Src:
-	-$(RM) ./Middlewares/Third_Party/BSP/Src/AD9834.d ./Middlewares/Third_Party/BSP/Src/AD9834.o ./Middlewares/Third_Party/BSP/Src/ADS8681.d ./Middlewares/Third_Party/BSP/Src/ADS8681.o ./Middlewares/Third_Party/BSP/Src/CS5361.d ./Middlewares/Third_Party/BSP/Src/CS5361.o ./Middlewares/Third_Party/BSP/Src/DAC7811.d ./Middlewares/Third_Party/BSP/Src/DAC7811.o ./Middlewares/Third_Party/BSP/Src/DDS.d ./Middlewares/Third_Party/BSP/Src/DDS.o ./Middlewares/Third_Party/BSP/Src/DG409.d ./Middlewares/Third_Party/BSP/Src/DG409.o ./Middlewares/Third_Party/BSP/Src/Diff_Ampl.d ./Middlewares/Third_Party/BSP/Src/Diff_Ampl.o ./Middlewares/Third_Party/BSP/Src/HDC1080.d ./Middlewares/Third_Party/BSP/Src/HDC1080.o ./Middlewares/Third_Party/BSP/Src/HE3621A.d ./Middlewares/Third_Party/BSP/Src/HE3621A.o ./Middlewares/Third_Party/BSP/Src/IV_Converter.d ./Middlewares/Third_Party/BSP/Src/IV_Converter.o ./Middlewares/Third_Party/BSP/Src/TQ2SA.d ./Middlewares/Third_Party/BSP/Src/TQ2SA.o ./Middlewares/Third_Party/BSP/Src/bsp.d ./Middlewares/Third_Party/BSP/Src/bsp.o ./Middlewares/Third_Party/BSP/Src/dwt_delay.d ./Middlewares/Third_Party/BSP/Src/dwt_delay.o ./Middlewares/Third_Party/BSP/Src/ee24.d ./Middlewares/Third_Party/BSP/Src/ee24.o ./Middlewares/Third_Party/BSP/Src/eeprom.d ./Middlewares/Third_Party/BSP/Src/eeprom.o ./Middlewares/Third_Party/BSP/Src/heap_useNewlib.d ./Middlewares/Third_Party/BSP/Src/heap_useNewlib.o ./Middlewares/Third_Party/BSP/Src/relays.d ./Middlewares/Third_Party/BSP/Src/relays.o ./Middlewares/Third_Party/BSP/Src/result.d ./Middlewares/Third_Party/BSP/Src/result.o ./Middlewares/Third_Party/BSP/Src/scpi_calculate.d ./Middlewares/Third_Party/BSP/Src/scpi_calculate.o ./Middlewares/Third_Party/BSP/Src/scpi_calibration.d ./Middlewares/Third_Party/BSP/Src/scpi_calibration.o ./Middlewares/Third_Party/BSP/Src/scpi_def.d ./Middlewares/Third_Party/BSP/Src/scpi_def.o ./Middlewares/Third_Party/BSP/Src/scpi_format.d ./Middlewares/Third_Party/BSP/Src/scpi_format.o ./Middlewares/Third_Party/BSP/Src/scpi_sense.d ./Middlewares/Third_Party/BSP/Src/scpi_sense.o ./Middlewares/Third_Party/BSP/Src/scpi_server.d ./Middlewares/Third_Party/BSP/Src/scpi_server.o ./Middlewares/Third_Party/BSP/Src/scpi_source.d ./Middlewares/Third_Party/BSP/Src/scpi_source.o ./Middlewares/Third_Party/BSP/Src/scpi_system.d ./Middlewares/Third_Party/BSP/Src/scpi_system.o ./Middlewares/Third_Party/BSP/Src/scpi_trigger.d ./Middlewares/Third_Party/BSP/Src/scpi_trigger.o
+	-$(RM) ./Middlewares/Third_Party/BSP/Src/AD9834.d ./Middlewares/Third_Party/BSP/Src/AD9834.o ./Middlewares/Third_Party/BSP/Src/ADS8681.d ./Middlewares/Third_Party/BSP/Src/ADS8681.o ./Middlewares/Third_Party/BSP/Src/CS5361.d ./Middlewares/Third_Party/BSP/Src/CS5361.o ./Middlewares/Third_Party/BSP/Src/DAC7811.d ./Middlewares/Third_Party/BSP/Src/DAC7811.o ./Middlewares/Third_Party/BSP/Src/DDS.d ./Middlewares/Third_Party/BSP/Src/DDS.o ./Middlewares/Third_Party/BSP/Src/DG409.d ./Middlewares/Third_Party/BSP/Src/DG409.o ./Middlewares/Third_Party/BSP/Src/Diff_Ampl.d ./Middlewares/Third_Party/BSP/Src/Diff_Ampl.o ./Middlewares/Third_Party/BSP/Src/HDC1080.d ./Middlewares/Third_Party/BSP/Src/HDC1080.o ./Middlewares/Third_Party/BSP/Src/HE3621A.d ./Middlewares/Third_Party/BSP/Src/HE3621A.o ./Middlewares/Third_Party/BSP/Src/IV_Converter.d ./Middlewares/Third_Party/BSP/Src/IV_Converter.o ./Middlewares/Third_Party/BSP/Src/TQ2SA.d ./Middlewares/Third_Party/BSP/Src/TQ2SA.o ./Middlewares/Third_Party/BSP/Src/bsp.d ./Middlewares/Third_Party/BSP/Src/bsp.o ./Middlewares/Third_Party/BSP/Src/dwt_delay.d ./Middlewares/Third_Party/BSP/Src/dwt_delay.o ./Middlewares/Third_Party/BSP/Src/ee24.d ./Middlewares/Third_Party/BSP/Src/ee24.o ./Middlewares/Third_Party/BSP/Src/eeprom.d ./Middlewares/Third_Party/BSP/Src/eeprom.o ./Middlewares/Third_Party/BSP/Src/heap_useNewlib.d ./Middlewares/Third_Party/BSP/Src/heap_useNewlib.o ./Middlewares/Third_Party/BSP/Src/relays.d ./Middlewares/Third_Party/BSP/Src/relays.o ./Middlewares/Third_Party/BSP/Src/result.d ./Middlewares/Third_Party/BSP/Src/result.o ./Middlewares/Third_Party/BSP/Src/scpi_calculate.d ./Middlewares/Third_Party/BSP/Src/scpi_calculate.o ./Middlewares/Third_Party/BSP/Src/scpi_calibration.d ./Middlewares/Third_Party/BSP/Src/scpi_calibration.o ./Middlewares/Third_Party/BSP/Src/scpi_def.d ./Middlewares/Third_Party/BSP/Src/scpi_def.o ./Middlewares/Third_Party/BSP/Src/scpi_fetch.d ./Middlewares/Third_Party/BSP/Src/scpi_fetch.o ./Middlewares/Third_Party/BSP/Src/scpi_format.d ./Middlewares/Third_Party/BSP/Src/scpi_format.o ./Middlewares/Third_Party/BSP/Src/scpi_sense.d ./Middlewares/Third_Party/BSP/Src/scpi_sense.o ./Middlewares/Third_Party/BSP/Src/scpi_server.d ./Middlewares/Third_Party/BSP/Src/scpi_server.o ./Middlewares/Third_Party/BSP/Src/scpi_source.d ./Middlewares/Third_Party/BSP/Src/scpi_source.o ./Middlewares/Third_Party/BSP/Src/scpi_system.d ./Middlewares/Third_Party/BSP/Src/scpi_system.o ./Middlewares/Third_Party/BSP/Src/scpi_trigger.d ./Middlewares/Third_Party/BSP/Src/scpi_trigger.o
 
 .PHONY: clean-Middlewares-2f-Third_Party-2f-BSP-2f-Src
 

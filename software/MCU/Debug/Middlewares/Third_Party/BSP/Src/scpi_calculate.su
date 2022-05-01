@@ -1,2 +1,2 @@
-scpi_calculate.c:27:15:SCPI_CalculateFormat	24	static
-scpi_calculate.c:45:15:SCPI_CalculateFormatQ	24	static
+scpi_calculate.c:30:15:SCPI_CalculateFormat	24	static
+scpi_calculate.c:48:15:SCPI_CalculateFormatQ	24	static

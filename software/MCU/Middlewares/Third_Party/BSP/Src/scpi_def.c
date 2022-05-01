@@ -54,6 +54,7 @@
 #include "scpi_calculate.h"
 #include "scpi_source.h"
 #include "scpi_sense.h"
+#include "scpi_fetch.h"
 
 #include "DAC7811.h"
 #include "DG409.h"
@@ -257,6 +258,8 @@ const scpi_command_t scpi_commands[] = {
 
 	{.pattern = "CALCulate:FORMat", .callback = SCPI_CalculateFormat,},
 	{.pattern = "CALCulate:FORMat?", .callback = SCPI_CalculateFormatQ,},
+
+	{.pattern = "FETCh?", .callback = SCPI_FetchQ,},
 
 	{.pattern = "TS", .callback = SCPI_TS,},
 		SCPI_CMD_LIST_END

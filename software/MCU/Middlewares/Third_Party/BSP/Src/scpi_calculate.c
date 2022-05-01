@@ -21,6 +21,9 @@ scpi_choice_def_t Calculation_select[] =
 	{"D", D},
 	{"Q", Q},
 	{"RP", RP},
+	{"Y", Y},
+	{"G", G},
+	{"B", B},
     SCPI_CHOICE_LIST_END
 };
 

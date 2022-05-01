@@ -79,7 +79,10 @@ enum calc_function
 	LS		= 8U,
 	D		= 9U,
 	Q		= 10U,
-	RP		= 11U
+	RP		= 11U,
+	Y		= 12U,
+	G		= 13U,
+	B		= 14U
 };
 
 /*************************************** MCU ***************************************/
@@ -258,6 +261,9 @@ typedef struct bsp_result
     double D;
     double Q;
     double RP;
+    double Y;
+    double G;
+    double B;
 
 }bsp_result_t;
 

@@ -10,7 +10,20 @@
 
 static void Result_Reset();
 static double Result_Capacitor();
-
+static void Result_CS();
+static void Result_CP();
+static void Result_Q();
+static void Result_D();
+static void Result_LS();
+static void Result_LP();
+static void Result_RP();
+static void Result_MLIN();
+static void Result_PHAS();
+static void Result_REAL();
+static void Result_IMAG();
+static void Result_G();
+static void Result_B();
+static void Result_Y();
 
 void Result()
 {
@@ -41,15 +54,123 @@ void Result()
 	bsp.result.y_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
 	bsp.result.y_imag = (bsp.result.volt_real * bsp.result.curr_imag - bsp.result.volt_imag * bsp.result.curr_real) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
 
-	bsp.result.CS = Result_Capacitor();
-
+	if(FIMP == bsp.config.function)
+	{
+		switch(bsp.config.format1)
+		{
+			case NONE: /* Do nothing */ ; break;
+			case MLIN: Result_MLIN(); break;
+			case REAL: Result_REAL(); break;
+			case CS: Result_CS(); break;
+			case LS: Result_LS(); break;
+		}
+		switch(bsp.config.format2)
+		{
+			case NONE: /* Do nothing */ ; break;
+			case PHAS: Result_PHAS(); break;
+			case IMAG: Result_IMAG(); break;
+			case D: Result_D(); break;
+			case Q: Result_Q(); break;
+			case REAL: Result_REAL(); break;
+		}
+	}
+	else if(FADM == bsp.config.function)
+	{
+		switch(bsp.config.format1)
+		{
+			case NONE: /* Do nothing */ ; break;
+			case MLIN: Result_Y(); break;
+			case REAL: Result_G(); break;
+			case CP: Result_CP(); break;
+			case LP: Result_LP(); break;
+		}
+		switch(bsp.config.format2)
+		{
+			case NONE: /* Do nothing */ ; break;
+			case PHAS: Result_PHAS(); break;
+			case IMAG: Result_B(); break;
+			case D: Result_D(); break;
+			case Q: Result_Q(); break;
+			case REAL: Result_G(); break;
+			case RP: Result_RP(); break;
+		}
+	}
 
 	// Test
 }
 
-static double Result_Capacitor()
+static void Result_CS()
 {
-	return 1/(2*PI*bsp.config.frequency*fabs(bsp.result.z_imag));
+	bsp.result.CS =  (double)(1/(2*PI*bsp.config.frequency*fabs(bsp.result.z_imag)));
+}
+
+static void Result_CP()
+{
+	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.CP = (double)(1/(2*PI*bsp.config.frequency*(1+1/(bsp.result.Q*bsp.result.Q))*fabs(bsp.result.z_imag)));
+}
+
+static void Result_Q()
+{
+	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+}
+
+static void Result_D()
+{
+	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.D = (double)(1/bsp.result.Q);
+}
+
+static void Result_LS()
+{
+	bsp.result.LS = (double)(fabs(bsp.result.z_imag)/(2*PI));
+}
+
+static void Result_LP()
+{
+	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.LP = ((1+1/(bsp.result.Q*bsp.result.Q))*fabs(bsp.result.z_imag))/(2*PI*bsp.config.frequency);
+}
+
+static void Result_RP()
+{
+	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.RP = (double)((1+bsp.result.Q*bsp.result.Q)*bsp.result.z_real);
+}
+
+static void Result_MLIN()
+{
+	bsp.result.MLIN = sqrt(bsp.result.z_real*bsp.result.z_real + bsp.result.z_imag*bsp.result.z_imag);
+}
+
+static void Result_PHAS()
+{
+	bsp.result.PHAS = atan(bsp.result.z_imag/bsp.result.z_real);
+}
+
+static void Result_REAL()
+{
+	bsp.result.REAL = bsp.result.z_real;
+}
+
+static void Result_G()
+{
+	bsp.result.G = (double)(1/bsp.result.z_real);
+}
+
+static void Result_IMAG()
+{
+	bsp.result.IMAG = bsp.result.z_imag;
+}
+
+static void Result_B()
+{
+	bsp.result.B = (double)(1/bsp.result.z_imag);
+}
+
+static void Result_Y()
+{
+	bsp.result.Y = (double)(1/(sqrt(bsp.result.z_real*bsp.result.z_real + bsp.result.z_imag*bsp.result.z_imag)));
 }
 
 static void Result_Reset()
@@ -76,6 +197,9 @@ static void Result_Reset()
 	bsp.result.Q = 0;
 	bsp.result.LP = 0;
 	bsp.result.RP = 0;
+	bsp.result.Y = 0;
+	bsp.result.G = 0;
+	bsp.result.B = 0;
 
 }
 
