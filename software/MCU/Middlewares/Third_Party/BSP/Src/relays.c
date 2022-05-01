@@ -38,7 +38,17 @@ void TQ2SA_Relays(uint8_t relay, uint8_t state)
 	{
 		case IRR0: (ON == state) ? LL_GPIO_SetOutputPin(IRR0_GPIO_Port, IRR0_Pin) : LL_GPIO_ResetOutputPin(IRR0_GPIO_Port, IRR0_Pin); break;
 		case VDIFF0: (ON == state) ? LL_GPIO_SetOutputPin(VDIFF0_GPIO_Port, VDIFF0_Pin) : LL_GPIO_ResetOutputPin(VDIFF0_GPIO_Port, VDIFF0_Pin); break;
-		case ADC_SEL: (ON == state) ? LL_GPIO_SetOutputPin(ADC_SEL_GPIO_Port, ADC_SEL_Pin) : LL_GPIO_ResetOutputPin(ADC_SEL_GPIO_Port, ADC_SEL_Pin); break;
+		case ADC_SEL: if(ON == state)
+						{
+							LL_GPIO_SetOutputPin(ADC_SEL_GPIO_Port, ADC_SEL_Pin);
+							bsp.config.adc_select = ADC_CS5361;
+						}
+						else
+						{
+							LL_GPIO_ResetOutputPin(ADC_SEL_GPIO_Port, ADC_SEL_Pin);
+							bsp.config.adc_select = ADC_ADS8681;
+						}; break;
+
 	}
 }
 

@@ -5,8 +5,8 @@
  *      Author: grzegorz
  */
 
-#ifndef THIRD_PARTY_BSP_INC_CALCULATE_H_
-#define THIRD_PARTY_BSP_INC_CALCULATE_H_
+#ifndef THIRD_PARTY_BSP_INC_RESULT_H_
+#define THIRD_PARTY_BSP_INC_RESULT_H_
 
 #include "bsp.h"
 
@@ -18,6 +18,6 @@
 
 
 
-void Calculate();
+void Result();
 
-#endif /* THIRD_PARTY_BSP_INC_CALCULATE_H_ */
+#endif /* THIRD_PARTY_BSP_INC_RESULT_H_ */

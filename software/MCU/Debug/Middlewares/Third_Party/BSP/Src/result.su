@@ -1,0 +1,3 @@
+result.c:15:6:Result	32	static
+result.c:50:15:Result_Capacitor	4	static
+result.c:55:13:Result_Reset	4	static

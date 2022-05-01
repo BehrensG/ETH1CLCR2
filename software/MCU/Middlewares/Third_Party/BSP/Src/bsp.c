@@ -35,6 +35,33 @@ static void BSP_Init_Common()
 	bsp.config.curr_gain_index = 0;
 	bsp.config.ads8681.delay = 0;
 	bsp.config.ads8681.sample_size = WAV_LEN_MAX;
+
+
+	bsp.result.curr_imag = 0;
+	bsp.result.curr_real = 0;
+	bsp.result.volt_imag = 0;
+	bsp.result.volt_real = 0;
+	bsp.result.y_imag = 0;
+	bsp.result.y_real = 0;
+	bsp.result.z_imag = 0;
+	bsp.result.z_real = 0;
+
+	bsp.result.REAL = 0;
+	bsp.result.IMAG = 0;
+	bsp.result.MLIN = 0;
+	bsp.result.CP = 0;
+	bsp.result.CS = 0;
+	bsp.result.LP = 0;
+	bsp.result.LS = 0;
+	bsp.result.PHAS = 0;
+	bsp.result.D = 0;
+	bsp.result.Q = 0;
+	bsp.result.LP = 0;
+	bsp.result.RP = 0;
+
+	bsp.config.function = FIMP;
+	bsp.config.format1 = NONE;
+	bsp.config.format2 = NONE;
 }
 
 

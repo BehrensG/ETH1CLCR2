@@ -1,0 +1,4 @@
+scpi_source.c:14:15:SCPI_SourceFrequency	40	static
+scpi_source.c:61:15:SCPI_SourceFrequencyQ	16	static
+scpi_source.c:67:15:SCPI_SourceVoltage	40	static
+scpi_source.c:115:15:SCPI_SourceVoltageQ	16	static

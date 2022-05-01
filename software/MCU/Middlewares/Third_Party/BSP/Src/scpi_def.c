@@ -35,6 +35,8 @@
  */
 
 
+#include <result.h>
+#include <scpi_source.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -46,10 +48,12 @@
 
 #include "scpi_server.h"
 #include "scpi_system.h"
-#include "scpi_measure.h"
 #include "scpi_trigger.h"
 #include "scpi_format.h"
 #include "scpi_calibration.h"
+#include "scpi_calculate.h"
+#include "scpi_source.h"
+#include "scpi_sense.h"
 
 #include "DAC7811.h"
 #include "DG409.h"
@@ -59,7 +63,6 @@
 #include "Diff_Ampl.h"
 #include "relays.h"
 #include "ADS8681.h"
-#include "calculate.h"
 
 extern I2S_HandleTypeDef hi2s2;
 
@@ -162,7 +165,7 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	}
 
 
-	Calculate();
+	Result();
 // Meas[0] current
 // Meas[1] voltage
 
@@ -243,19 +246,17 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "CALibration:STORe", .callback = SCPI_CalibrationStore,},
 	{.pattern = "CALibration:VALue", .callback = SCPI_CalibrationValue,},
 
-	{.pattern = "MEASure:RESult?", .callback = SCPI_MeasureResultQ,},
-	{.pattern = "MEASure:FREQuency", .callback = SCPI_MeasureFrequency,},
-	{.pattern = "MEASure:FREQuency?", .callback = SCPI_MeasureFrequencyQ,},
-	{.pattern = "MEASure:LEVel", .callback = SCPI_MeasureLevel,},
-	{.pattern = "MEASure:LEVel?", .callback = SCPI_MeasureLevelQ,},
-	{.pattern = "MEASure:SPEED", .callback = SCPI_MeasureSpeed,},
-	{.pattern = "MEASure:SPEED?", .callback = SCPI_MeasureSpeedQ,},
-	{.pattern = "MEASure:FUNCtion", .callback = SCPI_MeasureFunction,},
-	{.pattern = "MEASure:FUNCtion?", .callback = SCPI_MeasureFunctionQ,},
-	{.pattern = "MEASure:NOMinal", .callback = SCPI_MeasureNominal,},
-	{.pattern = "MEASure:NOMinal?", .callback = SCPI_MeasureNominalQ,},
-	{.pattern = "MEASure:OUTput", .callback = SCPI_MeasureOutput,},
-	{.pattern = "MEASure:OUTput?", .callback = SCPI_MeasureOutputQ,},
+	{.pattern = "SOURce:FREQuency[:CW]", .callback = SCPI_SourceFrequency,},
+	{.pattern = "SOURce:FREQuency?", .callback = SCPI_SourceFrequencyQ,},
+	{.pattern = "SOURce:VOLTage[:AMPLitude]", .callback = SCPI_SourceVoltage,},
+	{.pattern = "SOURce:VOLTage?", .callback = SCPI_SourceVoltageQ,},
+	{.pattern = "SOURce:VOLTage?", .callback = SCPI_SourceVoltageQ,},
+
+	{.pattern = "[SENSe]:FUNCtion[:ON]", .callback = SCPI_SenseFunction,},
+	{.pattern = "[SENSe]:FUNCtion[:ON]?", .callback = SCPI_SenseFunctionQ,},
+
+	{.pattern = "CALCulate:FORMat", .callback = SCPI_CalculateFormat,},
+	{.pattern = "CALCulate:FORMat?", .callback = SCPI_CalculateFormatQ,},
 
 	{.pattern = "TS", .callback = SCPI_TS,},
 		SCPI_CMD_LIST_END

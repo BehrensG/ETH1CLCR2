@@ -56,6 +56,31 @@
 #define CURRENT_INDEX 1
 
 #define WAV_LEN_MAX 512
+#define ADC_CS5361	1
+#define ADC_ADS8681	0
+
+#define NONE 0
+
+enum function_select
+{
+	FIMP	= 1U,
+	FADM	= 2U,
+};
+
+enum calc_function
+{
+	REAL	= 1U,
+	IMAG	= 2U,
+	MLIN	= 3U,
+	PHAS	= 4U,
+	CP		= 5U,
+	CS		= 6U,
+	LP		= 7U,
+	LS		= 8U,
+	D		= 9U,
+	Q		= 10U,
+	RP		= 11U
+};
 
 /*************************************** MCU ***************************************/
 
@@ -116,6 +141,8 @@ typedef enum
 #define SAMPLE_TIMER_MAX 1000000
 #define SAMPLE_TIMER_MIN 1
 #define SAMPLE_TIMER_DEF 1000
+
+
 
 #pragma pack(push, 1)
 
@@ -219,6 +246,19 @@ typedef struct bsp_result
     double z_imag;
     double y_real;
     double y_imag;
+
+    double REAL;
+    double IMAG;
+    double MLIN;
+    double CP;
+    double CS;
+    double LP;
+    double LS;
+    double PHAS;
+    double D;
+    double Q;
+    double RP;
+
 }bsp_result_t;
 
 // size 17
@@ -283,6 +323,10 @@ typedef struct bsp_config
 	uint16_t resistor_value;
 	uint8_t resistor_index;
 	ads8681_cfg_t ads8681;
+	uint8_t adc_select;
+	uint8_t function;
+	uint8_t format1;
+	uint8_t format2;
 
 }bsp_config_t;
 
