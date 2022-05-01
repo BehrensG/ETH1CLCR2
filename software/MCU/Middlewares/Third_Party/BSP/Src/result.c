@@ -145,7 +145,7 @@ static void Result_MLIN()
 
 static void Result_PHAS()
 {
-	bsp.result.PHAS = atan(bsp.result.z_imag/bsp.result.z_real);
+	bsp.result.PHAS = atan2(bsp.result.z_imag/bsp.result.z_real);
 }
 
 static void Result_REAL()

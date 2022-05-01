@@ -55,6 +55,7 @@
 #include "scpi_source.h"
 #include "scpi_sense.h"
 #include "scpi_fetch.h"
+#include "scpi_initiate.h"
 
 #include "DAC7811.h"
 #include "DG409.h"
@@ -67,7 +68,7 @@
 
 extern I2S_HandleTypeDef hi2s2;
 
-__attribute__((section(".RAM_D1"))) float meas[2][2000];
+
 
 
 extern double ADS8681_LSB[];
@@ -148,7 +149,7 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	DAC7811_SetVoltage(ampl);
 	DDS_Attenuation(atten);
 	TQ2SA_Relays(ADC_SEL, (uint8_t)relay);
-	IV_Converter(R100);
+	IV_Converter(R1k);
 	VDiff_Amplifier(vgain);
 	IDiff_Amplifier(vgain);
 	HAL_Delay(10);
@@ -260,6 +261,8 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "CALCulate:FORMat?", .callback = SCPI_CalculateFormatQ,},
 
 	{.pattern = "FETCh?", .callback = SCPI_FetchQ,},
+
+	{.pattern = "INITiate[:IMMediate]", .callback = SCPI_Initiate,},
 
 	{.pattern = "TS", .callback = SCPI_TS,},
 		SCPI_CMD_LIST_END

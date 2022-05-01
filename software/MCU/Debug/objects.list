@@ -63,6 +63,7 @@
 "./Middlewares/Third_Party/BSP/Src/scpi_def.o"
 "./Middlewares/Third_Party/BSP/Src/scpi_fetch.o"
 "./Middlewares/Third_Party/BSP/Src/scpi_format.o"
+"./Middlewares/Third_Party/BSP/Src/scpi_initiate.o"
 "./Middlewares/Third_Party/BSP/Src/scpi_sense.o"
 "./Middlewares/Third_Party/BSP/Src/scpi_server.o"
 "./Middlewares/Third_Party/BSP/Src/scpi_source.o"

@@ -33,6 +33,7 @@ scpi_result_t SCPI_CalculateFormat(scpi_t * context)
 
 	if(!SCPI_ParamChoice(context, Calculation_select, &format1, TRUE))
 	{
+
 		return SCPI_RES_ERR;
 	}
 
@@ -41,6 +42,9 @@ scpi_result_t SCPI_CalculateFormat(scpi_t * context)
 	{
 		return SCPI_RES_ERR;
 	}
+
+	bsp.config.format1 = format1;
+	bsp.config.format2 = format2;
 
 	return SCPI_RES_OK;
 }

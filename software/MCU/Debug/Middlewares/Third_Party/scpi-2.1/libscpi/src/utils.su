@@ -23,7 +23,7 @@ utils.c:479:13:matchPattern	40	static
 utils.c:505:13:matchCommand	72	static
 utils.c:679:13:composeCompoundCommand	24	static
 utils.c:725:1:BSD_strnlen	24	static
-utils.c:938:14:scpi_ecvt	72	static
+utils.c:938:14:scpi_ecvt	64	static
 utils.c:1008:8:SCPI_dtostre	88	static
 utils.c:1097:21:SCPI_GetNativeFormat	16	static
 utils.c:1112:10:SCPI_Swap16	16	static

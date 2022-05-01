@@ -23,11 +23,11 @@ scpi_result_t SCPI_FetchQ(scpi_t * context)
 		switch(bsp.config.format2)
 		{
 			case NONE: /* Do nothing */ ; break;
-			case PHAS: SCPI_ResultDouble(context, bsp.result.PHAS); break;
-			case IMAG: SCPI_ResultDouble(context, bsp.result.IMAG); break;
-			case D: SCPI_ResultDouble(context, bsp.result.D); break;
-			case Q: SCPI_ResultDouble(context, bsp.result.Q); break;
-			case REAL: SCPI_ResultDouble(context, bsp.result.REAL); break;
+			case PHAS: SCPI_ResultFloat(context, bsp.result.PHAS); break;
+			case IMAG: SCPI_ResultFloat(context, bsp.result.IMAG); break;
+			case D: SCPI_ResultFloat(context, bsp.result.D); break;
+			case Q: SCPI_ResultFloat(context, bsp.result.Q); break;
+			case REAL: SCPI_ResultFloat(context, bsp.result.REAL); break;
 		}
 	}
 	else if(FADM == bsp.config.function)
@@ -35,20 +35,20 @@ scpi_result_t SCPI_FetchQ(scpi_t * context)
 		switch(bsp.config.format1)
 		{
 			case NONE: /* Do nothing */ ; break;
-			case MLIN: SCPI_ResultDouble(context, bsp.result.Y); break;
-			case REAL: SCPI_ResultDouble(context, bsp.result.G); break;
-			case CP: SCPI_ResultDouble(context, bsp.result.CP); break;
-			case LP: SCPI_ResultDouble(context, bsp.result.LP); break;
+			case MLIN: SCPI_ResultFloat(context, bsp.result.Y); break;
+			case REAL: SCPI_ResultFloat(context, bsp.result.G); break;
+			case CP: SCPI_ResultFloat(context, bsp.result.CP); break;
+			case LP: SCPI_ResultFloat(context, bsp.result.LP); break;
 		}
 		switch(bsp.config.format2)
 		{
 			case NONE: /* Do nothing */ ; break;
-			case PHAS: SCPI_ResultDouble(context, bsp.result.PHAS); break;
-			case IMAG: SCPI_ResultDouble(context, bsp.result.B); break;
-			case D: SCPI_ResultDouble(context, bsp.result.D); break;
-			case Q: SCPI_ResultDouble(context, bsp.result.Q); break;
-			case REAL: SCPI_ResultDouble(context, bsp.result.REAL); break;
-			case RP: SCPI_ResultDouble(context, bsp.result.RP); break;
+			case PHAS: SCPI_ResultFloat(context, bsp.result.PHAS); break;
+			case IMAG: SCPI_ResultFloat(context, bsp.result.B); break;
+			case D: SCPI_ResultFloat(context, bsp.result.D); break;
+			case Q: SCPI_ResultFloat(context, bsp.result.Q); break;
+			case REAL: SCPI_ResultFloat(context, bsp.result.REAL); break;
+			case RP: SCPI_ResultFloat(context, bsp.result.RP); break;
 		}
 	}
 

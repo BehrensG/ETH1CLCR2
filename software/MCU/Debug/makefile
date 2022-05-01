@@ -77,7 +77,7 @@ main-build: ETH1CLCR2_MCU.elf secondary-outputs
 
 # Tool invocations
 ETH1CLCR2_MCU.elf: $(OBJS) $(USER_OBJS) /home/grzegorz/git/ETH1CLCR2/software/MCU/STM32H743ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ETH1CLCR2_MCU.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/home/grzegorz/git/ETH1CLCR2/software/MCU/STM32H743ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ETH1CLCR2_MCU.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "ETH1CLCR2_MCU.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/home/grzegorz/git/ETH1CLCR2/software/MCU/STM32H743ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ETH1CLCR2_MCU.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=softfp -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
