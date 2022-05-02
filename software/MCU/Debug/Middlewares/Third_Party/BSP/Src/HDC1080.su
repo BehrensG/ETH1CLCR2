@@ -1,4 +1,0 @@
-HDC1080.c:13:26:HDC1080_read_reg	40	static
-HDC1080.c:50:26:HDC1080_write_reg	32	static
-HDC1080.c:72:19:HDC1080_measure_temperature	24	static
-HDC1080.c:89:19:HDC1080_measure_humidity	24	static

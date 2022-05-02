@@ -1,6 +1,0 @@
-stm32h7xx_ll_gpio.h:884:22:LL_GPIO_SetOutputPin	16	static
-stm32h7xx_ll_gpio.h:913:22:LL_GPIO_ResetOutputPin	16	static
-DDS.c:14:6:DDS_ClockDivider	16	static
-DDS.c:54:17:DDS_ConvertFrequency	24	static
-DDS.c:70:19:DDS_SetFrequency	24	static
-DDS.c:87:6:DDS_Attenuation	16	static

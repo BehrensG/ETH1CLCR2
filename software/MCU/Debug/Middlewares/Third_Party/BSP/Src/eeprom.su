@@ -1,7 +1,0 @@
-stm32h7xx_ll_gpio.h:884:22:LL_GPIO_SetOutputPin	16	static
-stm32h7xx_ll_gpio.h:913:22:LL_GPIO_ResetOutputPin	16	static
-eeprom.c:17:19:EEPROM_Erase	8	static
-eeprom.c:44:6:EEPROM_WriteProtect	16	static
-eeprom.c:56:19:EEPROM_Write	24	static
-eeprom.c:94:19:EEPROM_Read	16	static
-eeprom.c:119:19:EEPROM_Status	16	static

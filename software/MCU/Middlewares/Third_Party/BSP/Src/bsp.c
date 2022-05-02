@@ -10,6 +10,8 @@
 #include "ADS8681.h"
 #include "scpi_def.h"
 
+struct _bsp bsp;
+
 static void BSP_Init_Common()
 {
 	bsp.adc_ads8681[0].zero_offset = 0.0;

@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
+# Toolchain: GNU Tools for STM32 (10.3-2021.10)
 ################################################################################
 
 -include ../makefile.init
@@ -59,14 +59,14 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 EXECUTABLES += \
 ETH1CLCR2_MCU.elf \
 
+MAP_FILES += \
+ETH1CLCR2_MCU.map \
+
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
 ETH1CLCR2_MCU.list \
-
-OBJCOPY_BIN += \
-ETH1CLCR2_MCU.bin \
 
 
 # All Target
@@ -76,7 +76,7 @@ all: main-build
 main-build: ETH1CLCR2_MCU.elf secondary-outputs
 
 # Tool invocations
-ETH1CLCR2_MCU.elf: $(OBJS) $(USER_OBJS) /home/grzegorz/git/ETH1CLCR2/software/MCU/STM32H743ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+ETH1CLCR2_MCU.elf ETH1CLCR2_MCU.map: $(OBJS) $(USER_OBJS) /home/grzegorz/git/ETH1CLCR2/software/MCU/STM32H743ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-gcc -o "ETH1CLCR2_MCU.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/home/grzegorz/git/ETH1CLCR2/software/MCU/STM32H743ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ETH1CLCR2_MCU.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=softfp -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
@@ -91,17 +91,12 @@ ETH1CLCR2_MCU.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-ETH1CLCR2_MCU.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "ETH1CLCR2_MCU.bin"
-	@echo 'Finished building: $@'
-	@echo ' '
-
 # Other Targets
 clean:
-	-$(RM) ETH1CLCR2_MCU.bin ETH1CLCR2_MCU.elf ETH1CLCR2_MCU.list default.size.stdout
+	-$(RM) ETH1CLCR2_MCU.elf ETH1CLCR2_MCU.list ETH1CLCR2_MCU.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

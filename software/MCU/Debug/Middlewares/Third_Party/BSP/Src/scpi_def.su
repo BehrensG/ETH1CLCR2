@@ -1,5 +1,0 @@
-core_cm7.h:2156:34:__NVIC_SystemReset	4	static,ignoring_inline_asm
-scpi_def.c:76:22:TEST_TSQ	16	static
-scpi_def.c:83:22:SCPI_Rst	16	static
-scpi_def.c:90:22:SCPI_IdnQ	24	static
-scpi_def.c:108:15:SCPI_TS	56	static

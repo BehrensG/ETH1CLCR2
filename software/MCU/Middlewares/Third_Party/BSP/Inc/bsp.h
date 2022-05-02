@@ -357,7 +357,9 @@ struct _bsp
 	bsp_config_t config;
 	bsp_result_t result;
 	bsp_dds_t dds;
-}bsp;
+};
+
+extern struct _bsp bsp;
 
 enum trigger_enum
 {

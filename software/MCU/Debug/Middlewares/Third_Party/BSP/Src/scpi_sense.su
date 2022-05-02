@@ -1,2 +1,0 @@
-scpi_sense.c:18:15:SCPI_SenseFunction	24	static
-scpi_sense.c:32:15:SCPI_SenseFunctionQ	16	static

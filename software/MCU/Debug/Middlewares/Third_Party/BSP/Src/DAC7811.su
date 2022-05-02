@@ -1,5 +1,0 @@
-stm32h7xx_ll_gpio.h:884:22:LL_GPIO_SetOutputPin	16	static
-stm32h7xx_ll_gpio.h:913:22:LL_GPIO_ResetOutputPin	16	static
-DAC7811.c:14:20:SelectChip	8	static
-DAC7811.c:19:20:ReleaseChip	8	static
-DAC7811.c:25:19:DAC7811_SetVoltage	24	static
