@@ -9,5 +9,6 @@
 
 scpi_result_t SCPI_Initiate(scpi_t * context)
 {
+
 	return SCPI_RES_OK;
 }

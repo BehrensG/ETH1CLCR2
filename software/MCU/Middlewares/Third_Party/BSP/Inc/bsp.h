@@ -61,6 +61,10 @@
 
 #define NONE 0
 
+#define MAXROW 6    /* maximum number of rows */
+#define MAXCOL 1    /* maximum number of columns */
+#define MAXDIM 1    /* maximum number of dimensions */
+
 enum function_select
 {
 	FIMP	= 1U,
@@ -84,6 +88,14 @@ enum calc_function
 	G		= 13U,
 	B		= 14U
 };
+
+enum nominal_types
+{
+	R	= 1U,
+	L	= 2U,
+	C	= 3U,
+};
+
 
 /*************************************** MCU ***************************************/
 
@@ -135,6 +147,27 @@ typedef enum
 } BSP_StatusTypeDef;
 
 
+enum trigger_enum
+{
+	TRG_IMM = 1,
+	TRG_EXT = 2,
+	TRG_BUS = 3,
+	TRG_OUT = 4
+};
+
+enum trigger_slope_enum
+{
+	POS = 1,
+	NEG = 2
+};
+
+enum format_data_enum
+{
+	DATA_FORMAT_ASCII = 0,
+	DATA_FORMAT_REAL = 1
+};
+
+
 #define MCU_SERVICE_SECURITY_OFF 0
 #define MCU_SERVICE_SECURITY_ON 1
 
@@ -150,7 +183,7 @@ typedef enum
 #pragma pack(push, 1)
 
 // size 64
-typedef struct bsp_scpi_info
+typedef struct _bsp_scpi_info
 {
 	char manufacturer[SCPI_MANUFACTURER_STRING_LENGTH];
 	char device[SCPI_DEVICE_STRING_LENGTH];
@@ -161,7 +194,7 @@ typedef struct bsp_scpi_info
 
 
 // size 20
-typedef struct bsp_ip4_lan
+typedef struct _bsp_ip4_lan
 {
 	uint8_t ip[4];
 	uint8_t netmask[4];
@@ -172,7 +205,7 @@ typedef struct bsp_ip4_lan
 }bsp_ip4_lan_t;
 
 
-typedef struct bsp_adc_calib_ads8681
+typedef struct _bsp_adc_calib_ads8681
 {
 	double gain_1;
 	double gain_10;
@@ -180,13 +213,13 @@ typedef struct bsp_adc_calib_ads8681
 
 }bsp_adc_calib_ads8681_t;
 
-typedef struct bsp_adc_calib_cs5361
+typedef struct _bsp_adc_calib_cs5361
 {
 	double gain[3];
 
 }bsp_adc_calib_cs5361_t;
 
-typedef struct bsp_calibration_date
+typedef struct _bsp_calibration_date
 {
 	uint8_t day;
 	uint8_t month;
@@ -197,7 +230,7 @@ typedef struct bsp_calibration_date
 
 }bsp_calibration_date_t;
 
-typedef union bsp_eeprom_union
+typedef union _bsp_eeprom_union
 {
 	struct data
 	{
@@ -227,19 +260,19 @@ typedef union bsp_eeprom_union
 
 
 
-typedef struct bsp_result_voltage
+typedef struct _bsp_result_voltage
 {
 	double wave[WAV_LEN_MAX];
 
 }bsp_result_voltage_t;
 
-typedef struct bsp_result_current
+typedef struct _bsp_result_current
 {
     double wave[WAV_LEN_MAX];
 
 }bsp_result_current_t;
 
-typedef struct bsp_result
+typedef struct _bsp_result
 {
     double volt_real;
     double volt_imag;
@@ -268,19 +301,19 @@ typedef struct bsp_result
 }bsp_result_t;
 
 // size 17
-typedef struct bsp_security
+typedef struct _bsp_security
 {
 	uint8_t status;
 
 }bsp_security_t;
 
-typedef struct bsp_calibration
+typedef struct _bsp_calibration
 {
 	uint8_t status;
 
 }bsp_calibration_t;
 
-typedef struct bsp_trigger
+typedef struct _bsp_trigger
 {
 
 	uint8_t in_slope;
@@ -291,20 +324,20 @@ typedef struct bsp_trigger
 
 }bsp_trigger_t;
 
-typedef struct bsp_temperature
+typedef struct _bsp_temperature
 {
 	uint8_t unit;
 
 }bsp_temperature_t;
 
 
-typedef struct bsp_adc_ads8681
+typedef struct _bsp_adc_ads8681
 {
 	float zero_offset;
 	uint8_t range;
 }bsp_adc_ads8681_t;
 
-typedef struct bsp_measure
+typedef struct _bsp_measure
 {
 	bsp_result_t result;
     bsp_result_current_t current;
@@ -312,13 +345,26 @@ typedef struct bsp_measure
 
 }bsp_measure_t;
 
-typedef struct ads8681_cfg
+typedef struct _ads8681_cfg
 {
 	int32_t delay;
 	uint32_t sample_size;
 }ads8681_cfg_t;
 
-typedef struct bsp_config
+typedef struct _bsp_config_nominal
+{
+	uint8_t type;
+	double value;
+
+}bsp_config_nominal_t;
+
+typedef struct _bsp_config_relay
+{
+	uint8_t state[MAXROW];
+
+}bsp_config_relay_t;
+
+typedef struct _bsp_config
 {
 	float frequency;
 	float voltage;
@@ -333,10 +379,12 @@ typedef struct bsp_config
 	uint8_t function;
 	uint8_t format1;
 	uint8_t format2;
+	bsp_config_nominal_t nominal;
+	bsp_config_relay_t relay;
 
 }bsp_config_t;
 
-typedef struct bsp_dds
+typedef struct _bsp_dds
 {
 	uint8_t divider;
 }bsp_dds_t;
@@ -361,25 +409,6 @@ struct _bsp
 
 extern struct _bsp bsp;
 
-enum trigger_enum
-{
-	TRG_IMM = 1,
-	TRG_EXT = 2,
-	TRG_BUS = 3,
-	TRG_OUT = 4
-};
-
-enum trigger_slope_enum
-{
-	POS = 1,
-	NEG = 2
-};
-
-enum format_data_enum
-{
-	DATA_FORMAT_ASCII = 0,
-	DATA_FORMAT_REAL = 1
-};
 
 BSP_StatusTypeDef BSP_Init();
 

@@ -23,5 +23,7 @@ scpi_result_t SCPI_SourceFrequency(scpi_t * context);
 scpi_result_t SCPI_SourceFrequencyQ(scpi_t * context);
 scpi_result_t SCPI_SourceVoltage(scpi_t * context);
 scpi_result_t SCPI_SourceVoltageQ(scpi_t * context);
+scpi_result_t SCPI_SourceRelayOutput(scpi_t * context);
+scpi_result_t SCPI_SourceRelayOutputQ(scpi_t * context);
 
 #endif /* THIRD_PARTY_BSP_INC_SCPI_SOURCE_H_ */

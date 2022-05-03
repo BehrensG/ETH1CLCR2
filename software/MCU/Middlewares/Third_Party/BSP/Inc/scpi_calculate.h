@@ -13,5 +13,7 @@
 
 scpi_result_t SCPI_CalculateFormat(scpi_t * context);
 scpi_result_t SCPI_CalculateFormatQ(scpi_t * context);
+scpi_result_t SCPI_CalculateLimitNominal(scpi_t * context);
+scpi_result_t SCPI_CalculateLimitNominalQ(scpi_t * context);
 
 #endif /* THIRD_PARTY_BSP_INC_SCPI_CALCULATE_H_ */

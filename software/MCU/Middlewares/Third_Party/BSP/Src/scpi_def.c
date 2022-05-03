@@ -35,15 +35,14 @@
  */
 
 
-#include <result.h>
-#include <scpi_source.h>
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "scpi_def.h"
 #include "scpi/scpi.h"
-#include "bsp.h"
 #include "cmsis_os.h"
 
 #include "scpi_server.h"
@@ -57,6 +56,8 @@
 #include "scpi_fetch.h"
 #include "scpi_initiate.h"
 
+#include "bsp.h"
+#include "result.h"
 #include "DAC7811.h"
 #include "DG409.h"
 #include "DDS.h"
@@ -67,16 +68,130 @@
 #include "ADS8681.h"
 
 extern I2S_HandleTypeDef hi2s2;
-
-
-
-
 extern double ADS8681_LSB[];
 
-static scpi_result_t TEST_TSQ(scpi_t * context)
-{
 
-	return SCPI_RES_OK;
+
+
+size_t SCPI_GetChannels(scpi_t* context, scpi_channel_value_t array[])
+{
+    scpi_parameter_t channel_list_param;
+    // scpi_channel_value_t array[MAXROW * MAXCOL]; /* array which holds values in order (2D) */
+    size_t chanlst_idx; /* index for channel list */
+    size_t arr_idx = 0; /* index for array */
+    size_t n, m = 1; /* counters for row (n) and columns (m) */
+    scpi_expr_result_t res;
+
+    /* get channel list */
+    if (SCPI_Parameter(context, &channel_list_param, TRUE)) {
+        scpi_bool_t is_range;
+        int32_t values_from[MAXDIM];
+        int32_t values_to[MAXDIM];
+        size_t dimensions;
+
+        bool for_stop_row = FALSE; /* true if iteration for rows has to stop */
+        bool for_stop_col = FALSE; /* true if iteration for columns has to stop */
+        int32_t dir_row = 1; /* direction of counter for rows, +/-1 */
+        int32_t dir_col = 1; /* direction of counter for columns, +/-1 */
+
+        /* the next statement is valid usage and it gets only real number of dimensions for the first item (index 0) */
+        if (!SCPI_ExprChannelListEntry(context, &channel_list_param, 0, &is_range, NULL, NULL, 0, &dimensions)) {
+            chanlst_idx = 0; /* call first index */
+            arr_idx = 0; /* set arr_idx to 0 */
+            do { /* if valid, iterate over channel_list_param index while res == valid (do-while cause we have to do it once) */
+                res = SCPI_ExprChannelListEntry(context, &channel_list_param, chanlst_idx, &is_range, values_from, values_to, 4, &dimensions);
+                if (is_range == FALSE) { /* still can have multiple dimensions */
+                    if (dimensions == 1) {
+                        /* here we have our values
+                         * row == values_from[0]
+                         * col == 0 (fixed number)
+                         * call a function or something */
+                        array[arr_idx].row = values_from[0];
+                        array[arr_idx].col = 0;
+                    } else if (dimensions == 2) {
+                        /* here we have our values
+                         * row == values_fom[0]
+                         * col == values_from[1]
+                         * call a function or something */
+                        array[arr_idx].row = values_from[0];
+                        array[arr_idx].col = values_from[1];
+                    } else {
+                        return arr_idx = 0;
+                    }
+                    arr_idx++; /* inkrement array where we want to save our values to, not neccessary otherwise */
+                    if (arr_idx >= MAXROW * MAXCOL) {
+                        return arr_idx = 0;
+                    }
+                } else if (is_range == TRUE) {
+                    if (values_from[0] > values_to[0]) {
+                        dir_row = -1; /* we have to decrement from values_from */
+                    } else { /* if (values_from[0] < values_to[0]) */
+                        dir_row = +1; /* default, we increment from values_from */
+                    }
+
+                    /* iterating over rows, do ilwip nvic gpiot once -> set for_stop_row = false
+                     * needed if there is channel list index isn't at end yet */
+                    for_stop_row = FALSE;
+                    for (n = values_from[0]; for_stop_row == FALSE; n += dir_row) {
+                        /* usual case for ranges, 2 dimensions */
+                        if (dimensions == 2) {
+                            if (values_from[1] > values_to[1]) {
+                                dir_col = -1;
+                            } else if (values_from[1] < values_to[1]) {
+                                dir_col = +1;
+                            }
+                            /* iterating over columns, do it at least once -> set for_stop_col = false
+                             * needed if there is channel list index isn't at end yet */
+                            for_stop_col = FALSE;
+                            for (m = values_from[1]; for_stop_col == FALSE; m += dir_col) {
+                                /* here we have our values
+                                 * row == n
+                                 * col == m
+                                 * call a function or something */
+                                array[arr_idx].row = n;
+                                array[arr_idx].col = m;
+                                arr_idx++;
+                                if (arr_idx >= MAXROW * MAXCOL) {
+                                    return arr_idx = 0;
+                                }
+                                if (m == (size_t)values_to[1]) {
+                                    /* endpoint reached, stop column for-loop */
+                                    for_stop_col = TRUE;
+                                }
+                            }
+                            /* special case for range, example: (@2!1) */
+                        } else if (dimensions == 1) {
+                            /* here we have values
+                             * row == n
+                             * col == 0 (fixed number)
+                             * call function or sth. */
+                            array[arr_idx].row = n;
+                            array[arr_idx].col = 0;
+                            arr_idx++;
+                            if (arr_idx >= MAXROW * MAXCOL) {
+                                return arr_idx = 0;
+                            }
+                        }
+                        if (n == (size_t)values_to[0]) {
+                            /* endpoint reached, stop row for-loop */
+                            for_stop_row = TRUE;
+                        }
+                    }
+
+
+                } else {
+                    return arr_idx = 0;
+                }
+                /* increase index */
+                chanlst_idx++;
+            } while (SCPI_EXPR_OK == SCPI_ExprChannelListEntry(context, &channel_list_param, chanlst_idx, &is_range, values_from, values_to, 4, &dimensions));
+            /* while checks, whether incremented index is valid */
+        }
+        /* do something at the end if needed */
+        /* array[arr_idx].row = 0; */
+        /* array[arr_idx].col = 0; */
+    }
+    return arr_idx;
 }
 
 
@@ -109,10 +224,9 @@ scpi_result_t SCPI_TS(scpi_t * context)
 {
 
  	float freq = 100;
-	float ampl = 1.28, tmp[2];
-	uint32_t atten = 0, vgain = 1, igain = 1, relay = 0;
-	uint16_t tx_data[2];
-	HAL_StatusTypeDef status;
+	float ampl = 1.28;
+	uint32_t atten = 0, vgain = 1, relay = 0;
+
 
 	if(!SCPI_ParamFloat(context, &freq, TRUE))
 	{
@@ -253,12 +367,17 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "SOURce:VOLTage[:AMPLitude]", .callback = SCPI_SourceVoltage,},
 	{.pattern = "SOURce:VOLTage?", .callback = SCPI_SourceVoltageQ,},
 	{.pattern = "SOURce:VOLTage?", .callback = SCPI_SourceVoltageQ,},
+	{.pattern = "SOURce:RELAy:OUTput", .callback = SCPI_SourceRelayOutput,},
+	{.pattern = "SOURce:RELAy:OUTput?", .callback = SCPI_SourceRelayOutputQ,},
 
 	{.pattern = "[SENSe]:FUNCtion[:ON]", .callback = SCPI_SenseFunction,},
 	{.pattern = "[SENSe]:FUNCtion[:ON]?", .callback = SCPI_SenseFunctionQ,},
 
 	{.pattern = "CALCulate:FORMat", .callback = SCPI_CalculateFormat,},
 	{.pattern = "CALCulate:FORMat?", .callback = SCPI_CalculateFormatQ,},
+	{.pattern = "CALCulate:LIMit:NOMinal", .callback = SCPI_CalculateLimitNominal,},
+	{.pattern = "CALCulate:LIMit:NOMinal?", .callback = SCPI_CalculateLimitNominalQ,},
+
 
 	{.pattern = "FETCh?", .callback = SCPI_FetchQ,},
 

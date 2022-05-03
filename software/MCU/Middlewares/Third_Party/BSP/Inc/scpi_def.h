@@ -22,9 +22,6 @@ struct _scpi_channel_value_t {
 };
 typedef struct _scpi_channel_value_t scpi_channel_value_t;
 
-#define MAXROW 4    /* maximum number of rows */
-#define MAXCOL 1    /* maximum number of columns */
-#define MAXDIM 1    /* maximum number of dimensions */
 
 size_t SCPI_Write(scpi_t * context, const char * data, size_t len);
 int SCPI_Error(scpi_t * context, int_fast16_t err);
@@ -34,5 +31,7 @@ scpi_result_t SCPI_Flush(scpi_t * context);
 
 void scpi_server_init(void);
 scpi_result_t SCPI_SystemCommTcpipControlQ(scpi_t * context);
+size_t SCPI_GetChannels(scpi_t* context, scpi_channel_value_t array[]);
+
 
 #endif /* __SCPI_DEF_H_ */

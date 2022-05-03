@@ -7,9 +7,11 @@
 
 
 #include "scpi_source.h"
+#include "scpi_def.h"
+
 #include "DDS.h"
-
-
+#include "DAC7811.h"
+#include "relays.h"
 
 scpi_result_t SCPI_SourceFrequency(scpi_t * context)
 {
@@ -119,3 +121,39 @@ scpi_result_t SCPI_SourceVoltageQ(scpi_t * context)
 }
 
 
+
+scpi_result_t SCPI_SourceRelayOutput(scpi_t * context)
+{
+	scpi_channel_value_t array[MAXCOL*MAXROW] = {0};
+	size_t channel_size = 0;
+	uint8_t index = 0;
+	scpi_bool_t state = 0;
+
+	channel_size = SCPI_GetChannels(context, array);
+
+	if(!channel_size || (channel_size > MAXROW))
+	{
+		SCPI_ErrorPush(context, SCPI_ERROR_DATA_OUT_OF_RANGE);
+		return SCPI_RES_ERR;
+	}
+
+	if(!SCPI_ParamBool(context, &state, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	for(uint8_t i = 0; i < channel_size; i++)
+	{
+		index = array[i].row;
+		CXN_Relays_Control(index, state);
+		bsp.config.relay.state[index] = (uint8_t)state;
+	}
+
+	return SCPI_RES_OK;
+}
+
+scpi_result_t SCPI_SourceRelayOutputQ(scpi_t * context)
+{
+	SCPI_ResultArrayUInt8(context, bsp.config.relay.state, MAXROW, SCPI_FORMAT_NORMAL);
+	return SCPI_RES_OK;
+}

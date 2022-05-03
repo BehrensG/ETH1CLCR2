@@ -40,5 +40,6 @@ void CXN_Relays_AllOff(void);
 void TQ2SA_Relays(uint8_t relay, uint8_t state);
 void SN74LVC1G3157_AnalogSwitch(uint8_t analog_switch, uint8_t b_state);
 void DG409_AnalogSwitch(uint8_t analog_switch);
+void CXN_Relays_Control(int32_t relay, uint8_t state);
 
 #endif /* THIRD_PARTY_BSP_INC_RELAYS_H_ */

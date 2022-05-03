@@ -7,7 +7,7 @@
 
 #include "scpi_calculate.h"
 
-scpi_choice_def_t Calculation_select[] =
+scpi_choice_def_t calculation_select[] =
 {
 	{"NONE", NONE},
     {"REAL", REAL},
@@ -27,18 +27,27 @@ scpi_choice_def_t Calculation_select[] =
     SCPI_CHOICE_LIST_END
 };
 
+scpi_choice_def_t nominal_select[] =
+{
+	{"NONE", NONE},
+    {"R", R},
+    {"L", L},
+	{"C", C},
+    SCPI_CHOICE_LIST_END
+};
+
 scpi_result_t SCPI_CalculateFormat(scpi_t * context)
 {
 	int32_t format1 = NONE, format2 = NONE;
 
-	if(!SCPI_ParamChoice(context, Calculation_select, &format1, TRUE))
+	if(!SCPI_ParamChoice(context, calculation_select, &format1, TRUE))
 	{
 
 		return SCPI_RES_ERR;
 	}
 
 
-	if(!SCPI_ParamChoice(context, Calculation_select, &format2, FALSE))
+	if(!SCPI_ParamChoice(context, calculation_select, &format2, TRUE))
 	{
 		return SCPI_RES_ERR;
 	}
@@ -51,7 +60,40 @@ scpi_result_t SCPI_CalculateFormat(scpi_t * context)
 
 scpi_result_t SCPI_CalculateFormatQ(scpi_t * context)
 {
-	SCPI_ResultCharacters(context, Calculation_select[bsp.config.format1].name, strlen(Calculation_select[bsp.config.format1].name));
-	SCPI_ResultCharacters(context, Calculation_select[bsp.config.format2].name, strlen(Calculation_select[bsp.config.format2].name));
+	SCPI_ResultCharacters(context, calculation_select[bsp.config.format1].name, strlen(calculation_select[bsp.config.format1].name));
+	SCPI_ResultCharacters(context, calculation_select[bsp.config.format2].name, strlen(calculation_select[bsp.config.format2].name));
+	return SCPI_RES_OK;
+}
+
+scpi_result_t SCPI_CalculateLimitNominal(scpi_t * context)
+{
+	int32_t type = NONE;
+	double value = 0.0;
+
+	if(!SCPI_ParamChoice(context, nominal_select, &type, TRUE))
+	{
+
+		return SCPI_RES_ERR;
+	}
+
+
+	if(!SCPI_ParamDouble(context, &value, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	bsp.config.nominal.type = type;
+	bsp.config.nominal.value = value;
+
+
+	return SCPI_RES_OK;
+}
+
+scpi_result_t SCPI_CalculateLimitNominalQ(scpi_t * context)
+{
+
+	SCPI_ResultCharacters(context, nominal_select[bsp.config.nominal.type].name, strlen(nominal_select[bsp.config.nominal.type].name));
+	SCPI_ResultDouble(context, bsp.config.nominal.value);
+
 	return SCPI_RES_OK;
 }
