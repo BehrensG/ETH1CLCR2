@@ -43,12 +43,12 @@ scpi_result_t SCPI_SourceFrequency(scpi_t * context)
 			}
 			else
 			{
-				bsp.config.frequency = freq.content.value;
 
-				DDS_SetFrequency(freq.content.value);
-
-				return SCPI_RES_OK;
 			}
+		}
+		else if(SCPI_UNIT_HERTZ == freq.unit)
+		{
+
 		}
 		else
 		{
@@ -56,6 +56,9 @@ scpi_result_t SCPI_SourceFrequency(scpi_t * context)
 			return SCPI_RES_ERR;
 		}
 	}
+
+	bsp.config.frequency = freq.content.value;
+	DDS_SetFrequency(freq.content.value);
 
 	return SCPI_RES_OK;
 }
@@ -96,20 +99,25 @@ scpi_result_t SCPI_SourceVoltage(scpi_t * context)
 			}
 			else
 			{
-				bsp.config.voltage = volt.content.value;
 
-				DAC7811_SetVoltage(bsp.config.voltage);
-				DDS_Attenuation(AT_0dBV);
-
-				return SCPI_RES_OK;
 			}
+		}
+		else if (SCPI_UNIT_VOLT == volt.unit)
+		{
+
 		}
 		else
 		{
 			SCPI_ErrorPush(context, SCPI_ERROR_INVALID_SUFFIX);
 			return SCPI_RES_ERR;
 		}
+
 	}
+
+	bsp.config.voltage = volt.content.value;
+	DAC7811_SetVoltage(bsp.config.voltage);
+	DDS_Attenuation(AT_0dBV);
+
 
 	return SCPI_RES_OK;
 }

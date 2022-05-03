@@ -65,10 +65,34 @@ scpi_result_t SCPI_CalculateFormatQ(scpi_t * context)
 	return SCPI_RES_OK;
 }
 
+static uint8_t check_unit(int32_t type, scpi_number_t* value)
+{
+	uint8_t status = 0;
+
+	if (R == type)
+	{
+		(SCPI_UNIT_OHM == value->unit) ? (status = 1) : (status = 0);
+	}
+	else if (C == type)
+	{
+		(SCPI_UNIT_FARAD == value->unit) ? (status = 1) : (status = 0);
+	}
+	else if (L == type)
+	{
+		(SCPI_UNIT_HENRY == value->unit) ? (status = 1) : (status = 0);
+	}
+	else
+	{
+		status = 0;
+	}
+
+	return status;
+}
+
 scpi_result_t SCPI_CalculateLimitNominal(scpi_t * context)
 {
 	int32_t type = NONE;
-	double value = 0.0;
+	scpi_number_t value;
 
 	if(!SCPI_ParamChoice(context, nominal_select, &type, TRUE))
 	{
@@ -77,13 +101,35 @@ scpi_result_t SCPI_CalculateLimitNominal(scpi_t * context)
 	}
 
 
-	if(!SCPI_ParamDouble(context, &value, TRUE))
+	if(!SCPI_ParamNumber(context, scpi_special_numbers_def, &value, TRUE))
 	{
 		return SCPI_RES_ERR;
 	}
 
+	if(SCPI_UNIT_NONE == value.unit || SCPI_UNIT_UNITLESS == value.unit)
+	{
+		if(value.content.value < 0 || value.content.value > 100000001)
+		{
+			SCPI_ErrorPush(context, SCPI_ERROR_DATA_OUT_OF_RANGE);
+			return SCPI_RES_ERR;
+		}
+		else
+		{
+
+		}
+	}
+	else if(check_unit(type, &value))
+	{
+
+	}
+	else
+	{
+		SCPI_ErrorPush(context, SCPI_ERROR_INVALID_SUFFIX);
+		return SCPI_RES_ERR;
+	}
+
 	bsp.config.nominal.type = type;
-	bsp.config.nominal.value = value;
+	bsp.config.nominal.value = value.content.value;
 
 
 	return SCPI_RES_OK;
