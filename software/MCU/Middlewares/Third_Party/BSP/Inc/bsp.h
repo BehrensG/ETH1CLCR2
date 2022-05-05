@@ -381,6 +381,7 @@ typedef struct _bsp_config
 	uint8_t format2;
 	bsp_config_nominal_t nominal;
 	bsp_config_relay_t relay;
+	uint32_t range;
 
 }bsp_config_t;
 

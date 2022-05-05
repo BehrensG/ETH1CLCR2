@@ -172,7 +172,7 @@ int main(void)
   ADS8681_Init();
   AD9834_Init();
   CS5361_Init();
-  IV_Converter(R10k);
+  IV_Converter(R1k);
   /* USER CODE END 2 */
 
   /* Init scheduler */

@@ -106,18 +106,18 @@ static void Result_CS()
 
 static void Result_CP()
 {
-	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.Q = fabs((fabs(bsp.result.z_imag)/bsp.result.z_real));
 	bsp.result.CP = (double)(1/(2*PI*bsp.config.frequency*(1+1/(bsp.result.Q*bsp.result.Q))*fabs(bsp.result.z_imag)));
 }
 
 static void Result_Q()
 {
-	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.Q = fabs(fabs(bsp.result.z_imag)/bsp.result.z_real);
 }
 
 static void Result_D()
 {
-	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.Q = fabs(fabs(bsp.result.z_imag)/bsp.result.z_real);
 	bsp.result.D = (double)(1/bsp.result.Q);
 }
 
@@ -128,14 +128,14 @@ static void Result_LS()
 
 static void Result_LP()
 {
-	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.Q = fabs(fabs(bsp.result.z_imag)/bsp.result.z_real);
 	bsp.result.LP = ((1+1/(bsp.result.Q*bsp.result.Q))*fabs(bsp.result.z_imag))/(2*PI*bsp.config.frequency);
 }
 
 static void Result_RP()
 {
-	bsp.result.Q = (double)(fabs(bsp.result.z_imag)/bsp.result.z_real);
-	bsp.result.RP = (double)((1+bsp.result.Q*bsp.result.Q)*bsp.result.z_real);
+	bsp.result.Q = fabs(fabs(bsp.result.z_imag)/bsp.result.z_real);
+	bsp.result.RP = fabs((1+bsp.result.Q*bsp.result.Q)*bsp.result.z_real);
 }
 
 static void Result_MLIN()
@@ -150,12 +150,12 @@ static void Result_PHAS()
 
 static void Result_REAL()
 {
-	bsp.result.REAL = bsp.result.z_real;
+	bsp.result.REAL = fabs(bsp.result.z_real);
 }
 
 static void Result_G()
 {
-	bsp.result.G = (double)(1/bsp.result.z_real);
+	bsp.result.G = fabs(1/bsp.result.z_real);
 }
 
 static void Result_IMAG()

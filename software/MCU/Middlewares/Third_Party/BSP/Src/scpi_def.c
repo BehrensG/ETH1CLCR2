@@ -263,7 +263,7 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	DAC7811_SetVoltage(ampl);
 	DDS_Attenuation(atten);
 	TQ2SA_Relays(ADC_SEL, (uint8_t)relay);
-	IV_Converter(R1k);
+	IV_Converter(R10k);
 	VDiff_Amplifier(vgain);
 	IDiff_Amplifier(vgain);
 	HAL_Delay(10);
@@ -372,6 +372,8 @@ const scpi_command_t scpi_commands[] = {
 
 	{.pattern = "[SENSe]:FUNCtion[:ON]", .callback = SCPI_SenseFunction,},
 	{.pattern = "[SENSe]:FUNCtion[:ON]?", .callback = SCPI_SenseFunctionQ,},
+	{.pattern = "[SENSe]:FIMPedance:RANGe[:UPPer]", .callback = SCPI_SenseFImpedanceRangeUpper,},
+	{.pattern = "[SENSe]:FIMPedance:RANGe[:UPPer]?", .callback = SCPI_SenseFImpedanceRangeUpperQ,},
 
 	{.pattern = "CALCulate:FORMat", .callback = SCPI_CalculateFormat,},
 	{.pattern = "CALCulate:FORMat?", .callback = SCPI_CalculateFormatQ,},

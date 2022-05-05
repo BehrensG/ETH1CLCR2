@@ -60,14 +60,20 @@ BSP_StatusTypeDef ADS8681_Measurement()
 	for(uint16_t x=0; x < bsp.config.ads8681.sample_size; x++)
 	{
 		ADS8681_RawData(raw_data);
-		tmp[0][x] = raw_data[0] - ADS8681_FSR_CENTER;
-		tmp[1][x] = raw_data[1] - ADS8681_FSR_CENTER;
+		tmp[0][x] = raw_data[0];
+		tmp[1][x] = raw_data[1];
 	}
 
 	for(uint16_t x=0; x < bsp.config.ads8681.sample_size; x++)
 	{
-		bsp.measure.current.wave[x] = (float)(tmp[0][x]*ADS8681_LSB[bsp.adc_ads8681[0].range]*1.03275776568193267614 + bsp.adc_ads8681[0].zero_offset);
-		bsp.measure.voltage.wave[x] = (float)(tmp[1][x]*ADS8681_LSB[bsp.adc_ads8681[1].range]*1.03275776568193267614 + bsp.adc_ads8681[1].zero_offset);
+		tmp[0][x] -= ADS8681_FSR_CENTER;
+		tmp[1][x] -= ADS8681_FSR_CENTER;
+	}
+
+	for(uint16_t x=0; x < bsp.config.ads8681.sample_size; x++)
+	{
+		bsp.measure.current.wave[x] = (double)(tmp[0][x]*ADS8681_LSB[bsp.adc_ads8681[0].range]*1.03275776568193267614/bsp.config.volt_gain);
+		bsp.measure.voltage.wave[x] = (double)(tmp[1][x]*ADS8681_LSB[bsp.adc_ads8681[1].range]*1.03275776568193267614/bsp.config.curr_gain);
 	}
 
 	return BSP_OK;

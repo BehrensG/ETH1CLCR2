@@ -67,10 +67,13 @@ static void BSP_Init_Common()
 
 	bsp.config.nominal.type = NONE;
 	bsp.config.nominal.value = 0.0;
+
 	for (uint8_t x = 0; x < MAXROW; x++)
 	{
 		bsp.config.relay.state[x] = OFF;
 	}
+
+	bsp.config.range = 1000;
 
 }
 
