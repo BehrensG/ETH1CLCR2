@@ -8,41 +8,19 @@
 #include "scpi_sense.h"
 #include "IV_Converter.h"
 
-scpi_choice_def_t Function_select[] =
+scpi_choice_def_t function_select[] =
 {
     {"FIMPedance", FIMP},
     {"FADMittance", FADM},
     SCPI_CHOICE_LIST_END
 };
 
-
-scpi_result_t SCPI_SenseFunction(scpi_t * context)
+scpi_choice_def_t correction_select[] =
 {
-	int32_t value = 0;
-
-	if(!SCPI_ParamChoice(context, Function_select, &value, TRUE))
-	{
-		return SCPI_RES_ERR;
-	}
-
-	bsp.config.function = value;
-
-	return SCPI_RES_OK;
-}
-
-scpi_result_t SCPI_SenseFunctionQ(scpi_t * context)
-{
-	if(FIMP == bsp.config.function)
-	{
-		SCPI_ResultCharacters(context, "FIMP", 4);
-	}
-	else
-	{
-		SCPI_ResultCharacters(context, "FADM", 4);
-	}
-
-	return SCPI_RES_OK;
-}
+    {"OPEN", OPEN},
+    {"SHORT", SHORT},
+    SCPI_CHOICE_LIST_END
+};
 
 static uint8_t check_range(uint32_t range)
 {
@@ -58,6 +36,36 @@ static uint8_t check_range(uint32_t range)
 
 	return 1;
 }
+
+
+scpi_result_t SCPI_SenseFunction(scpi_t * context)
+{
+	int32_t value = 0;
+
+	if(!SCPI_ParamChoice(context, function_select, &value, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	bsp.config.function = value;
+
+	return SCPI_RES_OK;
+}
+
+scpi_result_t SCPI_SenseFunctionQ(scpi_t * context)
+{
+	if(FIMP == bsp.config.function)
+	{
+		SCPI_ResultCharacters(context, function_select[0].name, strlen(function_select[0].name));
+	}
+	else
+	{
+		SCPI_ResultCharacters(context, function_select[1].name, strlen(function_select[1].name));
+	}
+
+	return SCPI_RES_OK;
+}
+
 
 scpi_result_t SCPI_SenseFImpedanceRangeUpper(scpi_t * context)
 {
@@ -114,3 +122,14 @@ scpi_result_t SCPI_SenseFImpedanceRangeUpperQ(scpi_t * context)
 	SCPI_ResultUInt32(context, bsp.config.range);
 	return SCPI_RES_OK;
 }
+
+scpi_result_t SCPI_SenseCorrectionCollectAcquire(scpi_t * context)
+{
+	return SCPI_RES_OK;
+}
+
+scpi_result_t SCPI_SenseCorrectionCollectAcquireQ(scpi_t * context)
+{
+	return SCPI_RES_OK;
+}
+

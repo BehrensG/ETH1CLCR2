@@ -108,7 +108,7 @@ scpi_result_t SCPI_CalculateLimitNominal(scpi_t * context)
 
 	if(SCPI_UNIT_NONE == value.unit || SCPI_UNIT_UNITLESS == value.unit)
 	{
-		if(value.content.value < 0 || value.content.value > 100000001)
+		if(value.content.value < 0 || value.content.value > 99999999)
 		{
 			SCPI_ErrorPush(context, SCPI_ERROR_DATA_OUT_OF_RANGE);
 			return SCPI_RES_ERR;

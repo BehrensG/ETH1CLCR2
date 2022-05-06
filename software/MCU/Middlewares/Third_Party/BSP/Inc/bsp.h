@@ -15,6 +15,8 @@
 #define ON 1
 #define OFF 0
 
+#define OPEN	1
+#define SHORT	2
 
 /*************************************** SCPI ***************************************/
 
@@ -30,7 +32,7 @@
 
 #define IP_ADDRESS_0 192
 #define IP_ADDRESS_1 168
-#define IP_ADDRESS_2 0
+#define IP_ADDRESS_2 1
 #define IP_ADDRESS_3 126
 
 #define NETMASK_ADDRESS_0 255
@@ -40,7 +42,7 @@
 
 #define GATEWAY_ADDRESS_0 192
 #define GATEWAY_ADDRESS_1 168
-#define GATEWAY_ADDRESS_2 0
+#define GATEWAY_ADDRESS_2 1
 #define GATEWAY_ADDRESS_3 1
 
 #define MAC_0 0x00

@@ -375,6 +375,9 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "[SENSe]:FIMPedance:RANGe[:UPPer]", .callback = SCPI_SenseFImpedanceRangeUpper,},
 	{.pattern = "[SENSe]:FIMPedance:RANGe[:UPPer]?", .callback = SCPI_SenseFImpedanceRangeUpperQ,},
 
+	{.pattern = "[SENSe]:CORRection:COLLect[:ACQuire]", .callback = SCPI_SenseCorrectionCollectAcquire,},
+	{.pattern = "[SENSe]:CORRection:COLLect[:ACQuire]?", .callback = SCPI_SenseCorrectionCollectAcquireQ,},
+
 	{.pattern = "CALCulate:FORMat", .callback = SCPI_CalculateFormat,},
 	{.pattern = "CALCulate:FORMat?", .callback = SCPI_CalculateFormatQ,},
 	{.pattern = "CALCulate:LIMit:NOMinal", .callback = SCPI_CalculateLimitNominal,},
