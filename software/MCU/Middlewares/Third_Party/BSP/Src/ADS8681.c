@@ -50,10 +50,8 @@ void ADS8681_CalculateSamplingSetup()
 
 BSP_StatusTypeDef ADS8681_Measurement()
 {
-	BSP_StatusTypeDef status = 0;
 	uint16_t raw_data[2] = {0, 0};
 	static double tmp[2][WAV_LEN_MAX];
-	uint8_t gain_index = 0;
 
 	ADS8681_CalculateSamplingSetup();
 

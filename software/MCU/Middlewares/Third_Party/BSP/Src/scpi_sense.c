@@ -17,8 +17,8 @@ scpi_choice_def_t function_select[] =
 
 scpi_choice_def_t correction_select[] =
 {
-    {"OPEN", OPEN},
-    {"SHORT", SHORT},
+    {"OPEN", COMP_OPEN},
+    {"SHORT", COMP_SHORT},
     SCPI_CHOICE_LIST_END
 };
 
@@ -80,9 +80,9 @@ scpi_result_t SCPI_SenseFImpedanceRangeUpper(scpi_t * context)
 	{
 		switch(range.content.tag)
 		{
-		case SCPI_NUM_MIN: bsp.config.range = MIN_RANGE; break;
-		case SCPI_NUM_MAX: bsp.config.range = MAX_RANGE; break;
-		case SCPI_NUM_DEF: bsp.config.range = DEF_RANGE; break;
+		case SCPI_NUM_MIN: bsp.config.resistor_value = MIN_RANGE; break;
+		case SCPI_NUM_MAX: bsp.config.resistor_value = MAX_RANGE; break;
+		case SCPI_NUM_DEF: bsp.config.resistor_value = DEF_RANGE; break;
 		default: SCPI_ErrorPush(context, SCPI_ERROR_ILLEGAL_PARAMETER_VALUE); return SCPI_RES_ERR;
 		}
 	}
@@ -90,7 +90,7 @@ scpi_result_t SCPI_SenseFImpedanceRangeUpper(scpi_t * context)
 	{
 		if(SCPI_UNIT_NONE == range.unit || SCPI_UNIT_UNITLESS == range.unit)
 		{
-			if(check_range(bsp.config.range))
+			if(check_range(range.content.value))
 			{
 				SCPI_ErrorPush(context, SCPI_ERROR_DATA_OUT_OF_RANGE);
 				return SCPI_RES_ERR;
@@ -111,20 +111,26 @@ scpi_result_t SCPI_SenseFImpedanceRangeUpper(scpi_t * context)
 		}
 	}
 
-	bsp.config.range = (uint32_t)range.content.value;
-	IV_Converter(bsp.config.range);
+	IV_Converter(range.content.value);
 
 	return SCPI_RES_OK;
 }
 
 scpi_result_t SCPI_SenseFImpedanceRangeUpperQ(scpi_t * context)
 {
-	SCPI_ResultUInt32(context, bsp.config.range);
+	SCPI_ResultUInt32(context, bsp.config.resistor_value);
 	return SCPI_RES_OK;
 }
 
 scpi_result_t SCPI_SenseCorrectionCollectAcquire(scpi_t * context)
 {
+	int32_t compensate = 0;
+
+	if(!SCPI_ParamChoice(context, correction_select, &compensate, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
 	return SCPI_RES_OK;
 }
 

@@ -173,6 +173,7 @@ int main(void)
   AD9834_Init();
   CS5361_Init();
   IV_Converter(R1k);
+  CXN_Relays_AllOn();
   /* USER CODE END 2 */
 
   /* Init scheduler */

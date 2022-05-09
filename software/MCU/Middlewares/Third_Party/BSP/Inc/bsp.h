@@ -15,8 +15,9 @@
 #define ON 1
 #define OFF 0
 
-#define OPEN	1
-#define SHORT	2
+#define COMP_NONE	0
+#define COMP_OPEN	1
+#define COMP_SHORT	2
 
 /*************************************** SCPI ***************************************/
 
@@ -280,10 +281,17 @@ typedef struct _bsp_result
     double volt_imag;
     double curr_real;
     double curr_imag;
+
     double z_real;
     double z_imag;
     double y_real;
     double y_imag;
+
+    double z_raw_real;
+    double z_raw_imag;
+    double y_raw_real;
+    double y_raw_imag;
+
 
     double REAL;
     double IMAG;
@@ -301,6 +309,16 @@ typedef struct _bsp_result
     double B;
 
 }bsp_result_t;
+
+
+typedef struct _bsp_comp
+{
+    double z_resid_real;
+    double z_resid_imag;
+    double y_stray_real;
+    double y_stray_imag;
+    uint8_t comp_state;
+}bsp_comp_t;
 
 // size 17
 typedef struct _bsp_security
@@ -374,7 +392,7 @@ typedef struct _bsp_config
 	uint8_t volt_gain_index;
 	uint16_t curr_gain;
 	uint8_t curr_gain_index;
-	uint16_t resistor_value;
+	uint32_t resistor_value;
 	uint8_t resistor_index;
 	ads8681_cfg_t ads8681;
 	uint8_t adc_select;
@@ -383,7 +401,6 @@ typedef struct _bsp_config
 	uint8_t format2;
 	bsp_config_nominal_t nominal;
 	bsp_config_relay_t relay;
-	uint32_t range;
 
 }bsp_config_t;
 
@@ -408,6 +425,7 @@ struct _bsp
 	bsp_config_t config;
 	bsp_result_t result;
 	bsp_dds_t dds;
+	bsp_comp_t compensate;
 };
 
 extern struct _bsp bsp;

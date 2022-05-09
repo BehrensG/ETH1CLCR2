@@ -37,6 +37,7 @@
 
 
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -55,7 +56,9 @@
 #include "scpi_sense.h"
 #include "scpi_fetch.h"
 #include "scpi_initiate.h"
+#include "scpi_read.h"
 
+#include "diff_ampl.h"
 #include "bsp.h"
 #include "result.h"
 #include "DAC7811.h"
@@ -63,7 +66,6 @@
 #include "DDS.h"
 #include "CS5361.h"
 #include "IV_Converter.h"
-#include "Diff_Ampl.h"
 #include "relays.h"
 #include "ADS8681.h"
 
@@ -71,6 +73,42 @@ extern I2S_HandleTypeDef hi2s2;
 extern double ADS8681_LSB[];
 
 
+
+void resistor_curr_gain_set()
+{
+	double value = ((bsp.config.voltage/bsp.config.nominal.value)*bsp.config.resistor_value);
+
+	if(value <= 0.015)
+	{
+		IDiff_Amplifier(IDIFF_GAIN100);
+	}
+	else if((value> 0.015) && (value <= 0.15))
+	{
+		IDiff_Amplifier(IDIFF_GAIN10);
+	}
+	else if(value > 0.15)
+	{
+		IDiff_Amplifier(IDIFF_GAIN1);
+	}
+
+}
+
+void resistor_volt_gain_set()
+{
+	if(bsp.config.voltage <= 0.015)
+	{
+		VDiff_Amplifier(VDIFF_GAIN100);
+	}
+	else if((bsp.config.voltage > 0.015) && (bsp.config.voltage <= 0.15))
+	{
+		VDiff_Amplifier(VDIFF_GAIN10);
+	}
+	else if(bsp.config.voltage > 0.15)
+	{
+		VDiff_Amplifier(VDIFF_GAIN1);
+	}
+
+}
 
 
 size_t SCPI_GetChannels(scpi_t* context, scpi_channel_value_t array[])
@@ -263,7 +301,7 @@ scpi_result_t SCPI_TS(scpi_t * context)
 	DAC7811_SetVoltage(ampl);
 	DDS_Attenuation(atten);
 	TQ2SA_Relays(ADC_SEL, (uint8_t)relay);
-	IV_Converter(R10k);
+	//IV_Converter(R10k);
 	VDiff_Amplifier(vgain);
 	IDiff_Amplifier(vgain);
 	HAL_Delay(10);
@@ -383,6 +421,7 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "CALCulate:LIMit:NOMinal", .callback = SCPI_CalculateLimitNominal,},
 	{.pattern = "CALCulate:LIMit:NOMinal?", .callback = SCPI_CalculateLimitNominalQ,},
 
+	{.pattern = "READ?", .callback = SCPI_ReadQ,},
 
 	{.pattern = "FETCh?", .callback = SCPI_FetchQ,},
 

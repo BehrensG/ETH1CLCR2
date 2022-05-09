@@ -5,7 +5,7 @@
  *      Author: grzegorz
  */
 
-#include "Diff_Ampl.h"
+#include <diff_ampl.h>
 
 void VDiff_Amplifier(e_vdiff gain)
 {

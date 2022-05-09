@@ -19,5 +19,6 @@
 
 
 void Result();
+void Result_Compensate();
 
 #endif /* THIRD_PARTY_BSP_INC_RESULT_H_ */

@@ -47,6 +47,10 @@ static void BSP_Init_Common()
 	bsp.result.y_real = 0;
 	bsp.result.z_imag = 0;
 	bsp.result.z_real = 0;
+	bsp.result.y_raw_imag = 0;
+	bsp.result.y_raw_real = 0;
+	bsp.result.z_raw_imag = 0;
+	bsp.result.z_raw_real = 0;
 
 	bsp.result.REAL = 0;
 	bsp.result.IMAG = 0;
@@ -70,10 +74,12 @@ static void BSP_Init_Common()
 
 	for (uint8_t x = 0; x < MAXROW; x++)
 	{
-		bsp.config.relay.state[x] = OFF;
+		bsp.config.relay.state[x] = ON;
 	}
 
-	bsp.config.range = 1000;
+	bsp.config.resistor_value = 1000;
+
+	bsp.compensate.comp_state = COMP_NONE;
 
 }
 

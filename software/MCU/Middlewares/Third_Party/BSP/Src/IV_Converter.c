@@ -7,7 +7,7 @@
 
 #include "IV_Converter.h"
 
-void IV_Converter(uint8_t resistor)
+void IV_Converter(uint32_t resistor)
 {
 	switch(resistor)
 	{

@@ -33,5 +33,7 @@ void scpi_server_init(void);
 scpi_result_t SCPI_SystemCommTcpipControlQ(scpi_t * context);
 size_t SCPI_GetChannels(scpi_t* context, scpi_channel_value_t array[]);
 
+void resistor_curr_gain_set();
+void resistor_volt_gain_set();
 
 #endif /* __SCPI_DEF_H_ */
