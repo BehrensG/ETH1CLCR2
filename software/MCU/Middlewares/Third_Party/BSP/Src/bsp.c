@@ -81,6 +81,11 @@ static void BSP_Init_Common()
 
 	bsp.compensate.comp_state = COMP_NONE;
 
+	bsp.compensate.y_stray_imag = 0;
+	bsp.compensate.y_stray_real = 0;
+	bsp.compensate.z_resid_imag = 0;
+	bsp.compensate.z_resid_real = 0;
+
 }
 
 

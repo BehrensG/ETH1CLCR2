@@ -49,10 +49,10 @@ void Result()
 	bsp.result.curr_real /= bsp.config.resistor_value;
 	bsp.result.curr_imag /= bsp.config.resistor_value;
 
-	bsp.result.z_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.curr_real * bsp.result.curr_real + bsp.result.curr_imag * bsp.result.curr_imag);
-	bsp.result.z_imag = (bsp.result.volt_imag * bsp.result.curr_real - bsp.result.volt_real * bsp.result.curr_imag) / (bsp.result.curr_real * bsp.result.curr_real + bsp.result.curr_imag * bsp.result.curr_imag);
-	bsp.result.y_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
-	bsp.result.y_imag = (bsp.result.volt_real * bsp.result.curr_imag - bsp.result.volt_imag * bsp.result.curr_real) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
+	bsp.result.z_raw_real = bsp.result.z_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.curr_real * bsp.result.curr_real + bsp.result.curr_imag * bsp.result.curr_imag);
+	bsp.result.z_raw_imag = bsp.result.z_imag = (bsp.result.volt_imag * bsp.result.curr_real - bsp.result.volt_real * bsp.result.curr_imag) / (bsp.result.curr_real * bsp.result.curr_real + bsp.result.curr_imag * bsp.result.curr_imag);
+	bsp.result.y_raw_real = bsp.result.y_real = (bsp.result.volt_real * bsp.result.curr_real + bsp.result.volt_imag * bsp.result.curr_imag) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
+	bsp.result.y_raw_imag = bsp.result.y_imag = (bsp.result.volt_real * bsp.result.curr_imag - bsp.result.volt_imag * bsp.result.curr_real) / (bsp.result.volt_real * bsp.result.volt_real + bsp.result.volt_imag * bsp.result.volt_imag);
 
 	if(FIMP == bsp.config.function)
 	{
@@ -225,6 +225,11 @@ static void Result_Reset()
 	bsp.result.z_imag = 0;
 	bsp.result.y_real = 0;
 	bsp.result.y_imag = 0;
+
+	bsp.result.z_raw_real = 0;
+	bsp.result.z_raw_imag = 0;
+	bsp.result.y_raw_real = 0;
+	bsp.result.y_raw_imag = 0;
 
 	bsp.result.REAL = 0;
 	bsp.result.IMAG = 0;

@@ -124,12 +124,16 @@ scpi_result_t SCPI_SenseFImpedanceRangeUpperQ(scpi_t * context)
 
 scpi_result_t SCPI_SenseCorrectionCollectAcquire(scpi_t * context)
 {
-	int32_t compensate = 0;
+	int32_t comp_state = 0;
 
-	if(!SCPI_ParamChoice(context, correction_select, &compensate, TRUE))
+	if(!SCPI_ParamChoice(context, correction_select, &comp_state, TRUE))
 	{
 		return SCPI_RES_ERR;
 	}
+
+	bsp.compensate.comp_state = comp_state;
+
+	Result_Compensate();
 
 	return SCPI_RES_OK;
 }
