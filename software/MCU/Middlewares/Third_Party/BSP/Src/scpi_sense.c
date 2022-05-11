@@ -150,7 +150,7 @@ scpi_result_t SCPI_SenseCorrectionCollectAcquireQ(scpi_t * context)
 	return SCPI_RES_OK;
 }
 
-scpi_result_t SCPI_SenseCorrectionCollectState(scpi_t * context)
+scpi_result_t SCPI_SenseCorrectionState(scpi_t * context)
 {
 	scpi_bool_t comp_state;
 
@@ -164,7 +164,7 @@ scpi_result_t SCPI_SenseCorrectionCollectState(scpi_t * context)
 	return SCPI_RES_OK;
 }
 
-scpi_result_t SCPI_SenseCorrectionCollectStateQ(scpi_t * context)
+scpi_result_t SCPI_SenseCorrectionStateQ(scpi_t * context)
 {
 	SCPI_ResultBool(context, bsp.compensate.comp_state);
 	return SCPI_RES_OK;
