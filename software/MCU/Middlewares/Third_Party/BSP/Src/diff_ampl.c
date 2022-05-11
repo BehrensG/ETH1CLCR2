@@ -50,16 +50,19 @@ void IDiff_Amplifier(e_idiff gain)
 							LL_GPIO_ResetOutputPin(IDIFF0_GPIO_Port, IDIFF0_Pin);
 							LL_GPIO_ResetOutputPin(IDIFF1_GPIO_Port, IDIFF1_Pin);
 							bsp.config.curr_gain = 1;
+							bsp.config.curr_gain_index = 0;
 						}break;
 		case IDIFF_GAIN10:{
 							LL_GPIO_SetOutputPin(IDIFF0_GPIO_Port, IDIFF0_Pin);
 							LL_GPIO_ResetOutputPin(IDIFF1_GPIO_Port, IDIFF1_Pin);
 							bsp.config.curr_gain = 10;
+							bsp.config.curr_gain_index = 1;
 						}break;
 		case IDIFF_GAIN100:{
 							LL_GPIO_SetOutputPin(IDIFF0_GPIO_Port, IDIFF0_Pin);
 							LL_GPIO_SetOutputPin(IDIFF1_GPIO_Port, IDIFF1_Pin);
 							bsp.config.curr_gain = 100;
+							bsp.config.curr_gain_index = 2;
 						}break;
 	}
 }

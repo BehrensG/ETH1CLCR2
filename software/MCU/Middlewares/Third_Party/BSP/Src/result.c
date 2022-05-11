@@ -78,7 +78,7 @@ void Result()
 
 	if(ADC_ADS8681 == bsp.config.adc_select)
 	{
-		for(uint16_t x=0; x < bsp.config.ads8681.sample_size;x++)
+		for(uint32_t x = 0; x < bsp.config.ads8681.sample_size;x++)
 		{
 			bsp.result.volt_real += bsp.measure.voltage.wave[x]*cos(2*PI*x/bsp.config.ads8681.sample_size);
 			bsp.result.volt_imag += bsp.measure.voltage.wave[x]*sin(2*PI*x/bsp.config.ads8681.sample_size);
@@ -131,11 +131,14 @@ void Result()
 void Result_Compensate()
 {
 
-	Result_Reset();
+	bsp.result.volt_real = 0;
+	bsp.result.volt_imag = 0;
+	bsp.result.curr_real = 0;
+	bsp.result.curr_imag = 0;
 
 	if(ADC_ADS8681 == bsp.config.adc_select)
 	{
-		for(uint16_t x=0; x < bsp.config.ads8681.sample_size;x++)
+		for(uint32_t x = 0; x < bsp.config.ads8681.sample_size;x++)
 		{
 			bsp.result.volt_real += bsp.measure.voltage.wave[x]*cos(2*PI*x/bsp.config.ads8681.sample_size);
 			bsp.result.volt_imag += bsp.measure.voltage.wave[x]*sin(2*PI*x/bsp.config.ads8681.sample_size);

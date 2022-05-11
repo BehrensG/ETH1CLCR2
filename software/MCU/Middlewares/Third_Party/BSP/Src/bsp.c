@@ -115,13 +115,21 @@ static void BSP_Init_DefualtEEPROM()
 	bsp.eeprom.structure.ip4.netmask[2] = NETMASK_ADDRESS_2;
 	bsp.eeprom.structure.ip4.netmask[3] = NETMASK_ADDRESS_3;
 
-	bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[0] = 1.163;
-	bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[1] = 1.163;
-	bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[2] = 1.163;
+	bsp.eeprom.structure.calib_cs5361_volt.gain[0] = 1.163;
+	bsp.eeprom.structure.calib_cs5361_volt.gain[1] = 1.163;
+	bsp.eeprom.structure.calib_cs5361_volt.gain[2] = 1.163;
 
-	bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[0] = 1.163;
-	bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[1] = 1.163;
-	bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[2] = 1.163;
+	bsp.eeprom.structure.calib_cs5361_curr.gain[0] = 1.163;
+	bsp.eeprom.structure.calib_cs5361_curr.gain[1] = 1.163;
+	bsp.eeprom.structure.calib_cs5361_curr.gain[2] = 1.163;
+
+	bsp.eeprom.structure.calib_ads8681_volt.gain[0] = 1.03275776568193267614;
+	bsp.eeprom.structure.calib_ads8681_volt.gain[1] = 1.03275776568193267614;
+	bsp.eeprom.structure.calib_ads8681_volt.gain[2] = 1.03275776568193267614;
+
+	bsp.eeprom.structure.calib_ads8681_curr.gain[0] = 1.03275776568193267614;
+	bsp.eeprom.structure.calib_ads8681_curr.gain[1] = 1.03275776568193267614;
+	bsp.eeprom.structure.calib_ads8681_curr.gain[2] = 1.03275776568193267614;
 
 	strncpy(bsp.eeprom.structure.service_password, PASSWORD, PASSWORD_LENGTH);
 	strncpy(bsp.eeprom.structure.calib_password, PASSWORD, PASSWORD_LENGTH);

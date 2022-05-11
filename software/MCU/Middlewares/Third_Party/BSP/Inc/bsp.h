@@ -211,9 +211,7 @@ typedef struct _bsp_ip4_lan
 
 typedef struct _bsp_adc_calib_ads8681
 {
-	double gain_1;
-	double gain_10;
-	double gain_100;
+	double gain[3];
 
 }bsp_adc_calib_ads8681_t;
 
@@ -243,9 +241,11 @@ typedef union _bsp_eeprom_union
 		// Size 64
 		bsp_scpi_info_t info;
 		// Size 48
-		bsp_adc_calib_ads8681_t adc_calib_ads8681[2];
+		bsp_adc_calib_ads8681_t calib_ads8681_volt;
+		bsp_adc_calib_ads8681_t calib_ads8681_curr;
 		// Size 48
-		bsp_adc_calib_cs5361_t adc_calib_cs5361[2];
+		bsp_adc_calib_cs5361_t calib_cs5361_volt;
+		bsp_adc_calib_cs5361_t calib_cs5361_curr;
 		// Size 19
 		int8_t service_password[PASSWORD_LENGTH];
 		// Size 19

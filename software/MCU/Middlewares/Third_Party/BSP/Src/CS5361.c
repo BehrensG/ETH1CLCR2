@@ -114,14 +114,14 @@ BSP_StatusTypeDef CS5361_Measure()
 			volt_values[x] |= 0xFF000000;
 		}
 
-		bsp.measure.voltage.wave[x] = (double)(volt_values[x]*CS5361_RES*bsp.eeprom.structure.adc_calib_cs5361[VOLTAGE_INDEX].gain[bsp.config.volt_gain_index]);
+		bsp.measure.voltage.wave[x] = (double)(volt_values[x]*CS5361_RES*bsp.eeprom.structure.calib_cs5361_volt.gain[bsp.config.volt_gain_index]);
 
 		if(curr_values[x] & 0x800000)
 		{
 			curr_values[x] |= 0xFF000000;
 		}
 
-		bsp.measure.current.wave[x] = (double)(curr_values[x]*CS5361_RES*bsp.eeprom.structure.adc_calib_cs5361[CURRENT_INDEX].gain[bsp.config.curr_gain_index]);
+		bsp.measure.current.wave[x] = (double)(curr_values[x]*CS5361_RES*bsp.eeprom.structure.calib_cs5361_curr.gain[bsp.config.curr_gain_index]);
 		bsp.measure.current.wave[x] = (double)(-1*bsp.measure.current.wave[x]);
 	}
 
