@@ -12,6 +12,7 @@
 
 #include "eeprom.h"
 
+void EEPROM_WriteProtect(GPIO_PinState state);
 
 
 BSP_StatusTypeDef EEPROM_Erase()

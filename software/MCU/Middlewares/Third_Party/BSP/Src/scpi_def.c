@@ -415,6 +415,8 @@ const scpi_command_t scpi_commands[] = {
 
 	{.pattern = "[SENSe]:CORRection:COLLect[:ACQuire]", .callback = SCPI_SenseCorrectionCollectAcquire,},
 	{.pattern = "[SENSe]:CORRection:COLLect[:ACQuire]?", .callback = SCPI_SenseCorrectionCollectAcquireQ,},
+	{.pattern = "[SENSe]:CORRection:COLLect:STATe", .callback = SCPI_SenseCorrectionCollectState,},
+	{.pattern = "[SENSe]:CORRection:COLLect:STATe?", .callback = SCPI_SenseCorrectionCollectStateQ,},
 
 	{.pattern = "CALCulate:FORMat", .callback = SCPI_CalculateFormat,},
 	{.pattern = "CALCulate:FORMat?", .callback = SCPI_CalculateFormatQ,},

@@ -23,4 +23,7 @@ scpi_result_t SCPI_SenseFImpedanceRangeUpper(scpi_t * context);
 scpi_result_t SCPI_SenseFImpedanceRangeUpperQ(scpi_t * context);
 scpi_result_t SCPI_SenseCorrectionCollectAcquire(scpi_t * context);
 scpi_result_t SCPI_SenseCorrectionCollectAcquireQ(scpi_t * context);
+scpi_result_t SCPI_SenseCorrectionCollectState(scpi_t * context);
+scpi_result_t SCPI_SenseCorrectionCollectStateQ(scpi_t * context);
+
 #endif /* THIRD_PARTY_BSP_INC_SCPI_SENSE_H_ */

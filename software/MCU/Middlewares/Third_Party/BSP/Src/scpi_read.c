@@ -6,6 +6,9 @@
  */
 
 #include "scpi_read.h"
+#include "ADS8681.h"
+#include "result.h"
+#include "scpi_def.h"
 
 scpi_result_t SCPI_ReadQ(scpi_t * context)
 {

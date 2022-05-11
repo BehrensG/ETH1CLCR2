@@ -9,7 +9,7 @@
 #include "scpi_initiate.h"
 #include "ADS8681.h"
 #include "result.h"
-
+#include "scpi_def.h"
 
 scpi_result_t SCPI_Initiate(scpi_t * context)
 {

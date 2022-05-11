@@ -31,6 +31,7 @@
 #include "dwt_delay.h"
 #include "CS5361.h"
 #include "IV_Converter.h"
+#include "relays.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

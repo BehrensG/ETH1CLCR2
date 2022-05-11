@@ -5,21 +5,23 @@
  *      Author: grzegorz
  */
 
+#include <math.h>
+#include <stdlib.h>
+
 #include "ADS8681.h"
 #include "dwt_delay.h"
 #include "stm32h7xx_ll_spi.h"
-#include <math.h>
+
 
 double ADS8681_LSB[5] = {0.000375000, 0.000312500, 0.000187500, 0.000156250, 0.000078125};
 
 
 static BSP_StatusTypeDef ADS8681_SetID(void);
 static BSP_StatusTypeDef ADS8681_SetDataOutput(void);
-static BSP_StatusTypeDef ADS8681_WriteMSB(uint8_t* cmd, uint8_t* reg, uint8_t* data);
 static BSP_StatusTypeDef ADS8681_WriteLSB(uint8_t* cmd, uint8_t* reg, uint8_t* data);
 static BSP_StatusTypeDef ADS8681_WriteHWORD(uint8_t* cmd, uint8_t* reg, uint16_t* data);
 static BSP_StatusTypeDef ADS8681_ReadLSB(uint8_t* data);
-static void ADS8681_ConvertionTime(void);
+
 
 void ADS8681_CalculateSamplingSetup()
 {
@@ -165,7 +167,7 @@ static BSP_StatusTypeDef BSP_SPI3_Receive(uint32_t* buffer, uint32_t size, uint3
 
 static BSP_StatusTypeDef BSP_SPI3_Transmit(uint32_t* buffer, uint32_t size, uint32_t timeout)
 {
-	uint32_t rx_buffer[2];
+	uint32_t rx_buffer[2] = {0,0};
 	uint32_t tickstart = 0;
 
 	LL_SPI_SetTransferSize(SPI3, size);
@@ -288,8 +290,6 @@ BSP_StatusTypeDef ADS8681_SetRange(uint8_t range[])
 	uint8_t cmd[2]={0,0};
 	uint8_t reg[2]={0,0};
 	uint8_t tx_data[2]={0,0};
-	uint8_t rx_data[2]={0,0};
-
 
 	cmd[0] = WRITE_LSB;
 	cmd[1] = WRITE_LSB;
@@ -399,6 +399,8 @@ static BSP_StatusTypeDef ADS8681_WriteHWORD(uint8_t* cmd, uint8_t* reg, uint16_t
 	return status;
 }
 
+
+/*
 static BSP_StatusTypeDef ADS8681_WriteMSB(uint8_t* cmd, uint8_t* reg, uint8_t* data)
 {
 	BSP_StatusTypeDef status = BSP_OK;
@@ -416,6 +418,7 @@ static BSP_StatusTypeDef ADS8681_WriteMSB(uint8_t* cmd, uint8_t* reg, uint8_t* d
 
 	return status;
 }
+*/
 
 static BSP_StatusTypeDef ADS8681_WriteLSB(uint8_t* cmd, uint8_t* reg, uint8_t* data)
 {
@@ -434,7 +437,7 @@ static BSP_StatusTypeDef ADS8681_WriteLSB(uint8_t* cmd, uint8_t* reg, uint8_t* d
 	return status;
 }
 
-
+/*
 static void ADS8681_ConvertionTime(void)
 {
     uint32_t startTick = DWT->CYCCNT,
@@ -442,3 +445,4 @@ static void ADS8681_ConvertionTime(void)
 
     while (DWT->CYCCNT - startTick < delayTicks);
 }
+*/

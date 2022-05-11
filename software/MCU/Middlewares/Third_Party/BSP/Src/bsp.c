@@ -79,7 +79,9 @@ static void BSP_Init_Common()
 
 	bsp.config.resistor_value = 1000;
 
-	bsp.compensate.comp_state = COMP_NONE;
+	bsp.compensate.comp_state = COMP_OFF;
+	bsp.compensate.comp_open = COMP_OFF;
+	bsp.compensate.comp_short = COMP_OFF;
 
 	bsp.compensate.y_stray_imag = 0;
 	bsp.compensate.y_stray_real = 0;

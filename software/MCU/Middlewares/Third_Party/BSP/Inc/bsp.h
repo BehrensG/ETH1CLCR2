@@ -15,9 +15,10 @@
 #define ON 1
 #define OFF 0
 
-#define COMP_NONE	0
-#define COMP_OPEN	1
-#define COMP_SHORT	2
+#define COMP_OFF	0
+#define COMP_ON		1
+#define COMP_OPEN	2
+#define COMP_SHORT	3
 
 /*************************************** SCPI ***************************************/
 
@@ -318,6 +319,8 @@ typedef struct _bsp_comp
     double y_stray_real;
     double y_stray_imag;
     uint8_t comp_state;
+    uint8_t comp_open;
+    uint8_t comp_short;
 }bsp_comp_t;
 
 // size 17

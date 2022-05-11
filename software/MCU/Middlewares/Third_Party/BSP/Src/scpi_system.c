@@ -14,7 +14,7 @@
 #include "scpi_system.h"
 #include "scpi/scpi.h"
 #include "eeprom.h"
-
+#include "HDC1080.h"
 
 extern I2C_HandleTypeDef hi2c3;
 

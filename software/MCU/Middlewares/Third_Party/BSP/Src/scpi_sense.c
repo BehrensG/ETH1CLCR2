@@ -131,7 +131,14 @@ scpi_result_t SCPI_SenseCorrectionCollectAcquire(scpi_t * context)
 		return SCPI_RES_ERR;
 	}
 
-	bsp.compensate.comp_state = comp_state;
+	if(COMP_OPEN == comp_state)
+	{
+		bsp.compensate.comp_open = COMP_ON;
+	}
+	else if (COMP_SHORT == comp_state)
+	{
+		bsp.compensate.comp_short = COMP_ON;
+	}
 
 	Result_Compensate();
 
@@ -140,6 +147,26 @@ scpi_result_t SCPI_SenseCorrectionCollectAcquire(scpi_t * context)
 
 scpi_result_t SCPI_SenseCorrectionCollectAcquireQ(scpi_t * context)
 {
+	return SCPI_RES_OK;
+}
+
+scpi_result_t SCPI_SenseCorrectionCollectState(scpi_t * context)
+{
+	scpi_bool_t comp_state;
+
+	if(!SCPI_ParamBool(context, &comp_state, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	bsp.compensate.comp_state = (uint8_t)comp_state;
+
+	return SCPI_RES_OK;
+}
+
+scpi_result_t SCPI_SenseCorrectionCollectStateQ(scpi_t * context)
+{
+	SCPI_ResultBool(context, bsp.compensate.comp_state);
 	return SCPI_RES_OK;
 }
 

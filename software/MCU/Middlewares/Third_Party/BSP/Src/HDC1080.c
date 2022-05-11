@@ -47,6 +47,8 @@ static BSP_StatusTypeDef HDC1080_read_reg(I2C_HandleTypeDef *hi2c, uint16_t dela
 
 }
 
+
+/*
 static BSP_StatusTypeDef HDC1080_write_reg(I2C_HandleTypeDef *hi2c, uint8_t reg, uint16_t val)
 {
 	uint8_t buf[3];
@@ -60,14 +62,14 @@ static BSP_StatusTypeDef HDC1080_write_reg(I2C_HandleTypeDef *hi2c, uint8_t reg,
 	buf[0] = reg;
 	buf[1] = (uint8_t)((val >> 8) & 0xff);  // msb
 	buf[2] = (uint8_t)(val & 0xff); 				// lsb
-	/* Write the register */
-	/* Send the command and data */
+
 	status = HAL_I2C_Master_Transmit(hi2c,HDC1080_ADDR<<1,buf,3,100);
 	if (status != BSP_OK)
 		return status;
   else
-	  return BSP_OK;  /* Success */
+	  return BSP_OK;
 }
+*/
 
 BSP_StatusTypeDef HDC1080_measure_temperature(I2C_HandleTypeDef *hi2c, float *temperature)
 {
