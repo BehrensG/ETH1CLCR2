@@ -73,7 +73,7 @@ BSP_StatusTypeDef ADS8681_Measurement()
 	for(uint16_t x=0; x < bsp.config.ads8681.sample_size; x++)
 	{
 		bsp.measure.voltage.wave[x] = (double)(tmp[1][x]*ADS8681_LSB[bsp.adc_ads8681[1].range]*bsp.eeprom.structure.calib_ads8681_volt.gain[bsp.config.volt_gain_index]/bsp.config.volt_gain);
-		bsp.measure.current.wave[x] = (double)(tmp[0][x]*ADS8681_LSB[bsp.adc_ads8681[0].range]*bsp.eeprom.structure.calib_ads8681_curr.gain[bsp.config.curr_gain_index]/bsp.config.curr_gain);
+		bsp.measure.current.wave[x] = (double)(tmp[0][x]*ADS8681_LSB[bsp.adc_ads8681[0].range]*bsp.eeprom.structure.calib_ads8681_curr.gain[bsp.config.curr_gain_index][bsp.config.resistor_index]/bsp.config.curr_gain);
 	}
 
 	return BSP_OK;

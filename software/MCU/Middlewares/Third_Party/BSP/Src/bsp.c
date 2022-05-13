@@ -127,9 +127,13 @@ static void BSP_Init_DefualtEEPROM()
 	bsp.eeprom.structure.calib_ads8681_volt.gain[1] = 1.03275776568193267614;
 	bsp.eeprom.structure.calib_ads8681_volt.gain[2] = 1.03275776568193267614;
 
-	bsp.eeprom.structure.calib_ads8681_curr.gain[0] = 1.03275776568193267614;
-	bsp.eeprom.structure.calib_ads8681_curr.gain[1] = 1.03275776568193267614;
-	bsp.eeprom.structure.calib_ads8681_curr.gain[2] = 1.03275776568193267614;
+	for (uint8_t x = 0; x < 3; x++)
+	{
+		for (uint8_t y = 0; y < 5; y++)
+		{
+			bsp.eeprom.structure.calib_ads8681_curr.gain[x][y] = 1.03275776568193267614;
+		}
+	}
 
 	strncpy(bsp.eeprom.structure.service_password, PASSWORD, PASSWORD_LENGTH);
 	strncpy(bsp.eeprom.structure.calib_password, PASSWORD, PASSWORD_LENGTH);

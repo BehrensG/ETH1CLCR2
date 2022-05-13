@@ -22,12 +22,12 @@
 
 /*************************************** SCPI ***************************************/
 
-#define SCPI_MANUFACTURER_STRING_LENGTH 16
-#define SCPI_DEVICE_STRING_LENGTH 16
-#define SCPI_SERIALNUMBER_STRING_LENGTH 16
-#define SCPI_SOFTWAREVERSION_STRING_LENGTH 16
+#define SCPI_MANUFACTURER_STRING_LENGTH 13
+#define SCPI_DEVICE_STRING_LENGTH 13
+#define SCPI_SERIALNUMBER_STRING_LENGTH 13
+#define SCPI_SOFTWAREVERSION_STRING_LENGTH 13
 #define HOSTNAME_LENGTH 20
-#define PASSWORD_LENGTH 16
+#define PASSWORD_LENGTH 13
 #define PASSWORD "ETH1LCR2"
 
 /*************************************** ETHERNET ***************************************/
@@ -175,7 +175,7 @@ enum format_data_enum
 #define MCU_SERVICE_SECURITY_OFF 0
 #define MCU_SERVICE_SECURITY_ON 1
 
-#define EEPROM_CFG_SIZE 229
+#define EEPROM_CFG_SIZE 205
 
 
 #define SAMPLE_TIMER_MAX 1000000
@@ -186,7 +186,7 @@ enum format_data_enum
 
 #pragma pack(push, 1)
 
-// size 64
+// size 52
 typedef struct _bsp_scpi_info
 {
 	char manufacturer[SCPI_MANUFACTURER_STRING_LENGTH];
@@ -209,15 +209,21 @@ typedef struct _bsp_ip4_lan
 }bsp_ip4_lan_t;
 
 
-typedef struct _bsp_adc_calib_ads8681
+typedef struct _bsp_calib_ads8681_volt
 {
-	double gain[3];
+	float gain[3];
 
-}bsp_adc_calib_ads8681_t;
+}bsp_calib_ads8681_votl_t;
+
+typedef struct _bsp_calib_ads8681_curr
+{
+	float gain[3][5];
+
+}bsp_calib_ads8681_curr_t;
 
 typedef struct _bsp_adc_calib_cs5361
 {
-	double gain[3];
+	float gain[3];
 
 }bsp_adc_calib_cs5361_t;
 
@@ -238,17 +244,19 @@ typedef union _bsp_eeprom_union
 	{
 		// Size 20
 		bsp_ip4_lan_t ip4;
-		// Size 64
+		// Size 52
 		bsp_scpi_info_t info;
-		// Size 48
-		bsp_adc_calib_ads8681_t calib_ads8681_volt;
-		bsp_adc_calib_ads8681_t calib_ads8681_curr;
-		// Size 48
+		// Size 12
+		bsp_calib_ads8681_votl_t calib_ads8681_volt;
+		// Size 60
+		bsp_calib_ads8681_curr_t calib_ads8681_curr;
+		// Size 12
 		bsp_adc_calib_cs5361_t calib_cs5361_volt;
+		// Size 12
 		bsp_adc_calib_cs5361_t calib_cs5361_curr;
-		// Size 19
+		// Size 13
 		int8_t service_password[PASSWORD_LENGTH];
-		// Size 19
+		// Size 13
 		int8_t calib_password[PASSWORD_LENGTH];
 		// Size 7
 		bsp_calibration_date_t calib_date;
