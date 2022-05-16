@@ -121,7 +121,7 @@ BSP_StatusTypeDef CS5361_Measure()
 			curr_values[x] |= 0xFF000000;
 		}
 
-		bsp.measure.current.wave[x] = (double)(curr_values[x]*CS5361_RES*bsp.eeprom.structure.calib_cs5361_curr.gain[bsp.config.curr_gain_index]);
+		bsp.measure.current.wave[x] = (double)(curr_values[x]*CS5361_RES*bsp.eeprom.structure.calib_cs5361_curr.gain[bsp.config.curr_gain_index][bsp.config.resistor_index]);
 		bsp.measure.current.wave[x] = (double)(-1*bsp.measure.current.wave[x]);
 	}
 

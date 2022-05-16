@@ -395,7 +395,6 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "CALibration[:ALL]?", .callback = SCPI_CalibrationALLQ,},
 	{.pattern = "CALibration:COUNt?", .callback = SCPI_CalibrationCountQ,},
 	{.pattern = "CALibration:DATE?", .callback = SCPI_CalibrationDateQ,},
-	{.pattern = "CALibration:SECure:CODE", .callback = SCPI_CalibrationSecureCode,},
 	{.pattern = "CALibration:SECure:STATe", .callback = SCPI_CalibrationSecureState,},
 	{.pattern = "CALibration:SECure:STATe?", .callback = SCPI_CalibrationSecureStateQ,},
 	{.pattern = "CALibration:STORe", .callback = SCPI_CalibrationStore,},

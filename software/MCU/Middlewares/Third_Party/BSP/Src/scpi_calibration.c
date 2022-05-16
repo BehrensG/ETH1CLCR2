@@ -18,8 +18,103 @@ scpi_choice_def_t calib_state_select[] =
 };
 
 
+
+scpi_choice_def_t calib_type_select[] =
+{
+    {"VOLtage", CALIB_VOLT},
+    {"CURRent", CALIB_CURR},
+    SCPI_CHOICE_LIST_END
+};
+
+static double largets_double(double array[], uint32_t length)
+{
+    double max = fabs(array[0]);
+
+
+    for( uint32_t i =1; i < length; i++)
+    {
+    	if(fabs(array[i]) > max)
+    	{
+    		max = fabs(array[i]);
+        }
+    }
+
+    return max;
+}
+
+static double volt_gain_correction(double reference, uint16_t gain)
+{
+	double max_val = 0, gain_correction = 0;
+
+	if(ADC_ADS8681 == bsp.config.adc_select)
+	{
+		max_val = largets_double(bsp.measure.voltage, bsp.config.ads8681.sample_size);
+
+	}
+	else if(ADC_CS5361 == bsp.config.adc_select)
+	{
+
+	}
+
+	gain_correction = reference/max_val;
+
+	return gain_correction;
+
+}
+
+static double curr_gain_correction(double reference, uint16_t gain, uint32_t resistor)
+{
+	double max_val = 0, gain_correction = 0;
+
+	if(ADC_ADS8681 == bsp.config.adc_select)
+	{
+		max_val = largets_double(bsp.measure.current, bsp.config.ads8681.sample_size);
+
+	}
+	else if(ADC_CS5361 == bsp.config.adc_select)
+	{
+
+	}
+
+	gain_correction = reference/max_volt;
+
+	return gain_correction;
+
+}
+
 scpi_result_t SCPI_CalibrationADCQ(scpi_t * context)
 {
+	int32 calib_type = CALIB_VOLT;
+	float source_voltage = 0.0;
+	float source_current = 0.0;
+	float source_freq = 0.0;
+
+	if(!SCPI_ParamChoice(context, calib_type_select, &state, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
+	if(CALIB_VOLT == calib_type)
+	{
+		if(!SCPI_ParamFloat(context, &source_voltage, TRUE))
+		{
+			return SCPI_RES_ERR;
+		}
+	}
+	else
+	{
+		if(!SCPI_ParamFloat(context, &source_current, TRUE))
+		{
+			return SCPI_RES_ERR;
+		}
+	}
+
+
+	if(!SCPI_ParamFloat(context, &source_voltage, TRUE))
+	{
+		return SCPI_RES_ERR;
+	}
+
 	return SCPI_RES_OK;
 }
 
@@ -43,33 +138,12 @@ scpi_result_t SCPI_CalibrationDateQ(scpi_t * context)
 	return SCPI_RES_OK;
 }
 
-scpi_result_t SCPI_CalibrationSecureCode(scpi_t * context)
-{
-	char string[PASSWORD_LENGTH];
-	size_t len = 0;
-
-	if(bsp.calibration.status)
-	{
-		SCPI_ErrorPush(context, SCPI_ERROR_CALIBRATION_MEMORY_SECURE);
-		return SCPI_RES_ERR;
-	}
-
-	if(!SCPI_ParamCopyText(context, (char*)string, PASSWORD_LENGTH, &len, TRUE))
-	{
-		return SCPI_RES_ERR;
-	}
-
-	strncpy(bsp.eeprom.structure.calib_password, string, PASSWORD_LENGTH);
-
-	return SCPI_RES_OK;
-}
-
 scpi_result_t SCPI_CalibrationSecureState(scpi_t * context)
 {
 	int32_t state = 1;
 	int8_t password_read[PASSWORD_LENGTH] = {0};
 	size_t length = 0;
-	int8_t* password_reference = bsp.eeprom.structure.calib_password;
+	int8_t* password_reference = bsp.eeprom.structure.password;
 
 	if(!SCPI_ParamChoice(context, calib_state_select, &state, TRUE))
 	{

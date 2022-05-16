@@ -175,7 +175,7 @@ enum format_data_enum
 #define MCU_SERVICE_SECURITY_OFF 0
 #define MCU_SERVICE_SECURITY_ON 1
 
-#define EEPROM_CFG_SIZE 205
+#define EEPROM_CFG_SIZE 240
 
 
 #define SAMPLE_TIMER_MAX 1000000
@@ -221,11 +221,18 @@ typedef struct _bsp_calib_ads8681_curr
 
 }bsp_calib_ads8681_curr_t;
 
-typedef struct _bsp_adc_calib_cs5361
+typedef struct _bsp_calib_cs5361_volt
 {
 	float gain[3];
 
-}bsp_adc_calib_cs5361_t;
+}bsp_calib_cs5361_volt_t;
+
+typedef struct _bsp_calib_cs5361_curr
+{
+	float gain[3][5];
+
+}bsp_calib_cs5361_curr_t;
+
 
 typedef struct _bsp_calibration_date
 {
@@ -251,13 +258,11 @@ typedef union _bsp_eeprom_union
 		// Size 60
 		bsp_calib_ads8681_curr_t calib_ads8681_curr;
 		// Size 12
-		bsp_adc_calib_cs5361_t calib_cs5361_volt;
-		// Size 12
-		bsp_adc_calib_cs5361_t calib_cs5361_curr;
+		bsp_calib_cs5361_volt_t calib_cs5361_volt;
+		// Size 60
+		bsp_calib_cs5361_curr_t calib_cs5361_curr;
 		// Size 13
-		int8_t service_password[PASSWORD_LENGTH];
-		// Size 13
-		int8_t calib_password[PASSWORD_LENGTH];
+		int8_t password[PASSWORD_LENGTH];
 		// Size 7
 		bsp_calibration_date_t calib_date;
 		// Size 4

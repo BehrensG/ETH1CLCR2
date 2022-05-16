@@ -119,9 +119,13 @@ static void BSP_Init_DefualtEEPROM()
 	bsp.eeprom.structure.calib_cs5361_volt.gain[1] = 1.163;
 	bsp.eeprom.structure.calib_cs5361_volt.gain[2] = 1.163;
 
-	bsp.eeprom.structure.calib_cs5361_curr.gain[0] = 1.163;
-	bsp.eeprom.structure.calib_cs5361_curr.gain[1] = 1.163;
-	bsp.eeprom.structure.calib_cs5361_curr.gain[2] = 1.163;
+	for (uint8_t x = 0; x < 3; x++)
+	{
+		for (uint8_t y = 0; y < 5; y++)
+		{
+			bsp.eeprom.structure.calib_cs5361_curr.gain[x][y] = 1.163;
+		}
+	}
 
 	bsp.eeprom.structure.calib_ads8681_volt.gain[0] = 1.03275776568193267614;
 	bsp.eeprom.structure.calib_ads8681_volt.gain[1] = 1.03275776568193267614;
@@ -135,8 +139,7 @@ static void BSP_Init_DefualtEEPROM()
 		}
 	}
 
-	strncpy(bsp.eeprom.structure.service_password, PASSWORD, PASSWORD_LENGTH);
-	strncpy(bsp.eeprom.structure.calib_password, PASSWORD, PASSWORD_LENGTH);
+	strncpy(bsp.eeprom.structure.password, PASSWORD, PASSWORD_LENGTH);
 	strncpy(bsp.eeprom.structure.info.manufacturer, SCPI_IDN1, SCPI_MANUFACTURER_STRING_LENGTH);
 	strncpy(bsp.eeprom.structure.info.device, SCPI_IDN2, SCPI_DEVICE_STRING_LENGTH);
 	strncpy(bsp.eeprom.structure.info.serial_number, SCPI_IDN4, SCPI_SERIALNUMBER_STRING_LENGTH);

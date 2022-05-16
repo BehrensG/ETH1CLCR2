@@ -618,7 +618,7 @@ scpi_result_t SCPI_SystemSecureState(scpi_t * context)
 	int32_t state = 0;
 	int8_t password_read[PASSWORD_LENGTH] = {0};
 	size_t length = 0;
-	int8_t* password_reference = bsp.eeprom.structure.service_password;
+	int8_t* password_reference = bsp.eeprom.structure.password;
 
 	if(!SCPI_ParamChoice(context, security_state_select, &state, TRUE))
 	{
