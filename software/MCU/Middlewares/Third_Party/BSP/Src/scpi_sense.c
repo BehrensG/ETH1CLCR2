@@ -7,6 +7,7 @@
 
 #include "scpi_sense.h"
 #include "IV_Converter.h"
+#include "result.h"
 
 scpi_choice_def_t function_select[] =
 {

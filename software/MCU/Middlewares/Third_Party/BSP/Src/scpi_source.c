@@ -13,6 +13,21 @@
 #include "DAC7811.h"
 #include "relays.h"
 
+
+/*
+ * SOURce:FREQuency[:CW] <frequency value>
+ *
+ * @INFO:
+ * Set the source frequency value.
+ *
+ * @PARAMETERS:
+ * 				<frequency value>		Frequency value from 20 to 100000 Hz.
+ * 				MIN						20 Hz
+ * 				MAX						100000 Hz
+ * 				DEF						1000 Hz
+ *
+ */
+
 scpi_result_t SCPI_SourceFrequency(scpi_t * context)
 {
 	scpi_number_t freq;
@@ -62,6 +77,14 @@ scpi_result_t SCPI_SourceFrequency(scpi_t * context)
 
 	return SCPI_RES_OK;
 }
+
+/*
+ * SOURce:FREQuency?
+ *
+ * @INFO:
+ * Read the current frequency value.
+ *
+ */
 
 scpi_result_t SCPI_SourceFrequencyQ(scpi_t * context)
 {

@@ -12,7 +12,7 @@
 #include "ADS8681.h"
 #include "diff_ampl.h"
 #include "eeprom.h"
-#include "iv_converter.h"
+#include "IV_Converter.h"
 #include "relays.h"
 
 
@@ -279,16 +279,18 @@ scpi_result_t SCPI_CalibrationALLQ(scpi_t * context)
 
 scpi_result_t SCPI_CalibrationCountQ(scpi_t * context)
 {
-	char buffer[6] = {0};
-
-	snprintf(buffer,sizeof(buffer), "%d", bsp.eeprom.structure.calibration_count);
-	SCPI_ResultCharacters(context, buffer, strlen(buffer));
-
+	SCPI_ResultUInt32(context,bsp.eeprom.structure.calibration_count);
 	return SCPI_RES_OK;
 }
 
 scpi_result_t SCPI_CalibrationDateQ(scpi_t * context)
 {
+	char buffer[24] = {0};
+
+	snprintf(buffer,sizeof(buffer), "%02d.%02d.%d %02d:%02d:%02d", bsp.eeprom.structure.calib_date.day, bsp.eeprom.structure.calib_date.month, bsp.eeprom.structure.calib_date.year,
+																 bsp.eeprom.structure.calib_date.hour, bsp.eeprom.structure.calib_date.minute, bsp.eeprom.structure.calib_date.second);
+	SCPI_ResultCharacters(context, buffer, strlen(buffer));
+
 	return SCPI_RES_OK;
 }
 
@@ -337,6 +339,8 @@ scpi_result_t SCPI_CalibrationStore(scpi_t * context)
 		SCPI_ErrorPush(context, SCPI_ERROR_CALIBRATION_MEMORY_SECURE);
 		return SCPI_RES_ERR;
 	}
+
+	++bsp.eeprom.structure.calibration_count;
 
 	if(BSP_OK == EEPROM_Write(&bsp.eeprom, EEPROM_CFG_SIZE))
 	{
