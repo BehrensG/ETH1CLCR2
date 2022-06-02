@@ -34,10 +34,7 @@
  *
  */
 
-
-
-
-
+#include <iv_converter.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -65,7 +62,6 @@
 #include "DG409.h"
 #include "DDS.h"
 #include "CS5361.h"
-#include "IV_Converter.h"
 #include "relays.h"
 #include "ADS8681.h"
 
@@ -392,6 +388,7 @@ const scpi_command_t scpi_commands[] = {
 	{.pattern = "FORMat[:DATA]?", .callback = SCPI_FormatDataQ,},
 
 	{.pattern = "CALibration:ADC?", .callback = SCPI_CalibrationADCQ,},
+	{.pattern = "CALibration:SOURce?", .callback = SCPI_CalibrationSourceQ,},
 	{.pattern = "CALibration[:ALL]?", .callback = SCPI_CalibrationALLQ,},
 	{.pattern = "CALibration:COUNt?", .callback = SCPI_CalibrationCountQ,},
 	{.pattern = "CALibration:DATE?", .callback = SCPI_CalibrationDateQ,},

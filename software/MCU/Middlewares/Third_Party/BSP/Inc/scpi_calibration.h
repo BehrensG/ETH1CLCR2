@@ -17,6 +17,7 @@
 #define CALIB_CURR		4
 
 scpi_result_t SCPI_CalibrationADCQ(scpi_t * context);
+scpi_result_t SCPI_CalibrationSourceQ(scpi_t * context);
 scpi_result_t SCPI_CalibrationALLQ(scpi_t * context);
 scpi_result_t SCPI_CalibrationCountQ(scpi_t * context);
 scpi_result_t SCPI_CalibrationDateQ(scpi_t * context);
