@@ -149,5 +149,5 @@ Some test measurements perform on passive components.
 </table>
 
 <h2>NOTES</h2>
-The ETH1CLCR2 PCB works, but I don't recommend to use this design. The design has mistakes. The design could be made simpler and better. 
+The ETH1CLCR2 PCB works, but I don't recommend using this design. The design has mistakes and could be made simpler and better.
 <p></p>
