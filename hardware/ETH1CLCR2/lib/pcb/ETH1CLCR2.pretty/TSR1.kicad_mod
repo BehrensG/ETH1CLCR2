@@ -1,0 +1,181 @@
+(footprint "TSR1"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "DC/DC Converter TSR 1 Series, 1 A")
+	(property "Reference" "REF**"
+		(at 0 2.8 0)
+		(layer "F.SilkS")
+		(uuid "81563a3a-c69a-44d0-a97d-bdd01eadd0e8")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "TSR1"
+		(at 0 -1.4 0)
+		(layer "F.Fab")
+		(uuid "e3845184-e142-43cb-a400-adb316515f56")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "71d21126-3cb9-4433-a593-89e982931a8f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "755b032a-c7c3-4bc7-8d82-23297252d345")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ec7b13d5-815b-4fe6-b5bb-c57d17d501da")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -6 -5.6)
+		(end 6 -5.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c71567e2-9ba2-4508-948b-8ca41c0ce960")
+	)
+	(fp_line
+		(start -6 2)
+		(end -6 -5.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "bd83ebc9-9921-44bb-97f1-7d965db1b0fd")
+	)
+	(fp_line
+		(start -6 2)
+		(end 6 2)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "eacab309-c4df-4cb8-933a-aa0e70bda0e8")
+	)
+	(fp_line
+		(start 6 -5.6)
+		(end 6 2)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "082761f2-b7db-469f-b8b4-ee6b6910b470")
+	)
+	(fp_line
+		(start -6.2 -5.8)
+		(end 6.2 -5.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "425895e4-7c5f-4793-a54a-f40b030c02cb")
+	)
+	(fp_line
+		(start -6.2 2.2)
+		(end -6.2 -5.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "ec87cb87-136c-4703-8a1b-52e911840054")
+	)
+	(fp_line
+		(start 6.2 -5.8)
+		(end 6.2 2.2)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "697bd952-f572-4b46-b9db-5bd8687ffa06")
+	)
+	(fp_line
+		(start 6.2 2.2)
+		(end -6.2 2.2)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "1a04059b-ea8f-49ec-87da-f8c5969cf6ad")
+	)
+	(pad "1" thru_hole rect
+		(at -2.54 0)
+		(size 1.2 1.2)
+		(drill 0.6)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "705492b7-c5fa-4906-997b-22a0d6d07674")
+	)
+	(pad "2" thru_hole circle
+		(at 0 0)
+		(size 1.2 1.2)
+		(drill 0.6)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "485371a1-07ba-48c4-8443-b7080e5fbc92")
+	)
+	(pad "3" thru_hole circle
+		(at 2.54 0)
+		(size 1.2 1.2)
+		(drill 0.6)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "2a295fac-fa09-4122-9e86-4bc5d65eb28f")
+	)
+	(model "${KIPRJMOD}/lib/3d/tsr1.stp"
+		(offset
+			(xyz 0 1.6 5.3)
+		)
+		(scale
+			(xyz 1 1 0.9)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
+)

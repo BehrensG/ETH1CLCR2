@@ -9,7 +9,7 @@
 
 uint16_t reg_config = 0x0000;
 
-extern SPI_HandleTypeDef hspi4;
+extern SPI_HandleTypeDef hspi3;
 
 inline static void SelectChip()
 {
@@ -47,7 +47,7 @@ BSP_StatusTypeDef AD9834_Init()
 	tx_data[6] = PHASE1_ADDR;
 
 	SelectChip();
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tx_data, 7, SPI4_TIMEOUT);
+	status = HAL_SPI_Transmit(SPI4, (uint8_t*)tx_data, 7, SPI4_TIMEOUT);
 	ReleaseChip();
 	HAL_Delay(20);
 
@@ -65,8 +65,8 @@ BSP_StatusTypeDef AD9834_SetPhase(uint16_t word12)
 
 	SelectChip();
 
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tmp, 1, SPI4_TIMEOUT);
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)reg_config, 1, SPI4_TIMEOUT);
+	status = HAL_SPI_Transmit(SPI4, (uint8_t*)tmp, 1, SPI4_TIMEOUT);
+	status = HAL_SPI_Transmit(SPI4, (uint8_t*)reg_config, 1, SPI4_TIMEOUT);
 
 	ReleaseChip();
 
@@ -82,7 +82,7 @@ BSP_StatusTypeDef AD9834_Stop()
 	SetBit(RESET);
 	tx_data[0] = reg_config;
 	SelectChip();
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tx_data, 1, SPI4_TIMEOUT);
+	status = HAL_SPI_Transmit(SPI4, (uint8_t*)tx_data, 1, SPI4_TIMEOUT);
 	ReleaseChip();
 	HAL_Delay(20);
 
@@ -98,7 +98,7 @@ BSP_StatusTypeDef AD9834_Start()
 	tx_data[0] = reg_config;
 
 	SelectChip();
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tx_data, 1, SPI4_TIMEOUT);
+	status = HAL_SPI_Transmit(SPI4, (uint8_t*)tx_data, 1, SPI4_TIMEOUT);
 	ReleaseChip();
 	HAL_Delay(20);
 	return status;
@@ -126,7 +126,7 @@ BSP_StatusTypeDef AD9834_SetFrequency(uint32_t freq28)
     tx_data[2] = msb14;
 
     SelectChip();
-	status = HAL_SPI_Transmit(&hspi4, (uint8_t*)tx_data, 3, SPI4_TIMEOUT);
+	status = HAL_SPI_Transmit(SPI4, (uint8_t*)tx_data, 3, SPI4_TIMEOUT);
 	ReleaseChip();
 	HAL_Delay(20);
 

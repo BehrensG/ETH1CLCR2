@@ -156,6 +156,7 @@ void Error_Handler(void);
 #define DDS_DIV2_GPIO_Port GPIOE
 #define nDDS_DIV10_Pin LL_GPIO_PIN_1
 #define nDDS_DIV10_GPIO_Port GPIOE
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

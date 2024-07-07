@@ -1,0 +1,156 @@
+(footprint "Fuse_SMD2920"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "MF-LSMFSeries-PTCResettableFuses")
+	(tags "Fuse SMD2920")
+	(property "Reference" "REF**"
+		(at 0 -3.81 0)
+		(layer "F.SilkS")
+		(uuid "b9d8f41f-f730-48d0-91a6-664dfe29554e")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "MF-LSMF185/33X"
+		(at 0 4.3815 0)
+		(layer "F.Fab")
+		(uuid "dc4931fa-4d24-466f-8ea5-5d20508927b5")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d2e6af41-d4fd-43d4-8202-86d35dbcc3d9")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "41dcdf90-aa34-47a4-ad49-2ff5d40091d0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2821d570-6b61-40ee-a11c-2bdf99343c71")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -3.556 -3.048)
+		(end 3.556 -3.048)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b93f7088-32fc-4ba8-81e6-34d593e240b7")
+	)
+	(fp_line
+		(start -3.556 3.048)
+		(end 3.556 3.048)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "859eeb04-e848-4e2e-9018-3cb05bc04b7c")
+	)
+	(fp_line
+		(start -5.1 -3.3)
+		(end -5.1 3.3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "3e39ec6f-f4b9-48ba-b0b0-a57fadee75a9")
+	)
+	(fp_line
+		(start -5.1 -3.3)
+		(end 5.1 -3.3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "32bd1851-bcf5-422c-9dfb-f950b80e066c")
+	)
+	(fp_line
+		(start -5.1 3.3)
+		(end 5.1 3.3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "8b1fbc85-2d27-4b29-96d0-90c5816b49a7")
+	)
+	(fp_line
+		(start 5.1 -3.3)
+		(end 5.1 3.3)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "652caec8-e0a6-449b-8890-7280bf8bc2fc")
+	)
+	(pad "1" smd rect
+		(at -3.7 0 90)
+		(size 5.6 2.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(zone_connect 1)
+		(thermal_bridge_width 2.032)
+		(thermal_gap 0.127)
+		(uuid "f7de5007-a4c2-4f80-9277-540cc98f1142")
+	)
+	(pad "2" smd rect
+		(at 3.7 0 90)
+		(size 5.6 2.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(zone_connect 1)
+		(thermal_bridge_width 2.032)
+		(thermal_gap 0.127)
+		(uuid "3eaa0648-df98-4d5f-aa06-d4c7165740c0")
+	)
+	(model "${KIPRJMOD}/lib/3d/MF-LSMF300.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 0.3937 0.3937 0.3937)
+		)
+		(rotate
+			(xyz -90 0 90)
+		)
+	)
+)

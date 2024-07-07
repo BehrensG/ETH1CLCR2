@@ -1,0 +1,205 @@
+(footprint "TEL10"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Traco Power TEL10 Series, 10 Watt")
+	(property "Reference" "REF**"
+		(at 0 -7.874 0)
+		(layer "F.SilkS")
+		(uuid "90599869-efed-41be-b423-020d448fdd62")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "TEL10"
+		(at 0 -0.5 0)
+		(layer "F.Fab")
+		(uuid "c0abbc2e-6f82-4e46-b62d-e724068df4b1")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cacaaba8-a00e-4298-a439-f4281aedc163")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3bfa670d-12c6-4220-aa4a-651dc1379d78")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e53af116-d9d4-485a-9eb0-4ef812b3fba0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -10.75 -7)
+		(end -10.75 7)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b4f5e510-13d0-4578-94d4-1fd43a3dab77")
+	)
+	(fp_line
+		(start -10.75 7)
+		(end 13.25 7)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2c17c758-e143-4677-8ca1-41a8c1d25a3a")
+	)
+	(fp_line
+		(start 13.25 -7)
+		(end -10.75 -7)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6f5246ff-5091-4e48-b1e0-a5325705e059")
+	)
+	(fp_line
+		(start 13.25 7)
+		(end 13.25 -7)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4dab3ec3-19e8-494f-bf3c-b31fb5be53bc")
+	)
+	(fp_line
+		(start -11 -7.25)
+		(end 13.5 -7.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b6200646-eeea-4d21-b421-40e6a7d694d4")
+	)
+	(fp_line
+		(start -11 7.25)
+		(end -11 -7.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7ab5e47e-2fba-44dd-97db-ae039f51b0cc")
+	)
+	(fp_line
+		(start 13.5 -7.25)
+		(end 13.5 7.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "fd72a034-32d9-4d86-a092-4f0cdd45e91c")
+	)
+	(fp_line
+		(start 13.5 7.25)
+		(end -11 7.25)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "342c980c-4b07-4b54-b90f-d8f97ebe959d")
+	)
+	(pad "1" thru_hole rect
+		(at -7.62 5.08)
+		(size 1.4 1.4)
+		(drill 0.7)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "15ae7fcd-8a43-4451-beda-47c14f711eb9")
+	)
+	(pad "7" thru_hole circle
+		(at 7.62 5.08)
+		(size 1.4 1.4)
+		(drill 0.7)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "39e8d20c-7d30-408c-bc0f-df135044f5bb")
+	)
+	(pad "8" thru_hole circle
+		(at 10.16 5.08)
+		(size 1.4 1.4)
+		(drill 0.7)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "ceea5683-b38a-407c-b62d-6d0de2c3c3da")
+	)
+	(pad "9" thru_hole circle
+		(at 10.16 -5.08)
+		(size 1.4 1.4)
+		(drill 0.7)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "feff57db-14c6-40b2-aedc-7d45198da958")
+	)
+	(pad "10" thru_hole circle
+		(at 7.62 -5.08)
+		(size 1.4 1.4)
+		(drill 0.7)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "892891c0-1c2b-49b0-9c29-966c16298676")
+	)
+	(pad "16" thru_hole circle
+		(at -7.62 -5.08)
+		(size 1.4 1.4)
+		(drill 0.7)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "acb99899-4523-4ed9-bf2b-48b5f701fbe7")
+	)
+	(model "${KIPRJMOD}/lib/3d/TEL10.step"
+		(offset
+			(xyz 1.25 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
